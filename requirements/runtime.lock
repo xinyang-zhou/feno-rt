@@ -1,0 +1,6 @@
+# Direct inference-runtime lock tested on Python 3.9 / CUDA 12.8.
+# For the full transitive CUDA environment use runtime-cu128-py39.lock.
+aiohttp==3.13.2
+kappamodules==0.1.112
+numpy==2.0.2
+torch==2.8.0

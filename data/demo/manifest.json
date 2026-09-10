@@ -1,0 +1,20 @@
+{
+  "deterministic": true,
+  "files": {
+    "requests.jsonl": {
+      "requests": 24,
+      "sha256": "5c1bceed08afcc74ea424e3ddc8830822ea7f85aa8faf47cfe018668b0e85f93"
+    },
+    "velocity.npy": {
+      "dtype": "float32",
+      "sha256": "2f3daf9aa0c1fefbd3e509bab3010c3604c99cb05acb2e981f6323e41be9d3de",
+      "shape": [
+        16,
+        16
+      ]
+    }
+  },
+  "generator": "scripts/data/generate_demo.py",
+  "license": "CC0-1.0",
+  "schema_version": 1
+}
