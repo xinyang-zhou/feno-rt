@@ -1,19 +1,19 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "feno-rt"
-version = "0.7.1"
+version = "0.8.0"
 description = "Cache-aware inference runtime for a scientific neural operator"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{name = "FENO-RT contributors"}]
-license = {file = "LICENSE"}
+license = "MIT"
+license-files = ["LICENSE"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.9",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
@@ -27,6 +27,7 @@ dependencies = [
 [project.optional-dependencies]
 http = ["aiohttp>=3.10,<4"]
 test = ["aiohttp>=3.10,<4"]
+benchmark = ["deepwave==0.0.20"]
 
 [project.urls]
 Homepage = "https://github.com/xinyang-zhou/feno-rt"

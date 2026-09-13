@@ -26,6 +26,7 @@ artifacts/*
 !artifacts/benchmarks/
 artifacts/benchmarks/*
 !artifacts/benchmarks/stage6_synthetic_replay.json
+!artifacts/benchmarks/feno_test_single_gpu.json
 
 *.pth
 *.pt
@@ -36,3 +37,7 @@ artifacts/benchmarks/*
 *.npz
 *.npy
 !data/demo/velocity.npy
+
+# Release binaries are staged outside the repository and uploaded as
+# GitHub Release assets. Never copy them into the working tree.
+release-assets/

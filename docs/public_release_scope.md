@@ -12,6 +12,8 @@ This repository is built from an explicit inference-only allowlist.
   synthetic-demo generator;
 - tests that instantiate random small models and do not download assets;
 - one CPU synthetic replay benchmark and its functional example artifact;
+- the `feno_test` release manifest, verifier, model card, and single-GPU
+  performance-only benchmark;
 - dependency locks and CPU CI.
 
 ## Explicitly excluded
@@ -19,13 +21,20 @@ This repository is built from an explicit inference-only allowlist.
 - training loops, losses, optimizers, schedulers, and distributed training
   launchers;
 - raw or processed scientific data and train/test split indices;
-- model checkpoints, normalization statistics, model cards tied to private
-  weights, and weight hashes;
+- model checkpoints and normalization statistics inside the Git tree;
 - research/evaluation notebooks and plots;
 - private evaluation results and benchmark artifacts produced from trained
   checkpoints;
 - dataset-generation and evaluation scripts;
 - absolute paths, credentials, shell history, caches, and editor state.
+
+## Separately distributed release assets
+
+`feno_test.pth` and `norm_params_freq.npz` are GitHub Release assets rather
+than tracked repository files. Their names, sizes, SHA-256 digests, compatibility
+contract, and limitations are recorded in
+`release/feno_test.manifest.json`. The checkpoint is for systems-performance
+reproduction only and is not an accuracy release.
 
 ## Why forward definitions remain
 
@@ -45,4 +54,5 @@ python benchmarks/benchmark_stage6_replay.py --output /tmp/feno-rt-smoke.json
 ```
 
 Also inspect `git status --short` and verify that the repository-wide MIT
-License remains present.
+License remains present. Before uploading the separate assets, run
+`scripts/verify_checkpoint.py` against the staged filenames and manifest.

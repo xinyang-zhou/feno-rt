@@ -3,6 +3,8 @@
 - `runtime.lock` pins the direct inference dependencies validated by the public smoke suite.
 - `runtime-cu128-py39.lock` records the complete validated Linux x86_64,
   Python 3.9 and CUDA 12.8 transitive environment.
+- `benchmark.lock` adds the Deepwave version used by the optional single-GPU
+  performance-only comparison.
 
 The project metadata deliberately allows compatible patch/minor releases, while
 the lock files provide exact reconstruction points. CUDA PyTorch packages are

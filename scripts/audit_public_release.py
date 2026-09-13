@@ -35,7 +35,6 @@ PRIVATE_TEXT_MARKERS = (
     "dataset_freq_seis",
     "train_idx_freq",
     "feno_best_huoqiu_freq.pth",
-    "norm_params_freq.npz",
 )
 
 

@@ -1,0 +1,3 @@
+# Optional performance-comparison dependency.
+# Install after the runtime environment has a compatible PyTorch build.
+deepwave==0.0.20
