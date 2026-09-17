@@ -1,4 +1,4 @@
-"""Async execution, cancellation, timeout, and isolation tests for Stage 3."""
+"""Async execution, cancellation, timeout, and isolation tests."""
 
 import asyncio
 import unittest

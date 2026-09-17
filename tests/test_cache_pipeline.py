@@ -1,4 +1,4 @@
-"""End-to-end correctness tests for all Stage-2 cache levels."""
+"""End-to-end correctness tests for all four cache levels."""
 
 import unittest
 
@@ -10,7 +10,7 @@ from feno_rt.preprocessing import NormalizationStats
 from feno_rt.runtime import FENOModelRunner
 
 
-class Stage2CacheTest(unittest.TestCase):
+class CachePipelineTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.config = FENOModelConfig(
@@ -49,7 +49,7 @@ class Stage2CacheTest(unittest.TestCase):
             config=cls.config,
             normalization=cls.normalization,
             device="cpu",
-            model_version="stage2-test-model",
+            model_version="cache-test-model",
         )
         cls.velocity = torch.linspace(1500.0, 2500.0, 16 * 16).reshape(16, 16)
 

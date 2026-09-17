@@ -9,7 +9,6 @@ c(f) 经 MLP 生成 gamma/beta, 在 pred 之前对 query 特征做 FiLM:
 
 不与坐标一起输入编码器, 也不作为坐标拼进 sincos 嵌入。
 """
-from contextlib import nullcontext
 from dataclasses import dataclass
 from typing import Tuple
 
@@ -17,7 +16,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.nn.attention import SDPBackend, sdpa_kernel
 from kappamodules.layers import LinearProjection
 from kappamodules.transformer import PerceiverBlock
 
@@ -88,7 +86,7 @@ class FreqConditioning(nn.Module):
 class SourceWaveletTokens(nn.Module):
     """把源 Ricker 子波编码成 token 序列, 供解码器交叉注意力使用。
 
-    子波由频率 f 唯一决定 (与 deepwave.wavelets.ricker 公式一致):
+    子波由频率 f 唯一决定:
         t = t - peak_time,  peak_time = 1.5/f
         w = (1 - 2*pi^2*f^2*t^2) * exp(-pi^2*f^2*t^2)
     在输出 1024 点时间网格 (0..T) 上采样, 与数据降采样网格等价。
@@ -130,12 +128,10 @@ class SelfCrossAttentionBlock(nn.Module):
 
 
 class DecoderAttentionFreq(nn.Module):
-    SDPA_BACKENDS = frozenset(("auto", "math", "efficient", "flash"))
-
     def __init__(self, input_dim, output_dim, dec_dim, dec_depth, dec_num_heads,
                  enforce_reciprocity=True, patchify=True, P=2, H=None, W=None,
                  init_weights='truncnormal002', freq_cond_dim=64,
-                 use_wavelet_attn=True, sdpa_backend="auto", **kwargs):
+                 use_wavelet_attn=True, **kwargs):
         super().__init__(**kwargs)
         self.enforce_reciprocity = enforce_reciprocity
         self.input_dim = input_dim
@@ -145,8 +141,6 @@ class DecoderAttentionFreq(nn.Module):
         self.dec_num_heads = dec_num_heads
         self.init_weights = init_weights
         self.freq_cond_dim = freq_cond_dim
-        self.set_sdpa_backend(sdpa_backend)
-
         self.input_proj = LinearProjection(input_dim, dec_dim, init_weights=init_weights, optional=True)
         assert patchify, "patchify must be True"
         assert H is not None and W is not None
@@ -198,22 +192,6 @@ class DecoderAttentionFreq(nn.Module):
         ).permute(2, 0, 3, 1, 4)
         return projected[0], projected[1]
 
-    def set_sdpa_backend(self, backend):
-        backend = str(backend).lower()
-        if backend not in self.SDPA_BACKENDS:
-            raise ValueError(f"sdpa_backend must be one of {sorted(self.SDPA_BACKENDS)}")
-        self.sdpa_backend = backend
-
-    def sdpa_context(self):
-        if self.sdpa_backend == "auto":
-            return nullcontext()
-        backends = {
-            "math": SDPBackend.MATH,
-            "efficient": SDPBackend.EFFICIENT_ATTENTION,
-            "flash": SDPBackend.FLASH_ATTENTION,
-        }
-        return sdpa_kernel(backends=[backends[self.sdpa_backend]])
-
     def _perceiver_from_projected_kv(self, block, query, k, v):
         """Run a PerceiverBlock while reusing preprojected K/V."""
         if block.training:
@@ -236,8 +214,7 @@ class DecoderAttentionFreq(nn.Module):
                 f"cached K/V batch is {k.shape[0]}, but query batch is {batch_size}"
             )
 
-        with self.sdpa_context():
-            residual = F.scaled_dot_product_attention(q, k, v)
+        residual = F.scaled_dot_product_attention(q, k, v)
         residual = residual.permute(0, 2, 1, 3).reshape(batch_size, query_length, -1)
         residual = block.ls1(attn.proj(residual))
         query = query + residual

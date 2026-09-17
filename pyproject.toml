@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "feno-rt"
 version = "0.8.0"
-description = "Cache-aware inference runtime for a scientific neural operator"
+description = "Focused cache-aware inference runtime with dynamic batching and CUDA Graphs"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{name = "FENO-RT contributors"}]
@@ -23,11 +23,6 @@ dependencies = [
   "torch>=2.5,<2.9",
   "kappamodules>=0.1.112,<0.2",
 ]
-
-[project.optional-dependencies]
-http = ["aiohttp>=3.10,<4"]
-test = ["aiohttp>=3.10,<4"]
-benchmark = ["deepwave==0.0.20"]
 
 [project.urls]
 Homepage = "https://github.com/xinyang-zhou/feno-rt"

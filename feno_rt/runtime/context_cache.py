@@ -1,4 +1,4 @@
-"""Capacity-bounded caches used by the Stage-2 FENO runtime.
+"""Capacity-bounded caches used by the FENO runtime.
 
 The cache implementation deliberately owns policy, accounting, and lifecycle,
 while model-specific context objects remain in the model/runner modules.  This
@@ -327,7 +327,7 @@ class FENOCacheConfig:
 
 
 class FENOCacheBundle:
-    """Own all Stage-2 cache levels and dependency-aware invalidation."""
+    """Own all four cache levels and dependency-aware invalidation."""
 
     def __init__(self, config: Optional[FENOCacheConfig] = None) -> None:
         self.config = config or FENOCacheConfig()

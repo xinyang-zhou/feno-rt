@@ -1,6 +1,5 @@
-"""Cache-aware FENO model runner for Stage 2."""
+"""Cache-aware FENO model runner."""
 
-from contextlib import contextmanager
 from dataclasses import dataclass, replace
 from hashlib import sha256
 import json
@@ -31,7 +30,6 @@ from feno_rt.runtime.context_cache import (
     MediumCacheKey,
     WaveletCacheKey,
 )
-from feno_rt.runtime.precision import PrecisionMode, PrecisionPolicy
 
 
 @dataclass(frozen=True)
@@ -66,8 +64,6 @@ class FENOModelRunner:
         model_version: Optional[str] = None,
         caches: Optional[FENOCacheBundle] = None,
         cache_config: Optional[FENOCacheConfig] = None,
-        precision: Union[str, PrecisionMode] = PrecisionMode.FP32,
-        sdpa_backend: str = "auto",
     ) -> None:
         if caches is not None and cache_config is not None:
             raise ValueError("pass either caches or cache_config, not both")
@@ -78,82 +74,16 @@ class FENOModelRunner:
         self.device = torch.device(device)
         self.model = model.to(self.device).eval()
         self.dtype = next(self.model.parameters()).dtype
-        self.precision_policy = PrecisionPolicy.create(precision, self.device)
-        self.model.decoder.set_sdpa_backend(sdpa_backend)
         self.model_version = model_version or self._in_memory_model_version(model, config)
         self.normalization_version = self._normalization_version(normalization)
         self.caches = caches or FENOCacheBundle(cache_config)
-        self._geometry_prefix_fn = self.model.decoder.prepare_geometry_prefix
-        self._online_tail_fn = self.model.decoder.forward_from_geometry_prefix
-        self._compile_config: Optional[Dict[str, Any]] = None
         self._cuda_graph_runner: Optional[CUDAGraphTailRunner] = None
         self._metrics_lock = RLock()
         self._runtime_metrics = self._empty_runtime_metrics()
 
-    @property
-    def precision_mode(self) -> PrecisionMode:
-        return self.precision_policy.mode
-
-    @property
-    def precision_signature(self) -> str:
-        return self.precision_policy.signature
-
-    @property
-    def sdpa_backend(self) -> str:
-        return self.model.decoder.sdpa_backend
-
-    @contextmanager
-    def _execution_context(self):
-        with self.precision_policy.activate():
-            with self.model.decoder.sdpa_context():
-                yield
-
     def _invalidate_cuda_graphs(self) -> None:
         if self._cuda_graph_runner is not None:
             self._cuda_graph_runner.clear()
-
-    def set_sdpa_backend(self, backend: str) -> None:
-        self.model.decoder.set_sdpa_backend(backend)
-        self._invalidate_cuda_graphs()
-
-    def enable_torch_compile(
-        self,
-        *,
-        backend: Optional[str] = None,
-        mode: Optional[str] = "reduce-overhead",
-        fullgraph: bool = False,
-        dynamic: bool = True,
-    ) -> Dict[str, Any]:
-        if not hasattr(torch, "compile"):
-            raise RuntimeError("this PyTorch build does not provide torch.compile")
-        self._invalidate_cuda_graphs()
-        compile_kwargs: Dict[str, Any] = {
-            "mode": mode,
-            "fullgraph": fullgraph,
-            "dynamic": dynamic,
-        }
-        if backend is not None:
-            compile_kwargs["backend"] = backend
-        self._geometry_prefix_fn = torch.compile(
-            self.model.decoder.prepare_geometry_prefix, **compile_kwargs
-        )
-        self._online_tail_fn = torch.compile(
-            self.model.decoder.forward_from_geometry_prefix, **compile_kwargs
-        )
-        self._compile_config = {
-            "enabled": True,
-            "backend": backend or "default",
-            "mode": mode,
-            "fullgraph": fullgraph,
-            "dynamic": dynamic,
-        }
-        return dict(self._compile_config)
-
-    def disable_torch_compile(self) -> None:
-        self._geometry_prefix_fn = self.model.decoder.prepare_geometry_prefix
-        self._online_tail_fn = self.model.decoder.forward_from_geometry_prefix
-        self._compile_config = None
-        self._invalidate_cuda_graphs()
 
     def enable_cuda_graphs(
         self,
@@ -185,11 +115,6 @@ class FENOModelRunner:
 
     def execution_config(self) -> Dict[str, Any]:
         return {
-            "precision": self.precision_signature,
-            "encoder_precision": self.precision_policy.encoder_signature,
-            "decoder_static_precision": self.precision_policy.decoder_static_signature,
-            "sdpa_backend": self.sdpa_backend,
-            "torch_compile": dict(self._compile_config or {"enabled": False}),
             "cuda_graph": (
                 self._cuda_graph_runner.metrics()
                 if self._cuda_graph_runner is not None
@@ -232,8 +157,6 @@ class FENOModelRunner:
         device: Optional[Union[str, torch.device]] = None,
         caches: Optional[FENOCacheBundle] = None,
         cache_config: Optional[FENOCacheConfig] = None,
-        precision: Union[str, PrecisionMode] = PrecisionMode.FP32,
-        sdpa_backend: str = "auto",
     ) -> "FENOModelRunner":
         resolved_device = torch.device(
             device if device is not None else ("cuda" if torch.cuda.is_available() else "cpu")
@@ -249,8 +172,6 @@ class FENOModelRunner:
             model_version=cls._checkpoint_model_version(checkpoint_path),
             caches=caches,
             cache_config=cache_config,
-            precision=precision,
-            sdpa_backend=sdpa_backend,
         )
 
     @staticmethod
@@ -273,7 +194,7 @@ class FENOModelRunner:
             model_version=self.model_version,
             velocity_digest=digest.hexdigest(),
             normalization_version=normalization_version,
-            dtype=self.precision_signature,
+            dtype=str(self.dtype),
             device=str(self.device),
         )
 
@@ -290,7 +211,7 @@ class FENOModelRunner:
             model_version=self.model_version,
             velocity_digest=context.medium_id,
             normalization_version=self.normalization_version,
-            dtype=self.precision_signature,
+            dtype=str(self.dtype),
             device=str(context.device),
         )
 
@@ -359,8 +280,7 @@ class FENOModelRunner:
             device=self.device,
             dtype=self.dtype,
         )
-        with self.precision_policy.activate_encoder():
-            latent = self.model.encoder(model_input)
+        latent = self.model.encoder(model_input)
         context = MediumContext(
             medium_id=medium_id or key.velocity_digest,
             latent=latent,
@@ -379,8 +299,10 @@ class FENOModelRunner:
         if context.device != self.device:
             raise ValueError(f"Context is on {context.device}, but the runner is on {self.device}")
         key = context.cache_key
-        if key is not None and (key.model_version != self.model_version or key.dtype != self.precision_signature):
-            raise ValueError("MediumContext was created for a different model or precision")
+        if key is not None and (
+            key.model_version != self.model_version or key.dtype != str(self.dtype)
+        ):
+            raise ValueError("MediumContext was created for a different model or dtype")
 
     def _decoder_context_with_key(
         self, context: MediumContext, *, use_cache: bool = True
@@ -390,8 +312,7 @@ class FENOModelRunner:
             cached = self.caches.decoder.get(key)
             if cached is not None:
                 return cached, key
-        with self.precision_policy.activate_decoder_static():
-            decoder_context = self.model.decoder.prepare_static_context(context.latent)
+        decoder_context = self.model.decoder.prepare_static_context(context.latent)
         if use_cache:
             self.caches.decoder.put(key, decoder_context)
         return decoder_context, key
@@ -475,12 +396,11 @@ class FENOModelRunner:
                 device=sources.device,
                 dtype=torch.long,
             )
-            with self._execution_context():
-                computed = self._geometry_prefix_fn(
-                    decoder_context,
-                    sources.index_select(0, request_indices),
-                    receivers.index_select(0, request_indices),
-                )
+            computed = self.model.decoder.prepare_geometry_prefix(
+                decoder_context,
+                sources.index_select(0, request_indices),
+                receivers.index_select(0, request_indices),
+            )
             for offset, unique_index in enumerate(missing_unique_indices):
                 value = computed[offset : offset + 1].clone()
                 values[unique_index] = value
@@ -498,7 +418,7 @@ class FENOModelRunner:
             frequency_bits=bits,
             output_steps=self.config.output_steps,
             duration_seconds=float(self.model.decoder.wavelet_tokens.T),
-            dtype=self.precision_signature,
+            dtype=str(self.dtype),
             device=str(self.device),
         )
 
@@ -541,7 +461,7 @@ class FENOModelRunner:
         """Build request cache keys from a tensor-free medium identity."""
         if (
             medium_key.model_version != self.model_version
-            or medium_key.dtype != self.precision_signature
+            or medium_key.dtype != str(self.dtype)
             or medium_key.device != str(self.device)
         ):
             raise ValueError("medium handle was created for a different runner")
@@ -623,10 +543,9 @@ class FENOModelRunner:
                 device=frequencies.device,
                 dtype=torch.long,
             )
-            with self._execution_context():
-                computed = self.model.decoder.prepare_wavelet_context(
-                    frequencies.index_select(0, request_indices)
-                )
+            computed = self.model.decoder.prepare_wavelet_context(
+                frequencies.index_select(0, request_indices)
+            )
             for offset, unique_index in enumerate(missing_unique_indices):
                 value = WaveletContext(
                     tokens=computed.tokens[offset : offset + 1].clone(),
@@ -670,13 +589,12 @@ class FENOModelRunner:
         batch_size = sources.shape[0]
 
         if cache_level == "medium":
-            with self._execution_context():
-                output = self.model.decoder(
-                    context.latent.expand(batch_size, -1, -1),
-                    sources,
-                    receivers,
-                    frequency_tensor,
-                )
+            output = self.model.decoder(
+                context.latent.expand(batch_size, -1, -1),
+                sources,
+                receivers,
+                frequency_tensor,
+            )
         else:
             decoder_context, decoder_key = self._decoder_context_with_key(context)
             if cache_level in ("geometry", "all"):
@@ -689,34 +607,25 @@ class FENOModelRunner:
                     receivers_cpu,
                 )
             else:
-                with self._execution_context():
-                    prefix = self._geometry_prefix_fn(
-                        decoder_context, sources, receivers
-                    )
+                prefix = self.model.decoder.prepare_geometry_prefix(
+                    decoder_context, sources, receivers
+                )
             wavelet_context = (
                 self._wavelet_context_batch(frequency_tensor, frequencies_cpu)
                 if cache_level == "all" and self.model.decoder.use_wavelet_attn
                 else None
             )
-            with self._execution_context():
-                if self._cuda_graph_runner is not None and wavelet_context is not None:
-                    output = self._cuda_graph_runner.run(
-                        self._online_tail_fn,
-                        prefix,
-                        frequency_tensor,
-                        wavelet_context,
-                        precision=self.precision_signature,
-                        sdpa_backend=self.sdpa_backend,
-                        compile_signature=json.dumps(
-                            self._compile_config or {"enabled": False}, sort_keys=True
-                        ),
-                    )
-                else:
-                    output = self._online_tail_fn(
-                        prefix, frequency_tensor, wavelet_context
-                    )
-                    if self._compile_config is not None:
-                        output = output.clone()
+            if self._cuda_graph_runner is not None and wavelet_context is not None:
+                output = self._cuda_graph_runner.run(
+                    self.model.decoder.forward_from_geometry_prefix,
+                    prefix,
+                    frequency_tensor,
+                    wavelet_context,
+                )
+            else:
+                output = self.model.decoder.forward_from_geometry_prefix(
+                    prefix, frequency_tensor, wavelet_context
+                )
 
         if denormalize:
             if self.normalization is None:

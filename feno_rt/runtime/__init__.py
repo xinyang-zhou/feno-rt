@@ -1,4 +1,4 @@
-"""Runtime primitives for cached FENO inference."""
+"""Public API for the focused cache-aware inference runtime."""
 
 from .context_cache import (
     CacheLease,
@@ -17,18 +17,8 @@ from .context_cache import (
     value_nbytes,
 )
 from .cuda_graph import CUDAGraphKey, CUDAGraphTailRunner
-from .model_runner import FENOModelRunner, MediumContext
-from .medium_tier import (
-    MediumTierConfig,
-    MediumTierError,
-    MediumTierHandle,
-    MediumTierLease,
-    MediumTierManager,
-    UnknownMediumHandleError,
-)
-from .precision import PrecisionMode, PrecisionPolicy
-from .process_worker import ProcessGPUWorker, ProcessMediumContext, ProcessWorkerError
 from .engine import AsyncFENOEngine, AsyncRequestQueue
+from .model_runner import FENOModelRunner, MediumContext
 from .request import (
     EngineClosedError,
     RequestCost,
@@ -36,106 +26,41 @@ from .request import (
     RequestState,
     RequestTimeoutError,
 )
-from .replay import (
-    RequestTraceRecorder,
-    TRACE_SCHEMA_VERSION,
-    load_trace,
-    output_summary,
-    replay_trace,
-)
 from .scheduler import (
     CacheAwareScheduler,
     DynamicBatchConfig,
     FCFSScheduler,
     SchedulingPolicy,
 )
-from .router import (
-    CacheAwareReplicaRouter,
-    ReplicaRouterConfig,
-    ReplicaRoutingPolicy,
-    RoundRobinRouter,
-    RouteDecision,
-    WorkerRouteState,
-)
-from .worker import (
-    GPUWorker,
-    MultiGPUFENOEngine,
-    MultiGPUMediumContext,
-    RoutedRequestHandle,
-)
-from .workload import (
-    MultiMediumWorkloadConfig,
-    array_digest,
-    build_multi_medium_trace,
-    build_velocity_variants,
-    lru_hit_curve,
-    plan_tier_capacities,
-    summarize_multi_medium_trace,
-    trace_digest,
-)
 
 __all__ = [
     "AsyncFENOEngine",
     "AsyncRequestQueue",
+    "CacheAwareScheduler",
     "CacheLease",
     "CacheSnapshot",
-    "CacheAwareScheduler",
     "CUDAGraphKey",
     "CUDAGraphTailRunner",
     "DecoderContextCache",
     "DecoderContextCacheKey",
-    "FENOCacheBundle",
-    "FENOCacheConfig",
-    "FENOModelRunner",
     "DynamicBatchConfig",
     "EngineClosedError",
     "FCFSScheduler",
+    "FENOCacheBundle",
+    "FENOCacheConfig",
+    "FENOModelRunner",
     "GeometryPrefixCache",
     "GeometryPrefixCacheKey",
-    "GPUWorker",
     "MediumCacheKey",
     "MediumContext",
     "MediumContextCache",
-    "MediumTierConfig",
-    "MediumTierError",
-    "MediumTierHandle",
-    "MediumTierLease",
-    "MediumTierManager",
-    "MultiGPUFENOEngine",
-    "MultiGPUMediumContext",
-    "MultiMediumWorkloadConfig",
-    "PrecisionMode",
-    "PrecisionPolicy",
-    "ProcessGPUWorker",
-    "ProcessMediumContext",
-    "ProcessWorkerError",
     "RequestCost",
     "RequestHandle",
     "RequestState",
     "RequestTimeoutError",
-    "RequestTraceRecorder",
-    "ReplicaRouterConfig",
-    "ReplicaRoutingPolicy",
-    "RoundRobinRouter",
-    "CacheAwareReplicaRouter",
-    "RouteDecision",
-    "RoutedRequestHandle",
     "SchedulingPolicy",
     "TensorLRUCache",
-    "TRACE_SCHEMA_VERSION",
-    "UnknownMediumHandleError",
     "WaveletCacheKey",
     "WaveletContextCache",
-    "WorkerRouteState",
-    "array_digest",
-    "build_multi_medium_trace",
-    "build_velocity_variants",
-    "load_trace",
-    "lru_hit_curve",
-    "output_summary",
-    "plan_tier_capacities",
-    "replay_trace",
-    "summarize_multi_medium_trace",
-    "trace_digest",
     "value_nbytes",
 ]

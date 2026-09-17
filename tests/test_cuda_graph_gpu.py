@@ -1,4 +1,4 @@
-"""Explicit GPU integration tests for Stage 4 runtime features."""
+"""GPU integration test for CUDA Graph capture and replay."""
 
 import sys
 import unittest
@@ -41,7 +41,7 @@ def _config() -> FENOModelConfig:
 
 
 @unittest.skipUnless(torch.cuda.is_available(), "CUDA is required")
-class Stage4GPUIntegrationTest(unittest.TestCase):
+class CUDAGraphGPUIntegrationTest(unittest.TestCase):
     def setUp(self) -> None:
         torch.manual_seed(8)
         self.config = _config()
@@ -49,34 +49,16 @@ class Stage4GPUIntegrationTest(unittest.TestCase):
         self.sources = torch.tensor([[2.0, 3.0], [8.0, 10.0], [4.0, 5.0]])
         self.frequencies = torch.tensor([10.0, 25.0, 15.0])
 
-    def _runner(self, precision: str = "fp32") -> FENOModelRunner:
+    def _runner(self) -> FENOModelRunner:
         return FENOModelRunner(
             FENOFreq(self.config.encoder_config(), self.config.decoder_config()),
             config=self.config,
             device="cuda:0",
-            precision=precision,
         )
 
-    def test_low_precision_outputs_are_finite(self) -> None:
-        for precision in ("tf32", "bf16", "fp16"):
-            runner = self._runner(precision)
-            context = runner.prepare_medium(self.velocity, already_normalized=True)
-            static_context = runner.prepare_decoder_context(context)
-            expected_static_dtype = {
-                "tf32": torch.float32,
-                "bf16": torch.bfloat16,
-                "fp16": torch.float32,
-            }[precision]
-            self.assertEqual(static_context.layers[-1].tokens.dtype, expected_static_dtype)
-            output = runner.forward_batch(
-                context, self.sources, self.frequencies, cache_level="all"
-            )
-            self.assertTrue(torch.isfinite(output).all().item(), precision)
-
-    def test_flash_sdpa_and_cuda_graph_replay(self) -> None:
-        runner = self._runner("bf16")
+    def test_capture_and_replay_match_eager_output(self) -> None:
+        runner = self._runner()
         context = runner.prepare_medium(self.velocity, already_normalized=True)
-        runner.set_sdpa_backend("flash")
         expected = runner.forward_batch(
             context, self.sources, self.frequencies, cache_level="all"
         )

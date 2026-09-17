@@ -1,160 +1,133 @@
 # FENO-RT
 
-Cache-aware inference runtime for a non-autoregressive scientific neural operator.
+一个面向非自回归科学神经算子的轻量推理运行时。项目只聚焦四项能力：
 
-[![tests](https://github.com/xinyang-zhou/feno-rt/actions/workflows/ci.yml/badge.svg)](https://github.com/xinyang-zhou/feno-rt/actions/workflows/ci.yml)
+- 四级计算缓存：medium、decoder-static、geometry-prefix、wavelet；
+- medium 失效时对依赖缓存执行级联失效；
+- 支持容量预算、deadline 和饥饿保护的动态 batching；
+- 按 batch bucket 捕获和复用在线尾部的 CUDA Graph。
 
-This repository is an **inference-only source release**. It contains
-runtime scheduling, tensor caches, CUDA Graph support, multi-GPU serving,
-observability, trace replay, and a deterministic synthetic smoke workload.
-
-It intentionally contains no training loop, loss implementation, optimizer,
-training/evaluation dataset, or research notebook. Large model assets are never
-committed to Git. A separately distributed `feno_test.pth` checkpoint is
-available only for reproducible runtime-efficiency testing and carries no
-scientific-accuracy claim.
-
-## What is included
-
-- byte-bounded tensor LRU caches with reference-counted leases;
-- medium, decoder-static, geometry-prefix, and frequency/wavelet caches;
-- cache-aware dynamic batching with FCFS, deadlines, starvation protection,
-  cancellation, timeout, and recursive error isolation;
-- FP32/TF32/BF16/FP16 inference policies, SDPA selection, `torch.compile`, and
-  CUDA Graph buckets with persistent buffers;
-- per-GPU replicas, cache-aware routing, stable affinity, hot-context
-  replication, and one spawned process per GPU for CPU-result serving;
-- worker-local GPU/pinned-CPU medium tiers with tensor-free handles,
-  execution-window leases, promotion/demotion, and cost-aware eviction;
-- aiohttp JSON/NumPy serving, Prometheus exposition, bounded JSONL traces,
-  offline replay, controlled profiling, and cache flush controls;
-- CPU and GPU tests that construct randomly initialized small models;
-- a deterministic, redistribution-safe synthetic input and replay trace.
-- a versioned release manifest, checkpoint verifier, and optional single-GPU
-  FENO/Deepwave performance benchmark.
-
-The forward model definitions under `feno_rt/models/` are included only as the
-inference adapter required by the runtime. There is no code that trains those
-modules and no trained parameter file in the Git repository.
+仓库不包含训练代码、多 GPU 调度、HTTP 服务、可观测性平台或模型权重。
 
 ## Architecture
 
 ```text
-HTTP / replay client
-        |
-        v
-request validation + context registry + trace/profiler
-        |
-        v
-cache-aware replica router
-        |
-        v
-one worker process per GPU
-        |
-        +-- dynamic batch scheduler and admission budgets
-        +-- GPU <-> pinned-CPU medium tier
-        +-- four-level reusable context cache
-        +-- precision / compile / CUDA Graph execution
-        +-- asynchronous D2H into leased shared output slots
+velocity
+  -> medium latent cache
+     -> decoder static K/V cache
+        -> geometry prefix cache
+           -> frequency/wavelet cache
+              -> eager or CUDA Graph online tail
+
+concurrent requests
+  -> AsyncRequestQueue
+     -> FCFS / cache-aware scheduler
+        -> dynamic batch
+           -> FENOModelRunner
 ```
 
-See [docs/architecture.md](docs/architecture.md) for the request lifecycle and
-the ownership rules that make eviction safe.
+缓存 key 包含模型版本、输入摘要、归一化、dtype 和设备。删除一个 medium
+时会同时失效对应的 decoder-static 与 geometry-prefix；wavelet 只依赖模型
+和频率，因此会保留。
 
-## CPU-only smoke test
+详细设计见 [docs/architecture.md](docs/architecture.md)。
 
-Python 3.9+ is required. Install a PyTorch build suitable for your platform,
-then install the project:
+## Install
+
+Python 3.9+：
 
 ```bash
 python -m pip install -r requirements/runtime.lock
-python -m pip install -e '.[http]' --no-deps
-python scripts/data/generate_demo.py --force
-python benchmarks/benchmark_stage6_replay.py
-python -m unittest discover -s tests -v
+python -m pip install -e . --no-deps
 ```
 
-The smoke benchmark creates a small randomly initialized model and uses the
-synthetic 16 x 16 medium in `data/demo/`. It verifies cache/replay/metrics and
-profiling integration. Its timing is not a production performance claim.
+CUDA Graph 需要 CUDA 设备，其余功能可以在 CPU 上运行。
 
-## Benchmark-only checkpoint
+## Minimal usage
 
-The optional GitHub Release assets are named `feno_test.pth` and
-`norm_params_freq.npz`. The checkpoint has the production model topology but
-training stopped after epoch 0. It exists to reproduce latency, throughput,
-memory, cache, and scheduling measurements; do not use it to assess prediction
-quality. See [the model card](docs/feno_test_model_card.md) for the measured
-single-GPU results and limitations.
+```python
+import asyncio
+import torch
 
-After downloading both assets from the matching release, verify their hashes,
-state-dict structure, strict model compatibility, and a single-GPU smoke
-forward:
+from feno_rt.config import FENOModelConfig
+from feno_rt.models import FENOFreq
+from feno_rt.runtime import AsyncFENOEngine, DynamicBatchConfig, FENOModelRunner
 
-    python scripts/verify_checkpoint.py \
-      --manifest release/feno_test.manifest.json \
-      --checkpoint /path/to/feno_test.pth \
-      --normalization /path/to/norm_params_freq.npz \
-      --device cuda:0
+config = FENOModelConfig(
+    original_size=16,
+    velocity_height=16,
+    velocity_width=16,
+    latent_height=4,
+    latent_width=4,
+    output_steps=16,
+    receiver_depth=1,
+    num_receivers=8,
+    encoder_dim=16,
+    encoder_depth=1,
+    encoder_heads=4,
+    decoder_dim=16,
+    decoder_depth=2,
+    decoder_heads=4,
+    fno_modes1=4,
+    fno_modes2=4,
+    fno_width=16,
+    patch_size=2,
+    position_embedding_dim=8,
+    frequency_condition_dim=8,
+    dropout_rate=0.0,
+)
+model = FENOFreq(config.encoder_config(), config.decoder_config())
+runner = FENOModelRunner(model, config=config, device="cpu")
+velocity = torch.linspace(-1.0, 1.0, 16 * 16).reshape(16, 16)
+medium = runner.prepare_medium(velocity, already_normalized=True)
 
-The same files can be served explicitly:
 
-    python scripts/serve_http.py \
-      --checkpoint /path/to/feno_test.pth \
-      --normalization /path/to/norm_params_freq.npz \
-      --devices cuda:0
+async def main():
+    batch = DynamicBatchConfig(max_batch_size=8, max_query_tokens=64)
+    async with AsyncFENOEngine(runner, batch) as engine:
+        handles = await asyncio.gather(
+            engine.submit(medium, [2.0, 3.0], 10.0),
+            engine.submit(medium, [8.0, 10.0], 25.0),
+        )
+        outputs = await asyncio.gather(*handles)
+        print(outputs[0].shape, engine.stats())
 
-The loader uses `torch.load(..., weights_only=True)`. The server binds to
-`127.0.0.1` by default and does not provide TLS or authentication; do not expose
-it directly to an untrusted network.
 
-The checked-in launch policy never starts four GPUs. Two-GPU commands require
-the unremapped physical pair `cuda:1 cuda:2`; single-GPU use may select an
-explicit device such as `cuda:0`.
+asyncio.run(main())
+```
 
-## Single-GPU efficiency comparison
+在 CUDA 上启用图捕获：
 
-Install the optional Deepwave baseline after installing the runtime:
+```python
+runner = FENOModelRunner(model, config=config, device="cuda:0")
+runner.enable_cuda_graphs(buckets=(1, 2, 4, 8))
+```
 
-    python -m pip install -r requirements/benchmark.lock
-
-Run the performance-only comparison on exactly one explicit GPU:
-
-    python benchmarks/benchmark_feno_deepwave.py \
-      --checkpoint /path/to/feno_test.pth \
-      --normalization /path/to/norm_params_freq.npz \
-      --device cuda:0
-
-The benchmark uses a deterministic synthetic 700 x 700 velocity field, 1024
-output samples, 700 receivers, synchronized wall-clock timing, warmup, repeated
-measurements, and peak allocated GPU memory. It reports FENO uncached,
-medium-only, and fully cached paths separately. The Deepwave comparison is an
-efficiency baseline only; it is not a numerical-equivalence or accuracy claim.
-
-## Repository scope
-
-The allowlist and release audit are documented in
-[docs/public_release_scope.md](docs/public_release_scope.md). In particular:
-
-- `data/demo/` is synthetic and covered by its own CC0-1.0 dedication;
-- `artifacts/benchmarks/stage6_synthetic_replay.json` is produced by a random
-  small CPU model and is retained only as a functional example;
-- all real data, derived arrays, private evaluation artifacts, and
-  training/research material are excluded from Git;
-- `feno_test.pth` and its normalization file are separately distributed
-  release assets described by `release/feno_test.manifest.json`.
-
-## Tests
-
-CPU tests run in GitHub Actions. GPU-specific tests self-skip when their exact
-device requirements are unavailable. Tests never download a model or dataset.
+## Tests and benchmark
 
 ```bash
 python -m unittest discover -s tests -v
+python benchmarks/benchmark_core.py --device cpu
+python benchmarks/benchmark_core.py --device cuda:0 --cuda-graphs
+```
+
+CPU 环境会自动跳过 CUDA Graph 集成测试。
+
+## Repository layout
+
+```text
+feno_rt/models/             forward-only model definition
+feno_rt/runtime/
+  context_cache.py          four byte-bounded LRU caches and cascade invalidation
+  model_runner.py           staged cached execution
+  request.py                request lifecycle and cost model
+  scheduler.py              FCFS and cache-aware batching
+  engine.py                 asynchronous batching engine
+  cuda_graph.py             bucketed CUDA Graph capture/replay
+benchmarks/benchmark_core.py
+tests/
 ```
 
 ## License
 
-The inference-runtime source is released under the [MIT License](LICENSE).
-The generated synthetic files in `data/demo/` are covered separately by the
-CC0-1.0 dedication in `data/demo/LICENSE.md`.
+MIT

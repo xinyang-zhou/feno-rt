@@ -1,80 +1,47 @@
-# Runtime architecture
+# Core architecture
 
-FENO-RT serves a single-shot, non-autoregressive scientific operator. It reuses
-intermediate tensors according to their real input dependencies instead of
-applying an autoregressive token-cache design.
+FENO-RT 将一次完整前向拆成四个具有不同输入依赖的阶段，而不是套用自回归
+模型的 token KV cache。
 
-## Reusable computation
+## Four cache levels
 
-```text
-medium input
-  -> encoded medium latent
-     -> decoder-static context and projected K/V
-        -> geometry prefix(medium, source, receivers)
-           -> output(..., frequency)
+| Cache | Key dependency | Cached value |
+|---|---|---|
+| medium | model, velocity, normalization, dtype, device | encoder latent |
+| decoder-static | medium key | decoder tokens and projected K/V |
+| geometry-prefix | decoder key, source and receiver geometry | frequency-independent query |
+| wavelet | model, exact frequency bits, output length, dtype, device | wavelet tokens and projected K/V |
 
-frequency
-  -> wavelet/frequency context and projected K/V
-     -> joins the geometry prefix in the online tail
-```
+每个缓存都是按 tensor payload 字节限制容量的线程安全 LRU。缓存 entry 可以
+通过 lease 暂时固定，被固定的 entry 不参与淘汰。
 
-Structured cache keys include model version, input digest, normalization,
-precision, device, and downstream inputs as appropriate. Invalidating a medium
-cascades to dependent decoder and geometry entries. Frequency state is
-independent and is not cleared unnecessarily.
+medium 是 decoder-static 和 geometry-prefix 的依赖根。调用
+`FENOCacheBundle.invalidate_medium` 时，运行时先删除 geometry-prefix，
+再删除 decoder-static 和 medium。wavelet 与 medium 无关，不会被误删。
 
-## Request lifecycle
+## Dynamic batching
 
-1. A CPU medium source is registered with one or more workers.
-2. The external context stores stable worker tokens, not CUDA tensors.
-3. The router combines replica affinity, cache residency, queue pressure, and
-   memory headroom.
-4. The selected dynamic batcher groups compatible requests while enforcing
-   query-token, activation-byte, and output-byte budgets.
-5. Deadlines and starvation protection override locality ranking.
-6. A medium lease is acquired only when a batch starts actual execution.
-7. A pinned entry is promoted H2D; an absent materialized entry is rebuilt from
-   its registered CPU source.
-8. Duplicate geometry and frequency work is computed once per batch.
-9. The selected eager/compiled/CUDA-Graph path produces the output.
-10. Multi-GPU CPU-result serving copies D2H into a leased host-registered shared
-    slot, falling back to an owned pinned result if all slots are held.
-11. Execution leases are released and any temporary capacity overflow is
-    trimmed immediately.
+`AsyncFENOEngine` 接收单请求并在后台形成 micro-batch。每个 batch 同时受
+以下预算约束：
 
-## Medium ownership
+- request count；
+- query token count；
+- estimated activation bytes；
+- output bytes。
 
-`MediumTierHandle` is a tensor-free identity. `MediumTierManager` is the sole
-worker-local owner of materialized GPU and pinned-CPU latents. A medium has at
-most one materialized representation in these two tiers.
+FCFS 是严格到达顺序基线。cache-aware scheduler 会按 batch compatibility、
+缓存驻留、重复 geometry/frequency、priority 和等待时间排序。接近 deadline
+或等待超过 starvation threshold 的请求优先。
 
-GPU eviction demotes to page-locked CPU when capacity permits and invalidates
-dependent GPU decoder/geometry entries. A pinned hit promotes back to GPU.
-Leased entries are never victims. If every candidate is leased, execution may
-temporarily exceed the configured byte capacity and converges after release.
+模型执行由单独的 executor thread 串行拥有。一个 batch 失败时，引擎可以递归
+二分重试，从而只让非法请求失败。
 
-The eviction score combines estimated rebuild/transfer cost, access frequency,
-recency, and bytes. This avoids treating a cheap cold tensor and an expensive
-hot tensor as equivalent simply because of LRU order.
+## CUDA Graph
 
-## Process isolation
+CUDA Graph 只覆盖已经完成四级缓存查找后的在线尾部。运行时按 batch size
+选择 bucket，为 prefix、frequency、wavelet K/V 和输出建立持久 buffer。
+不足 bucket 的 batch 使用最后一个样本填充，返回前再裁剪。
 
-For multi-GPU CPU-result serving, each GPU is owned by a spawned process. The
-child owns its CUDA context, model, streams, cache, and medium tier. The parent
-owns routing and communicates through a narrow RPC interface. This design also
-keeps large outputs out of Python pipes by using shared host memory.
-
-Single-GPU serving stays in-process. GPU-tensor-returning compute-only paths are
-also in-process because device tensors are deliberately not transported across
-process boundaries.
-
-## Operational controls
-
-- Prometheus text includes HTTP, request, routing, worker, cache, tier, and D2H
-  counters/gauges.
-- Bounded JSONL traces store replay inputs and output summaries, not full output
-  arrays.
-- Profiler sessions write only inside a configured directory and accept a
-  restricted filename alphabet.
-- A materialized flush preserves source registration and handles; context
-  release removes source registration as well.
+图缓存 key 包含 bucket、输入尾部形状和 dtype。第一次请求捕获，后续相同
+signature 的请求更新静态 buffer 并 replay。返回值会 clone，避免下一次
+replay 修改调用方仍在使用的结果。

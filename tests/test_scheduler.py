@@ -1,4 +1,4 @@
-"""Deterministic policy tests for Stage-3 batch scheduling."""
+"""Deterministic policy tests for dynamic batch scheduling."""
 
 import unittest
 from time import perf_counter_ns

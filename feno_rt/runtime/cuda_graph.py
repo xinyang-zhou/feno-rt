@@ -12,11 +12,6 @@ from feno_rt.models.decoder_attention_freq import WaveletContext
 @dataclass(frozen=True)
 class CUDAGraphKey:
     batch_bucket: int
-    precision: str
-    sdpa_backend: str
-    compile_signature: str
-    cache_level: str
-    output_layout: str
     prefix_signature: Tuple[Tuple[int, ...], str]
     frequency_signature: Tuple[Tuple[int, ...], str]
     key_signature: Tuple[Tuple[int, ...], str]
@@ -97,18 +92,9 @@ class CUDAGraphTailRunner:
         prefix: torch.Tensor,
         frequency: torch.Tensor,
         wavelet: WaveletContext,
-        *,
-        precision: str,
-        sdpa_backend: str,
-        compile_signature: str,
     ) -> CUDAGraphKey:
         return CUDAGraphKey(
             batch_bucket=bucket,
-            precision=precision,
-            sdpa_backend=sdpa_backend,
-            compile_signature=compile_signature,
-            cache_level="all",
-            output_layout="receiver_time",
             prefix_signature=self._signature(prefix),
             frequency_signature=self._signature(frequency),
             key_signature=self._signature(wavelet.k),
@@ -181,10 +167,6 @@ class CUDAGraphTailRunner:
         prefix: torch.Tensor,
         frequency: torch.Tensor,
         wavelet: WaveletContext,
-        *,
-        precision: str,
-        sdpa_backend: str,
-        compile_signature: str,
     ) -> torch.Tensor:
         if prefix.device.type != "cuda":
             raise ValueError("CUDA Graph replay requires CUDA tensors")
@@ -192,15 +174,7 @@ class CUDAGraphTailRunner:
         if batch_size < 1:
             raise ValueError("CUDA Graph replay requires a non-empty batch")
         bucket = self.bucket_for(batch_size)
-        key = self._key(
-            bucket,
-            prefix,
-            frequency,
-            wavelet,
-            precision=precision,
-            sdpa_backend=sdpa_backend,
-            compile_signature=compile_signature,
-        )
+        key = self._key(bucket, prefix, frequency, wavelet)
         with self._lock:
             self._requests += 1
             if batch_size < bucket:

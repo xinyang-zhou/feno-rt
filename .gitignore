@@ -14,20 +14,11 @@ build/
 *.log
 nohup.out
 
-# Training, research, and private assets must never enter this repository.
-scripts/train/
-scripts/evaluate/
-notebooks/
+# Model artifacts are intentionally kept outside Git.
+artifacts/
+data/
+release/
 checkpoints/
-data/*
-!data/demo/
-!data/demo/**
-artifacts/*
-!artifacts/benchmarks/
-artifacts/benchmarks/*
-!artifacts/benchmarks/stage6_synthetic_replay.json
-!artifacts/benchmarks/feno_test_single_gpu.json
-
 *.pth
 *.pt
 *.ckpt
@@ -36,8 +27,3 @@ artifacts/benchmarks/*
 *.bin
 *.npz
 *.npy
-!data/demo/velocity.npy
-
-# Release binaries are staged outside the repository and uploaded as
-# GitHub Release assets. Never copy them into the working tree.
-release-assets/

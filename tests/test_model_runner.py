@@ -1,4 +1,4 @@
-"""Correctness tests for the Stage-1 cached model runner."""
+"""Correctness tests for the cached model runner."""
 
 import sys
 import unittest

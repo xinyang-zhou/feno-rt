@@ -1,4 +1,4 @@
-"""Policy and lifecycle tests for Stage-2 capacity-bounded caches."""
+"""Policy and lifecycle tests for capacity-bounded caches."""
 
 import unittest
 

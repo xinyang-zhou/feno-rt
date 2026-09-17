@@ -1,4 +1,4 @@
-"""FCFS and cache-aware admission policies for Stage-3 dynamic batching."""
+"""FCFS and cache-aware admission policies for dynamic batching."""
 
 from __future__ import annotations
 
