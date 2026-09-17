@@ -3,8 +3,6 @@
 from .context_cache import (
     CacheLease,
     CacheSnapshot,
-    DecoderContextCache,
-    DecoderContextCacheKey,
     FENOCacheBundle,
     FENOCacheConfig,
     GeometryPrefixCache,
@@ -41,8 +39,6 @@ __all__ = [
     "CacheSnapshot",
     "CUDAGraphKey",
     "CUDAGraphTailRunner",
-    "DecoderContextCache",
-    "DecoderContextCacheKey",
     "DynamicBatchConfig",
     "EngineClosedError",
     "FCFSScheduler",

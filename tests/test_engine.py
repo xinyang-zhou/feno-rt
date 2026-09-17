@@ -55,7 +55,6 @@ def make_runner():
         config=config,
         normalization=normalization,
         device="cpu",
-        model_version="stage3-test-model",
     )
     velocity = torch.linspace(1500.0, 2500.0, 16 * 16).reshape(16, 16)
     return runner, runner.prepare_medium(velocity)

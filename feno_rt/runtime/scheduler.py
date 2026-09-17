@@ -159,8 +159,7 @@ class CacheAwareScheduler(BaseBatchScheduler):
     """Group cache-compatible work while honoring urgent and starved requests."""
 
     _RESIDENCY_WEIGHTS = {
-        "medium": 2.0,
-        "decoder": 8.0,
+        "medium": 10.0,
         "geometry": 20.0,
         "wavelet": 4.0,
     }

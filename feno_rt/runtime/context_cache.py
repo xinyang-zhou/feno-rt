@@ -1,8 +1,8 @@
 """Capacity-bounded caches used by the FENO runtime.
 
 The cache implementation deliberately owns policy, accounting, and lifecycle,
-while model-specific context objects remain in the model/runner modules.  This
-keeps the LRU reusable for medium, decoder, geometry, and wavelet entries.
+while model-specific context objects remain in the model/runner modules. This
+keeps the LRU reusable for medium, geometry, and wavelet entries.
 """
 
 from collections import OrderedDict
@@ -19,27 +19,16 @@ V = TypeVar("V")
 
 @dataclass(frozen=True)
 class MediumCacheKey:
-    """Identity of an encoded velocity model within one runtime."""
+    """Identity of a canonical velocity model within one runner."""
 
-    model_version: str
     velocity_digest: str
-    normalization_version: str
-    dtype: str
-    device: str
-
-
-@dataclass(frozen=True)
-class DecoderContextCacheKey:
-    """Identity of decoder state derived from a medium context."""
-
-    medium: MediumCacheKey
 
 
 @dataclass(frozen=True)
 class GeometryPrefixCacheKey:
     """Identity of a frequency-independent receiver query prefix."""
 
-    decoder_context: DecoderContextCacheKey
+    medium: MediumCacheKey
     geometry_digest: str
 
 
@@ -47,12 +36,7 @@ class GeometryPrefixCacheKey:
 class WaveletCacheKey:
     """Identity of an exact-frequency wavelet representation."""
 
-    model_version: str
     frequency_bits: str
-    output_steps: int
-    duration_seconds: float
-    dtype: str
-    device: str
 
 
 @dataclass(frozen=True)
@@ -303,11 +287,6 @@ class MediumContextCache(TensorLRUCache[MediumCacheKey, Any]):
         super().__init__(capacity_bytes, name="medium")
 
 
-class DecoderContextCache(TensorLRUCache[DecoderContextCacheKey, Any]):
-    def __init__(self, capacity_bytes: int) -> None:
-        super().__init__(capacity_bytes, name="decoder_context")
-
-
 class GeometryPrefixCache(TensorLRUCache[GeometryPrefixCacheKey, torch.Tensor]):
     def __init__(self, capacity_bytes: int) -> None:
         super().__init__(capacity_bytes, name="geometry_prefix")
@@ -320,49 +299,42 @@ class WaveletContextCache(TensorLRUCache[WaveletCacheKey, Any]):
 
 @dataclass(frozen=True)
 class FENOCacheConfig:
-    medium_capacity_bytes: int = 256 * 1024 * 1024
-    decoder_capacity_bytes: int = 2 * 1024 * 1024 * 1024
+    medium_capacity_bytes: int = 2304 * 1024 * 1024
     geometry_capacity_bytes: int = 512 * 1024 * 1024
     wavelet_capacity_bytes: int = 512 * 1024 * 1024
 
 
 class FENOCacheBundle:
-    """Own all four cache levels and dependency-aware invalidation."""
+    """Own the three runner-local caches and dependency-aware invalidation."""
 
     def __init__(self, config: Optional[FENOCacheConfig] = None) -> None:
         self.config = config or FENOCacheConfig()
         self.medium = MediumContextCache(self.config.medium_capacity_bytes)
-        self.decoder = DecoderContextCache(self.config.decoder_capacity_bytes)
         self.geometry = GeometryPrefixCache(self.config.geometry_capacity_bytes)
         self.wavelet = WaveletContextCache(self.config.wavelet_capacity_bytes)
 
     def snapshots(self) -> Dict[str, Dict[str, Any]]:
-        caches = (self.medium, self.decoder, self.geometry, self.wavelet)
+        caches = (self.medium, self.geometry, self.wavelet)
         return {cache.name: cache.snapshot().to_dict() for cache in caches}
 
     def reset_stats(self) -> None:
-        for cache in (self.medium, self.decoder, self.geometry, self.wavelet):
+        for cache in (self.medium, self.geometry, self.wavelet):
             cache.reset_stats()
 
     def clear(self, *, force: bool = False) -> Dict[str, int]:
         return {
             "geometry_prefix": self.geometry.clear(force=force),
-            "decoder_context": self.decoder.clear(force=force),
             "medium": self.medium.clear(force=force),
             "wavelet": self.wavelet.clear(force=force),
         }
 
     def invalidate_medium(self, key: MediumCacheKey, *, force: bool = False) -> Dict[str, int]:
-        decoder_keys = [item for item in self.decoder.keys() if item.medium == key]
-        decoder_key_set = set(decoder_keys)
         geometry_count = self.geometry.invalidate_where(
-            lambda item: item.decoder_context in decoder_key_set,
+            lambda item: item.medium == key,
             force=force,
         )
-        decoder_count = sum(self.decoder.invalidate(item, force=force) for item in decoder_keys)
         medium_count = int(self.medium.invalidate(key, force=force))
         return {
             "geometry_prefix": geometry_count,
-            "decoder_context": decoder_count,
             "medium": medium_count,
         }

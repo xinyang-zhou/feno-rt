@@ -2,7 +2,7 @@
 
 一个面向非自回归科学神经算子的轻量推理运行时。项目只聚焦四项能力：
 
-- 四级计算缓存：medium、decoder-static、geometry-prefix、wavelet；
+- 三级计算缓存：medium-static、geometry-prefix、wavelet；
 - medium 失效时对依赖缓存执行级联失效；
 - 支持容量预算、deadline 和饥饿保护的动态 batching；
 - 按 batch bucket 捕获和复用在线尾部的 CUDA Graph。
@@ -13,11 +13,10 @@
 
 ```text
 velocity
-  -> medium latent cache
-     -> decoder static K/V cache
-        -> geometry prefix cache
-           -> frequency/wavelet cache
-              -> eager or CUDA Graph online tail
+  -> medium-static cache (encoder latent + decoder K/V)
+     -> geometry prefix cache
+        -> frequency/wavelet cache
+           -> eager or CUDA Graph online tail
 
 concurrent requests
   -> AsyncRequestQueue
@@ -26,9 +25,10 @@ concurrent requests
            -> FENOModelRunner
 ```
 
-缓存 key 包含模型版本、输入摘要、归一化、dtype 和设备。删除一个 medium
-时会同时失效对应的 decoder-static 与 geometry-prefix；wavelet 只依赖模型
-和频率，因此会保留。
+缓存由单个 model runner 私有持有。medium key 只包含规范化速度模型摘要，
+geometry key 组合 medium 与震源/接收器几何，wavelet key 使用精确频率 bit。
+删除一个 medium 时会同时失效对应的 geometry-prefix；wavelet 与 medium
+无关，因此会保留。
 
 详细设计见 [docs/architecture.md](docs/architecture.md)。
 
@@ -118,7 +118,7 @@ CPU 环境会自动跳过 CUDA Graph 集成测试。
 ```text
 feno_rt/models/             forward-only model definition
 feno_rt/runtime/
-  context_cache.py          four byte-bounded LRU caches and cascade invalidation
+  context_cache.py          three byte-bounded LRU caches and cascade invalidation
   model_runner.py           staged cached execution
   request.py                request lifecycle and cost model
   scheduler.py              FCFS and cache-aware batching

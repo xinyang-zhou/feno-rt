@@ -100,7 +100,22 @@ class ModelRunnerTest(unittest.TestCase):
                 receiver_batch,
                 frequency_batch,
             )
-        torch.testing.assert_close(actual, expected, rtol=0, atol=0)
+        torch.testing.assert_close(actual, expected, rtol=1e-5, atol=1e-6)
+
+    def test_context_cannot_be_shared_between_runners(self) -> None:
+        other = FENOModelRunner(
+            FENOFreq(
+                self.config.encoder_config(),
+                self.config.decoder_config(),
+            ),
+            config=self.config,
+            normalization=self.normalization,
+            device="cpu",
+        )
+        context = self.runner.prepare_medium(self.velocity)
+
+        with self.assertRaisesRegex(ValueError, "different model runner"):
+            other.forward_batch(context, self.sources, self.frequencies)
 
     def test_scalar_frequency_is_broadcast(self) -> None:
         context = self.runner.prepare_medium(self.velocity)

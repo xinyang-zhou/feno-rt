@@ -1,4 +1,4 @@
-"""End-to-end correctness tests for all four cache levels."""
+"""End-to-end correctness tests for the three cache levels."""
 
 import unittest
 
@@ -49,7 +49,6 @@ class CachePipelineTest(unittest.TestCase):
             config=cls.config,
             normalization=cls.normalization,
             device="cpu",
-            model_version="cache-test-model",
         )
         cls.velocity = torch.linspace(1500.0, 2500.0, 16 * 16).reshape(16, 16)
 
@@ -61,21 +60,22 @@ class CachePipelineTest(unittest.TestCase):
         sources = torch.tensor([[2.0, 3.0], [8.0, 10.0], [2.0, 3.0]])
         frequencies = torch.tensor([10.0, 25.0, 10.0])
         context = self.runner.prepare_medium(self.velocity)
-        expected = self.runner.forward_batch(
-            context, sources, frequencies, cache_level="medium"
+        expected = self.runner.forward_uncached(
+            self.velocity, sources, frequencies
         )
 
-        for cache_level in ("decoder", "geometry", "all"):
+        for cache_level in ("medium", "geometry", "all"):
             with self.subTest(cache_level=cache_level):
                 actual = self.runner.forward_batch(
                     context, sources, frequencies, cache_level=cache_level
                 )
                 torch.testing.assert_close(actual, expected, rtol=1e-5, atol=1e-6)
 
-    def test_medium_decoder_geometry_and_wavelet_hits_are_recorded(self) -> None:
+    def test_medium_geometry_and_wavelet_hits_are_recorded(self) -> None:
         first_context = self.runner.prepare_medium(self.velocity)
         second_context = self.runner.prepare_medium(self.velocity)
         self.assertIs(first_context.latent, second_context.latent)
+        self.assertIs(first_context.decoder_context, second_context.decoder_context)
 
         sources = torch.tensor([[2.0, 3.0], [2.0, 3.0], [9.0, 7.0]])
         frequencies = torch.tensor([10.0, 10.0, 25.0])
@@ -84,7 +84,6 @@ class CachePipelineTest(unittest.TestCase):
         metrics = self.runner.cache_metrics()
 
         self.assertEqual(metrics["caches"]["medium"]["hits"], 1)
-        self.assertGreaterEqual(metrics["caches"]["decoder_context"]["hits"], 1)
         self.assertEqual(metrics["caches"]["geometry_prefix"]["resident_entries"], 2)
         self.assertEqual(metrics["caches"]["wavelet"]["resident_entries"], 2)
         self.assertGreaterEqual(metrics["caches"]["geometry_prefix"]["hits"], 2)
@@ -121,12 +120,33 @@ class CachePipelineTest(unittest.TestCase):
         invalidated = self.runner.caches.invalidate_medium(context.cache_key)
 
         self.assertEqual(invalidated["medium"], 1)
-        self.assertEqual(invalidated["decoder_context"], 1)
         self.assertEqual(invalidated["geometry_prefix"], 1)
         self.assertEqual(
             self.runner.cache_metrics()["caches"]["wavelet"]["resident_entries"],
             1,
         )
+
+    def test_medium_identity_uses_canonical_velocity_values(self) -> None:
+        normalized = (self.velocity - self.normalization.v_mean) / self.normalization.v_std
+
+        physical_key = self.runner.medium_cache_key(self.velocity)
+        normalized_key = self.runner.medium_cache_key(
+            normalized,
+            already_normalized=True,
+        )
+
+        self.assertEqual(physical_key, normalized_key)
+
+    def test_decoder_is_not_a_separate_cache_level(self) -> None:
+        context = self.runner.prepare_medium(self.velocity)
+
+        with self.assertRaisesRegex(ValueError, "cache_level"):
+            self.runner.forward_batch(
+                context,
+                [[2.0, 3.0]],
+                [10.0],
+                cache_level="decoder",
+            )
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""Small reproducible benchmark for the four retained runtime features."""
+"""Small reproducible benchmark for the focused runtime features."""
 
 from __future__ import annotations
 
@@ -137,7 +137,6 @@ def main() -> None:
         FENOFreq(config.encoder_config(), config.decoder_config()),
         config=config,
         device=device,
-        model_version="core-benchmark",
     )
     velocity = torch.linspace(-1.0, 1.0, 16 * 16).reshape(16, 16)
     sources = torch.tensor([[2.0, 3.0], [8.0, 10.0], [2.0, 3.0], [6.0, 4.0]])
@@ -168,7 +167,7 @@ def main() -> None:
     result: Dict[str, Any] = {
         "device": str(device),
         "uncached": uncached,
-        "four_level_cache": cached,
+        "three_level_cache": cached,
         "cache_speedup": uncached["mean_ms"] / cached["mean_ms"],
         "cache_relative_l2_error": relative_error,
         "cache_metrics": runner.cache_metrics(),

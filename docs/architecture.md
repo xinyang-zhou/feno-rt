@@ -1,23 +1,27 @@
 # Core architecture
 
-FENO-RT 将一次完整前向拆成四个具有不同输入依赖的阶段，而不是套用自回归
+FENO-RT 将一次完整前向拆成三个具有不同输入依赖的阶段，而不是套用自回归
 模型的 token KV cache。
 
-## Four cache levels
+## Three cache levels
 
 | Cache | Key dependency | Cached value |
 |---|---|---|
-| medium | model, velocity, normalization, dtype, device | encoder latent |
-| decoder-static | medium key | decoder tokens and projected K/V |
-| geometry-prefix | decoder key, source and receiver geometry | frequency-independent query |
-| wavelet | model, exact frequency bits, output length, dtype, device | wavelet tokens and projected K/V |
+| medium-static | canonical velocity digest | encoder latent, decoder tokens and projected K/V |
+| geometry-prefix | medium key, source and receiver geometry | frequency-independent query |
+| wavelet | exact frequency bits | wavelet tokens and projected K/V |
 
 每个缓存都是按 tensor payload 字节限制容量的线程安全 LRU。缓存 entry 可以
 通过 lease 暂时固定，被固定的 entry 不参与淘汰。
 
-medium 是 decoder-static 和 geometry-prefix 的依赖根。调用
-`FENOCacheBundle.invalidate_medium` 时，运行时先删除 geometry-prefix，
-再删除 decoder-static 和 medium。wavelet 与 medium 无关，不会被误删。
+三个缓存都由单个 `FENOModelRunner` 私有持有，因此模型、归一化、dtype 和
+设备由 runner 作用域保证，不重复写入 cache key。medium 是 geometry-prefix
+的依赖根。调用 `FENOCacheBundle.invalidate_medium` 时，运行时先删除
+geometry-prefix，再删除 medium。wavelet 与 medium 无关，不会被误删。
+
+速度模型在 CPU 上转换为规范化的 float32 表示后计算 digest，因此物理速度
+输入和等价的 `already_normalized=True` 输入会命中同一个 medium entry。
+`MediumContext` 带有 runner 所有权标记，不能跨 runner 复用。
 
 ## Dynamic batching
 
@@ -38,7 +42,7 @@ FCFS 是严格到达顺序基线。cache-aware scheduler 会按 batch compatibil
 
 ## CUDA Graph
 
-CUDA Graph 只覆盖已经完成四级缓存查找后的在线尾部。运行时按 batch size
+CUDA Graph 只覆盖已经完成三级缓存查找后的在线尾部。运行时按 batch size
 选择 bucket，为 prefix、frequency、wavelet K/V 和输出建立持久 buffer。
 不足 bucket 的 batch 使用最后一个样本填充，返回前再裁剪。
 

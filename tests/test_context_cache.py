@@ -5,7 +5,6 @@ import unittest
 import torch
 
 from feno_rt.runtime.context_cache import (
-    DecoderContextCacheKey,
     FENOCacheBundle,
     FENOCacheConfig,
     GeometryPrefixCacheKey,
@@ -16,13 +15,7 @@ from feno_rt.runtime.context_cache import (
 
 
 def medium_key(name: str) -> MediumCacheKey:
-    return MediumCacheKey(
-        model_version="model-v1",
-        velocity_digest=name,
-        normalization_version="norm-v1",
-        dtype="torch.float32",
-        device="cpu",
-    )
+    return MediumCacheKey(velocity_digest=name)
 
 
 class TensorLRUCacheTest(unittest.TestCase):
@@ -68,34 +61,23 @@ class CacheBundleTest(unittest.TestCase):
         bundle = FENOCacheBundle(
             FENOCacheConfig(
                 medium_capacity_bytes=64,
-                decoder_capacity_bytes=64,
                 geometry_capacity_bytes=64,
                 wavelet_capacity_bytes=64,
             )
         )
         mkey = medium_key("medium-a")
-        dkey = DecoderContextCacheKey(medium=mkey)
         gkey = GeometryPrefixCacheKey(
-            decoder_context=dkey,
+            medium=mkey,
             geometry_digest="geometry-a",
         )
-        wkey = WaveletCacheKey(
-            model_version="model-v1",
-            frequency_bits="00002041",
-            output_steps=16,
-            duration_seconds=0.5,
-            dtype="torch.float32",
-            device="cpu",
-        )
+        wkey = WaveletCacheKey(frequency_bits="00002041")
         bundle.medium.put(mkey, torch.tensor([1.0]))
-        bundle.decoder.put(dkey, torch.tensor([2.0]))
         bundle.geometry.put(gkey, torch.tensor([3.0]))
         bundle.wavelet.put(wkey, torch.tensor([4.0]))
 
         invalidated = bundle.invalidate_medium(mkey)
 
         self.assertEqual(invalidated["medium"], 1)
-        self.assertEqual(invalidated["decoder_context"], 1)
         self.assertEqual(invalidated["geometry_prefix"], 1)
         self.assertIsNotNone(bundle.wavelet.peek(wkey))
 

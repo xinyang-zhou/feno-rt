@@ -1,13 +1,11 @@
 """Cache-aware FENO model runner."""
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from hashlib import sha256
-import json
 from pathlib import Path
 from threading import RLock
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-import numpy as np
 import torch
 
 from feno_rt.config import DEFAULT_INFERENCE_CONFIG, FENOModelConfig
@@ -23,7 +21,6 @@ from feno_rt.preprocessing import (
 )
 from feno_rt.runtime.cuda_graph import CUDAGraphTailRunner
 from feno_rt.runtime.context_cache import (
-    DecoderContextCacheKey,
     FENOCacheBundle,
     FENOCacheConfig,
     GeometryPrefixCacheKey,
@@ -34,11 +31,13 @@ from feno_rt.runtime.context_cache import (
 
 @dataclass(frozen=True)
 class MediumContext:
-    """Immutable handle to the encoder result for one velocity model."""
+    """Runner-owned encoder and decoder-static state for one velocity model."""
 
     medium_id: str
     latent: torch.Tensor
-    cache_key: Optional[MediumCacheKey] = None
+    decoder_context: DecoderStaticContext
+    cache_key: MediumCacheKey
+    owner_token: object = field(repr=False, compare=False)
 
     @property
     def device(self) -> torch.device:
@@ -50,9 +49,9 @@ class MediumContext:
 
 
 class FENOModelRunner:
-    """Run FENO with medium, decoder, geometry, and exact-wavelet caches."""
+    """Run FENO with runner-local medium, geometry, and wavelet caches."""
 
-    CACHE_LEVELS = frozenset(("medium", "decoder", "geometry", "all"))
+    CACHE_LEVELS = frozenset(("medium", "geometry", "all"))
 
     def __init__(
         self,
@@ -61,12 +60,8 @@ class FENOModelRunner:
         config: FENOModelConfig = DEFAULT_INFERENCE_CONFIG,
         normalization: Optional[NormalizationStats] = None,
         device: Optional[Union[str, torch.device]] = None,
-        model_version: Optional[str] = None,
-        caches: Optional[FENOCacheBundle] = None,
         cache_config: Optional[FENOCacheConfig] = None,
     ) -> None:
-        if caches is not None and cache_config is not None:
-            raise ValueError("pass either caches or cache_config, not both")
         self.config = config
         self.normalization = normalization
         if device is None:
@@ -74,9 +69,8 @@ class FENOModelRunner:
         self.device = torch.device(device)
         self.model = model.to(self.device).eval()
         self.dtype = next(self.model.parameters()).dtype
-        self.model_version = model_version or self._in_memory_model_version(model, config)
-        self.normalization_version = self._normalization_version(normalization)
-        self.caches = caches or FENOCacheBundle(cache_config)
+        self.caches = FENOCacheBundle(cache_config)
+        self._context_owner = object()
         self._cuda_graph_runner: Optional[CUDAGraphTailRunner] = None
         self._metrics_lock = RLock()
         self._runtime_metrics = self._empty_runtime_metrics()
@@ -122,31 +116,6 @@ class FENOModelRunner:
             ),
         }
 
-    @staticmethod
-    def _in_memory_model_version(model: FENOFreq, config: FENOModelConfig) -> str:
-        config_payload = json.dumps(config.to_dict(), sort_keys=True).encode()
-        config_digest = sha256(config_payload).hexdigest()[:16]
-        return f"memory:{id(model):x}:{config_digest}"
-
-    @staticmethod
-    def _checkpoint_model_version(path: Union[str, Path]) -> str:
-        resolved = Path(path).resolve()
-        stat = resolved.stat()
-        payload = f"{resolved}:{stat.st_size}:{stat.st_mtime_ns}".encode()
-        return "checkpoint:" + sha256(payload).hexdigest()
-
-    @staticmethod
-    def _normalization_version(normalization: Optional[NormalizationStats]) -> str:
-        if normalization is None:
-            return "none"
-        payload = (
-            normalization.v_mean,
-            normalization.v_std,
-            normalization.seis_mean,
-            normalization.seis_std,
-        )
-        return sha256(repr(payload).encode()).hexdigest()
-
     @classmethod
     def from_checkpoint(
         cls,
@@ -155,7 +124,6 @@ class FENOModelRunner:
         config: FENOModelConfig = DEFAULT_INFERENCE_CONFIG,
         normalization: Optional[NormalizationStats] = None,
         device: Optional[Union[str, torch.device]] = None,
-        caches: Optional[FENOCacheBundle] = None,
         cache_config: Optional[FENOCacheConfig] = None,
     ) -> "FENOModelRunner":
         resolved_device = torch.device(
@@ -169,8 +137,6 @@ class FENOModelRunner:
             config=config,
             normalization=normalization,
             device=resolved_device,
-            model_version=cls._checkpoint_model_version(checkpoint_path),
-            caches=caches,
             cache_config=cache_config,
         )
 
@@ -185,35 +151,25 @@ class FENOModelRunner:
         return digest.hexdigest()
 
     def _medium_key(self, velocity: ArrayLike, already_normalized: bool) -> MediumCacheKey:
-        tensor = torch.as_tensor(velocity).detach().to(device="cpu").contiguous()
-        digest = sha256()
-        digest.update(b"normalized" if already_normalized else b"physical")
-        digest.update(self._tensor_digest(tensor).encode())
-        normalization_version = "already-normalized" if already_normalized else self.normalization_version
-        return MediumCacheKey(
-            model_version=self.model_version,
-            velocity_digest=digest.hexdigest(),
-            normalization_version=normalization_version,
-            dtype=str(self.dtype),
-            device=str(self.device),
+        canonical = build_velocity_input(
+            velocity,
+            self.config,
+            self.normalization,
+            already_normalized=already_normalized,
+            device=torch.device("cpu"),
+            dtype=torch.float32,
         )
+        return MediumCacheKey(velocity_digest=self._tensor_digest(canonical[..., :1]))
 
     def medium_cache_key(
         self, velocity: ArrayLike, *, already_normalized: bool = False
     ) -> MediumCacheKey:
-        """Return a stable medium identity without materializing a device latent."""
+        """Return the canonical velocity identity within this runner."""
         return self._medium_key(velocity, already_normalized)
 
     def _context_key(self, context: MediumContext) -> MediumCacheKey:
-        if context.cache_key is not None:
-            return context.cache_key
-        return MediumCacheKey(
-            model_version=self.model_version,
-            velocity_digest=context.medium_id,
-            normalization_version=self.normalization_version,
-            dtype=str(self.dtype),
-            device=str(context.device),
-        )
+        self._validate_context(context)
+        return context.cache_key
 
     @staticmethod
     def _empty_runtime_metrics() -> Dict[str, int]:
@@ -281,16 +237,23 @@ class FENOModelRunner:
             dtype=self.dtype,
         )
         latent = self.model.encoder(model_input)
+        decoder_context = self.model.decoder.prepare_static_context(latent)
         context = MediumContext(
             medium_id=medium_id or key.velocity_digest,
             latent=latent,
+            decoder_context=decoder_context,
             cache_key=key,
+            owner_token=self._context_owner,
         )
         if use_cache:
             self.caches.medium.put(key, context)
         return context
 
     def _validate_context(self, context: MediumContext) -> None:
+        if not isinstance(context, MediumContext):
+            raise TypeError("context must be a MediumContext created by this runner")
+        if context.owner_token is not self._context_owner:
+            raise ValueError("MediumContext was created by a different model runner")
         if context.latent.ndim != 3 or context.latent.shape[0] != 1:
             raise ValueError(
                 "MediumContext.latent must have shape (1, latent_tokens, dim); "
@@ -298,30 +261,11 @@ class FENOModelRunner:
             )
         if context.device != self.device:
             raise ValueError(f"Context is on {context.device}, but the runner is on {self.device}")
-        key = context.cache_key
-        if key is not None and (
-            key.model_version != self.model_version or key.dtype != str(self.dtype)
-        ):
-            raise ValueError("MediumContext was created for a different model or dtype")
-
-    def _decoder_context_with_key(
-        self, context: MediumContext, *, use_cache: bool = True
-    ) -> Tuple[DecoderStaticContext, DecoderContextCacheKey]:
-        key = DecoderContextCacheKey(medium=self._context_key(context))
-        if use_cache:
-            cached = self.caches.decoder.get(key)
-            if cached is not None:
-                return cached, key
-        decoder_context = self.model.decoder.prepare_static_context(context.latent)
-        if use_cache:
-            self.caches.decoder.put(key, decoder_context)
-        return decoder_context, key
 
     @torch.inference_mode()
     def prepare_decoder_context(self, context: MediumContext) -> DecoderStaticContext:
         self._validate_context(context)
-        decoder_context, _ = self._decoder_context_with_key(context)
-        return decoder_context
+        return context.decoder_context
 
     def _prepare_request_tensors(
         self,
@@ -356,7 +300,7 @@ class FENOModelRunner:
     def _geometry_prefix_batch(
         self,
         decoder_context: DecoderStaticContext,
-        decoder_key: DecoderContextCacheKey,
+        medium_key: MediumCacheKey,
         sources: torch.Tensor,
         receivers: torch.Tensor,
         sources_cpu: torch.Tensor,
@@ -369,7 +313,7 @@ class FENOModelRunner:
         inverse: List[int] = []
         for index in range(sources_cpu.shape[0]):
             key = GeometryPrefixCacheKey(
-                decoder_context=decoder_key,
+                medium=medium_key,
                 geometry_digest=self._tensor_digest(sources_cpu[index], receivers_cpu[index]),
             )
             keys.append(key)
@@ -413,18 +357,11 @@ class FENOModelRunner:
     def _wavelet_key(self, frequency: torch.Tensor) -> WaveletCacheKey:
         effective = frequency.detach().to(device="cpu", dtype=torch.float32).reshape(1).contiguous()
         bits = effective.view(torch.uint8).numpy().tobytes().hex()
-        return WaveletCacheKey(
-            model_version=self.model_version,
-            frequency_bits=bits,
-            output_steps=self.config.output_steps,
-            duration_seconds=float(self.model.decoder.wavelet_tokens.T),
-            dtype=str(self.dtype),
-            device=str(self.device),
-        )
+        return WaveletCacheKey(frequency_bits=bits)
 
     def request_cache_keys(
         self,
-        context: Any,
+        context: MediumContext,
         source_position: ArrayLike,
         frequency: ArrayLike,
         *,
@@ -432,39 +369,7 @@ class FENOModelRunner:
         positions_are_normalized: bool = False,
     ) -> Dict[str, Any]:
         """Build the exact cache identities used by one queued request."""
-        if isinstance(context, MediumContext):
-            self._validate_context(context)
-            medium_key = self._context_key(context)
-        else:
-            medium_key = getattr(context, "cache_key", None)
-            if not isinstance(medium_key, MediumCacheKey):
-                raise TypeError(
-                    "context must be a resident MediumContext or tensor-free medium handle"
-                )
-        return self.request_cache_keys_for_medium(
-            medium_key,
-            source_position,
-            frequency,
-            receiver_positions=receiver_positions,
-            positions_are_normalized=positions_are_normalized,
-        )
-
-    def request_cache_keys_for_medium(
-        self,
-        medium_key: MediumCacheKey,
-        source_position: ArrayLike,
-        frequency: ArrayLike,
-        *,
-        receiver_positions: Optional[ArrayLike] = None,
-        positions_are_normalized: bool = False,
-    ) -> Dict[str, Any]:
-        """Build request cache keys from a tensor-free medium identity."""
-        if (
-            medium_key.model_version != self.model_version
-            or medium_key.dtype != str(self.dtype)
-            or medium_key.device != str(self.device)
-        ):
-            raise ValueError("medium handle was created for a different runner")
+        medium_key = self._context_key(context)
         sources_cpu, receivers_cpu = prepare_source_receiver_batch(
             source_position,
             self.config,
@@ -481,14 +386,12 @@ class FENOModelRunner:
         )
         if sources_cpu.shape[0] != 1:
             raise ValueError("a queued request must contain exactly one source position")
-        decoder_key = DecoderContextCacheKey(medium=medium_key)
         geometry_key = GeometryPrefixCacheKey(
-            decoder_context=decoder_key,
+            medium=medium_key,
             geometry_digest=self._tensor_digest(sources_cpu[0], receivers_cpu[0]),
         )
         keys: Dict[str, Any] = {
             "medium": medium_key,
-            "decoder": decoder_key,
             "geometry": geometry_key,
         }
         if self.model.decoder.use_wavelet_attn:
@@ -499,7 +402,6 @@ class FENOModelRunner:
         """Return residency without affecting LRU ordering or cache metrics."""
         caches = {
             "medium": self.caches.medium,
-            "decoder": self.caches.decoder,
             "geometry": self.caches.geometry,
             "wavelet": self.caches.wavelet,
         }
@@ -586,46 +488,36 @@ class FENOModelRunner:
                 positions_are_normalized,
             )
         )
-        batch_size = sources.shape[0]
-
+        decoder_context = context.decoder_context
         if cache_level == "medium":
-            output = self.model.decoder(
-                context.latent.expand(batch_size, -1, -1),
-                sources,
-                receivers,
-                frequency_tensor,
+            prefix = self.model.decoder.prepare_geometry_prefix(
+                decoder_context, sources, receivers
             )
         else:
-            decoder_context, decoder_key = self._decoder_context_with_key(context)
-            if cache_level in ("geometry", "all"):
-                prefix = self._geometry_prefix_batch(
-                    decoder_context,
-                    decoder_key,
-                    sources,
-                    receivers,
-                    sources_cpu,
-                    receivers_cpu,
-                )
-            else:
-                prefix = self.model.decoder.prepare_geometry_prefix(
-                    decoder_context, sources, receivers
-                )
-            wavelet_context = (
-                self._wavelet_context_batch(frequency_tensor, frequencies_cpu)
-                if cache_level == "all" and self.model.decoder.use_wavelet_attn
-                else None
+            prefix = self._geometry_prefix_batch(
+                decoder_context,
+                context.cache_key,
+                sources,
+                receivers,
+                sources_cpu,
+                receivers_cpu,
             )
-            if self._cuda_graph_runner is not None and wavelet_context is not None:
-                output = self._cuda_graph_runner.run(
-                    self.model.decoder.forward_from_geometry_prefix,
-                    prefix,
-                    frequency_tensor,
-                    wavelet_context,
-                )
-            else:
-                output = self.model.decoder.forward_from_geometry_prefix(
-                    prefix, frequency_tensor, wavelet_context
-                )
+        wavelet_context = (
+            self._wavelet_context_batch(frequency_tensor, frequencies_cpu)
+            if cache_level == "all" and self.model.decoder.use_wavelet_attn
+            else None
+        )
+        if self._cuda_graph_runner is not None and wavelet_context is not None:
+            output = self._cuda_graph_runner.run(
+                self.model.decoder.forward_from_geometry_prefix,
+                prefix,
+                frequency_tensor,
+                wavelet_context,
+            )
+        else:
+            output = self.model.decoder.forward_from_geometry_prefix(
+                prefix, frequency_tensor, wavelet_context
+            )
 
         if denormalize:
             if self.normalization is None:
@@ -646,18 +538,37 @@ class FENOModelRunner:
         denormalize: bool = False,
     ) -> torch.Tensor:
         """Reference path that recomputes encoder and the original decoder."""
-        context = self.prepare_medium(
+        model_input = build_velocity_input(
             velocity,
-            medium_id="uncached",
+            self.config,
+            self.normalization,
             already_normalized=already_normalized,
-            use_cache=False,
+            device=self.device,
+            dtype=self.dtype,
         )
-        return self.forward_batch(
-            context,
+        sources, receivers = prepare_source_receiver_batch(
             source_positions,
-            frequencies,
+            self.config,
             receiver_positions=receiver_positions,
             positions_are_normalized=positions_are_normalized,
-            denormalize=denormalize,
-            cache_level="medium",
+            device=self.device,
+            dtype=self.dtype,
         )
+        frequency_tensor = prepare_frequencies(
+            frequencies,
+            sources.shape[0],
+            device=self.device,
+            dtype=self.dtype,
+        )
+        latent = self.model.encoder(model_input)
+        output = self.model.decoder(
+            latent.expand(sources.shape[0], -1, -1),
+            sources,
+            receivers,
+            frequency_tensor,
+        )
+        if denormalize:
+            if self.normalization is None:
+                raise ValueError("normalization is required to denormalize model output")
+            output = denormalize_seismograms(output, self.normalization)
+        return output
