@@ -129,7 +129,7 @@ class AsyncFENOEngineTest(unittest.IsolatedAsyncioTestCase):
             await asyncio.sleep(0)
             stats = engine.stats()
 
-        self.assertEqual(handle.state, RequestState.CANCELLED)
+        self.assertTrue(handle.done)
         self.assertEqual(stats["requests"]["cancelled"], 1)
 
     async def test_queue_deadline_expires_before_dispatch(self):
@@ -150,9 +150,15 @@ class AsyncFENOEngineTest(unittest.IsolatedAsyncioTestCase):
                 await handle
             stats = engine.stats()
 
-        self.assertEqual(handle.state, RequestState.TIMED_OUT)
+        self.assertTrue(handle.done)
         self.assertEqual(stats["requests"]["timed_out"], 1)
         self.assertEqual(stats["batches"], 0)
+
+    def test_request_state_only_tracks_active_work_and_failure(self):
+        self.assertEqual(
+            set(RequestState),
+            {RequestState.QUEUED, RequestState.RUNNING, RequestState.FAILED},
+        )
 
     async def test_submit_snapshots_mutable_inputs(self):
         config = DynamicBatchConfig(

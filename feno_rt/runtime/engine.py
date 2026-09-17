@@ -71,7 +71,7 @@ class AsyncRequestQueue:
             if request.terminal or request.future.cancelled():
                 continue
             if request.is_expired(now_ns):
-                request.state = RequestState.TIMED_OUT
+                request.state = RequestState.FAILED
                 request.completed_ns = now_ns
                 error = RequestTimeoutError(
                     f"request {request.request_id} expired while waiting in the queue"
@@ -159,7 +159,7 @@ class AsyncRequestQueue:
                 for request in self._pending:
                     if request.terminal:
                         continue
-                    request.state = RequestState.CANCELLED
+                    request.state = RequestState.FAILED
                     request.completed_ns = now_ns
                     request.future.cancel()
                     self._terminal_callback(request)
@@ -489,7 +489,7 @@ class AsyncFENOEngine:
     def _cancel_request(self, request: InferenceRequest) -> bool:
         if request.terminal or request.future.done():
             return False
-        request.state = RequestState.CANCELLED
+        request.state = RequestState.FAILED
         request.completed_ns = perf_counter_ns()
         cancelled = request.future.cancel()
         if cancelled:
@@ -502,14 +502,14 @@ class AsyncFENOEngine:
         if request.request_id in self._terminal_ids:
             return
         self._terminal_ids.add(request.request_id)
-        if request.state is RequestState.SUCCEEDED:
-            self._metrics.succeeded += 1
-        elif request.state is RequestState.FAILED:
-            self._metrics.failed += 1
-        elif request.state is RequestState.CANCELLED:
+        if request.future.cancelled():
             self._metrics.cancelled += 1
-        elif request.state is RequestState.TIMED_OUT:
+        elif isinstance(request.error, RequestTimeoutError):
             self._metrics.timed_out += 1
+        elif request.error is not None:
+            self._metrics.failed += 1
+        else:
+            self._metrics.succeeded += 1
         if request.started_ns is not None:
             self._metrics.queue_ms.append((request.started_ns - request.enqueued_ns) / 1e6)
         if request.completed_ns is not None:
@@ -634,7 +634,7 @@ class AsyncFENOEngine:
             request.completed_ns = completed_ns
             self._metrics.execution_ms.append(execution_ms)
             if request.is_expired(completed_ns):
-                request.state = RequestState.TIMED_OUT
+                request.state = RequestState.FAILED
                 timeout = RequestTimeoutError(
                     f"request {request.request_id} missed its deadline during execution"
                 )
@@ -645,7 +645,6 @@ class AsyncFENOEngine:
                 request.error = error
                 request.future.set_exception(error)
             else:
-                request.state = RequestState.SUCCEEDED
                 request.future.set_result(output)
             self._record_terminal(request)
 
@@ -672,7 +671,7 @@ class AsyncFENOEngine:
             if request.terminal or request.future.cancelled():
                 continue
             if request.is_expired(now_ns):
-                request.state = RequestState.TIMED_OUT
+                request.state = RequestState.FAILED
                 request.completed_ns = now_ns
                 error = RequestTimeoutError(
                     f"request {request.request_id} expired after batch prefetch"

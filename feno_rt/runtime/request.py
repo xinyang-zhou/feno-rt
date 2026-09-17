@@ -12,10 +12,7 @@ from typing import Any, Callable, Dict, Hashable, Mapping, Optional, Tuple
 class RequestState(str, Enum):
     QUEUED = "queued"
     RUNNING = "running"
-    SUCCEEDED = "succeeded"
     FAILED = "failed"
-    CANCELLED = "cancelled"
-    TIMED_OUT = "timed_out"
 
 
 class RequestTimeoutError(TimeoutError):
@@ -86,12 +83,8 @@ class InferenceRequest:
 
     @property
     def terminal(self) -> bool:
-        return self.state in {
-            RequestState.SUCCEEDED,
-            RequestState.FAILED,
-            RequestState.CANCELLED,
-            RequestState.TIMED_OUT,
-        }
+        """Return whether the request has produced a result, error, or cancellation."""
+        return self.future.done()
 
 
 class RequestHandle:
@@ -108,10 +101,6 @@ class RequestHandle:
     @property
     def request_id(self) -> str:
         return self._request.request_id
-
-    @property
-    def state(self) -> RequestState:
-        return self._request.state
 
     @property
     def done(self) -> bool:
