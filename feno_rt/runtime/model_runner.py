@@ -1,5 +1,6 @@
 """Cache-aware FENO model runner."""
 
+from contextlib import nullcontext
 from dataclasses import dataclass, field, replace
 from hashlib import sha256
 from pathlib import Path
@@ -52,6 +53,12 @@ class FENOModelRunner:
     """Run FENO with runner-local medium, geometry, and wavelet caches."""
 
     CACHE_LEVELS = frozenset(("medium", "geometry", "all"))
+
+    def _nvtx_range(self, name: str):
+        """Return an NVTX range on CUDA and a no-op context on CPU."""
+        if self.device.type == "cuda":
+            return torch.cuda.nvtx.range(name)
+        return nullcontext()
 
     def __init__(
         self,
@@ -480,49 +487,60 @@ class FENOModelRunner:
         self._validate_context(context)
         if cache_level not in self.CACHE_LEVELS:
             raise ValueError(f"cache_level must be one of {sorted(self.CACHE_LEVELS)}")
-        sources, receivers, frequency_tensor, sources_cpu, receivers_cpu, frequencies_cpu = (
-            self._prepare_request_tensors(
-                source_positions,
-                frequencies,
-                receiver_positions,
-                positions_are_normalized,
-            )
-        )
-        decoder_context = context.decoder_context
-        if cache_level == "medium":
-            prefix = self.model.decoder.prepare_geometry_prefix(
-                decoder_context, sources, receivers
-            )
-        else:
-            prefix = self._geometry_prefix_batch(
-                decoder_context,
-                context.cache_key,
-                sources,
-                receivers,
-                sources_cpu,
-                receivers_cpu,
-            )
-        wavelet_context = (
-            self._wavelet_context_batch(frequency_tensor, frequencies_cpu)
-            if cache_level == "all" and self.model.decoder.use_wavelet_attn
-            else None
-        )
-        if self._cuda_graph_runner is not None and wavelet_context is not None:
-            output = self._cuda_graph_runner.run(
-                self.model.decoder.forward_from_geometry_prefix,
-                prefix,
-                frequency_tensor,
-                wavelet_context,
-            )
-        else:
-            output = self.model.decoder.forward_from_geometry_prefix(
-                prefix, frequency_tensor, wavelet_context
+
+        with self._nvtx_range("feno.input_prepare"):
+            sources, receivers, frequency_tensor, sources_cpu, receivers_cpu, frequencies_cpu = (
+                self._prepare_request_tensors(
+                    source_positions,
+                    frequencies,
+                    receiver_positions,
+                    positions_are_normalized,
+                )
             )
 
-        if denormalize:
-            if self.normalization is None:
-                raise ValueError("normalization is required to denormalize model output")
-            output = denormalize_seismograms(output, self.normalization)
+        decoder_context = context.decoder_context
+
+        with self._nvtx_range("feno.geometry_resolve"):
+            if cache_level == "medium":
+                prefix = self.model.decoder.prepare_geometry_prefix(
+                    decoder_context, sources, receivers
+                )
+            else:
+                prefix = self._geometry_prefix_batch(
+                    decoder_context,
+                    context.cache_key,
+                    sources,
+                    receivers,
+                    sources_cpu,
+                    receivers_cpu,
+                )
+
+        with self._nvtx_range("feno.wavelet_resolve"):
+            wavelet_context = (
+                self._wavelet_context_batch(frequency_tensor, frequencies_cpu)
+                if cache_level == "all" and self.model.decoder.use_wavelet_attn
+                else None
+            )
+
+        with self._nvtx_range("feno.decoder_tail"):
+            if self._cuda_graph_runner is not None and wavelet_context is not None:
+                output = self._cuda_graph_runner.run(
+                    self.model.decoder.forward_from_geometry_prefix,
+                    prefix,
+                    frequency_tensor,
+                    wavelet_context,
+                )
+            else:
+                output = self.model.decoder.forward_from_geometry_prefix(
+                    prefix, frequency_tensor, wavelet_context
+                )
+
+        with self._nvtx_range("feno.output"):
+            if denormalize:
+                if self.normalization is None:
+                    raise ValueError("normalization is required to denormalize model output")
+                output = denormalize_seismograms(output, self.normalization)
+
         return output
 
     @torch.inference_mode()
