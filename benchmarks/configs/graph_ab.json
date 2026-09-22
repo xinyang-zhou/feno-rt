@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "benchmark": "cuda_graph_ab",
+  "device": "cuda:0",
+  "seed": 7,
+  "model": {
+    "config_source": "default_inference",
+    "model_source": "checkpoint",
+    "checkpoint_env": "FENO_CHECKPOINT",
+    "normalization_env": "FENO_NORMALIZATION",
+    "dtype": "float32"
+  },
+  "workload": {
+    "name": "steady_all_hit",
+    "schema_version": "1.0.0",
+    "request_count": 1000,
+    "batch_sizes": [1, 2, 4, 8],
+    "arrival_pattern": "closed_loop",
+    "source_pattern": "deterministic_cycle",
+    "frequency_hz": [10.0, 15.0, 20.0, 25.0],
+    "cache_state": {
+      "medium": "warm",
+      "geometry": "warm",
+      "wavelet": "warm"
+    }
+  },
+  "measurement": {
+    "independent_runs": 3,
+    "warmup_invocations": 20,
+    "clock": "perf_counter_ns",
+    "synchronization": "device_before_after",
+    "profiler_enabled": false,
+    "save_raw_batch_latency_samples": true,
+    "record_peak_memory": true
+  },
+  "cuda_graph": {
+    "modes": ["off", "on"],
+    "buckets": [1, 2, 4, 8],
+    "warmup_iterations": 2,
+    "fallback_on_error": false,
+    "capture_outside_steady_state": true
+  },
+  "correctness": {
+    "reference": "eager_same_commit",
+    "rtol": 1e-5,
+    "atol": 1e-5,
+    "require_finite": true
+  }
+}

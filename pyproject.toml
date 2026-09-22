@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "feno-rt"
-version = "0.8.0"
+version = "0.9.0.dev0"
 description = "Focused cache-aware inference runtime with dynamic batching and CUDA Graphs"
 readme = "README.md"
 requires-python = ">=3.9"

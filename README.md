@@ -9,6 +9,17 @@
 
 仓库不包含训练代码、多 GPU 调度、HTTP 服务、可观测性平台或模型权重。
 
+## Project scope and versions
+
+当前 `main`（开发版本 `0.9.0.dev0`）是聚焦单设备执行链路的运行时核心。
+它保留缓存、调度、异步组批和 CUDA Graph 等关键机制，外围服务能力不属于
+当前源码范围。
+
+历史 [`v0.8.0`](https://github.com/xinyang-zhou/feno-rt/tree/v0.8.0)
+是完整 serving 版本，包含多 GPU worker、HTTP、Prometheus、trace replay 和
+GPU↔pinned CPU medium tier。两个版本的能力边界与代码演进见
+[docs/RELEASE_HISTORY.md](docs/RELEASE_HISTORY.md)。
+
 ## Architecture
 
 ```text
@@ -113,6 +124,10 @@ python benchmarks/benchmark_core.py --device cuda:0 --cuda-graphs
 
 CPU 环境会自动跳过 CUDA Graph 集成测试。
 
+`benchmark_core.py` 用于功能和数值正确性 smoke test，不构成正式性能结论。
+正式实验的环境记录、计时边界、重复方式和结果准入规则见
+[docs/PERFORMANCE.md](docs/PERFORMANCE.md)。
+
 ## Repository layout
 
 ```text
@@ -124,8 +139,15 @@ feno_rt/runtime/
   scheduler.py              FCFS and cache-aware batching
   engine.py                 asynchronous batching engine
   cuda_graph.py             bucketed CUDA Graph capture/replay
-benchmarks/benchmark_core.py
+benchmarks/
+  benchmark_core.py          functional smoke benchmark
+  configs/                   versioned experiment configurations
+  schema/                    machine-readable result contracts
+  workloads/                 deterministic workload definitions
+  results/                   raw formal results and summaries
 tests/
+docs/PERFORMANCE.md
+docs/RELEASE_HISTORY.md
 ```
 
 ## License

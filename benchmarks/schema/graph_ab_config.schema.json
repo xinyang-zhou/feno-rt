@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/xinyang-zhou/feno-rt/benchmarks/schema/graph_ab_config.schema.json",
+  "title": "FENO-RT CUDA Graph A/B configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "benchmark",
+    "device",
+    "seed",
+    "model",
+    "workload",
+    "measurement",
+    "cuda_graph",
+    "correctness"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "benchmark": {"const": "cuda_graph_ab"},
+    "device": {"type": "string", "pattern": "^cuda:[0-9]+$"},
+    "seed": {"type": "integer", "minimum": 0},
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "config_source",
+        "model_source",
+        "checkpoint_env",
+        "normalization_env",
+        "dtype"
+      ],
+      "properties": {
+        "config_source": {"type": "string", "minLength": 1},
+        "model_source": {"enum": ["checkpoint", "random_initialized"]},
+        "checkpoint_env": {"type": ["string", "null"]},
+        "normalization_env": {"type": ["string", "null"]},
+        "dtype": {"enum": ["float32", "float16", "bfloat16"]}
+      }
+    },
+    "workload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "schema_version",
+        "request_count",
+        "batch_sizes",
+        "arrival_pattern",
+        "source_pattern",
+        "frequency_hz",
+        "cache_state"
+      ],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "request_count": {"type": "integer", "minimum": 1000},
+        "batch_sizes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 1}
+        },
+        "arrival_pattern": {"enum": ["closed_loop", "trace"]},
+        "source_pattern": {"type": "string", "minLength": 1},
+        "frequency_hz": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "number", "exclusiveMinimum": 0}
+        },
+        "cache_state": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["medium", "geometry", "wavelet"],
+          "properties": {
+            "medium": {"enum": ["warm", "cold", "mixed"]},
+            "geometry": {"enum": ["warm", "cold", "mixed"]},
+            "wavelet": {"enum": ["warm", "cold", "mixed"]}
+          }
+        }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "independent_runs",
+        "warmup_invocations",
+        "clock",
+        "synchronization",
+        "profiler_enabled",
+        "save_raw_batch_latency_samples",
+        "record_peak_memory"
+      ],
+      "properties": {
+        "independent_runs": {"type": "integer", "minimum": 3},
+        "warmup_invocations": {"type": "integer", "minimum": 1},
+        "clock": {"const": "perf_counter_ns"},
+        "synchronization": {"const": "device_before_after"},
+        "profiler_enabled": {"const": false},
+        "save_raw_batch_latency_samples": {"const": true},
+        "record_peak_memory": {"const": true}
+      }
+    },
+    "cuda_graph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "modes",
+        "buckets",
+        "warmup_iterations",
+        "fallback_on_error",
+        "capture_outside_steady_state"
+      ],
+      "properties": {
+        "modes": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {"enum": ["off", "on"]}
+        },
+        "buckets": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 1}
+        },
+        "warmup_iterations": {"type": "integer", "minimum": 1},
+        "fallback_on_error": {"const": false},
+        "capture_outside_steady_state": {"const": true}
+      }
+    },
+    "correctness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference", "rtol", "atol", "require_finite"],
+      "properties": {
+        "reference": {"const": "eager_same_commit"},
+        "rtol": {"type": "number", "minimum": 0},
+        "atol": {"type": "number", "minimum": 0},
+        "require_finite": {"const": true}
+      }
+    }
+  }
+}

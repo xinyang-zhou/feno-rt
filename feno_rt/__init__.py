@@ -4,4 +4,4 @@ Model classes live in :mod:`feno_rt.models`; keeping the package root light avoi
 loading PyTorch when scripts only need project paths or metadata.
 """
 
-__version__ = "0.8.0"
+__version__ = "0.9.0.dev0"
