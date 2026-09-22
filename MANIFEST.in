@@ -1,0 +1,21 @@
+include LICENSE README.md CONTRIBUTING.md
+recursive-include requirements *.lock
+recursive-include tests *.py
+recursive-include benchmarks *.py
+recursive-include benchmarks/configs *.json
+recursive-include benchmarks/schema *.json
+recursive-include benchmarks/workloads *.json *.md
+recursive-include scripts *.py *.sh
+include docs/architecture.md
+include docs/PERFORMANCE.md
+include docs/PERFORMANCE_WORKFLOW.md
+include docs/RELEASE_HISTORY.md
+include docs/SCHEDULER_EVALUATION.md
+include docs/BENCHMARK_REPRODUCTION.md
+include docs/ENGINE_PROFILING.md
+include docs/LLM_SERVING_MAPPING.md
+include docs/NSYS_CASE_STUDY.md
+prune .local
+prune benchmarks/results
+global-exclude *.py[cod] *.nsys-rep *.qdstrm *.sqlite *.sqlite-* *.tar.gz *.zip
+global-exclude *.pth *.pt *.ckpt *.safetensors *.onnx *.npz *.npy

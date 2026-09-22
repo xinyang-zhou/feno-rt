@@ -10,10 +10,10 @@
     "git_commit": "a69f11ecc1d656f02cac09cff6fc1dddb4892bb3",
     "git_dirty": false,
     "command": [
-      "/home/xinyang/miniconda3/envs/pytorch/bin/python",
-      "/home/xinyang/FENO-RT-formal/benchmarks/benchmark_graph_ab.py",
+      "python",
+      "benchmarks/benchmark_graph_ab.py",
       "--config",
-      "/home/xinyang/FENO-RT-formal/benchmarks/configs/graph_ab.json",
+      "benchmarks/configs/graph_ab.json",
       "--mode",
       "on",
       "--batch-size",
@@ -21,7 +21,7 @@
       "--repeat-index",
       "3",
       "--output",
-      "/home/xinyang/feno-rt-results/a69f11e_server2_pinned/graph_on_batch4_run3.json"
+      "/tmp/feno-graph-ab/session/graph_on_batch4_run3.json"
     ],
     "config_path": "benchmarks/configs/graph_ab.json",
     "config_sha256": "5ff68bac23b15355dc7cc9c3b91bc18f687c71d0d0184def577432d1f4a74282"
@@ -33,7 +33,7 @@
           "logical_index": 0,
           "physical_index": 0,
           "name": "NVIDIA GeForce RTX 5090",
-          "uuid": "GPU-f989bf75-9cc6-41aa-3cdf-754be94c4c1b",
+          "uuid": "GPU-ANON-0",
           "total_memory_bytes": 33670758400,
           "persistence_mode": "Disabled",
           "power_limit_watts": 575.0,
@@ -58,7 +58,7 @@
       "driver": "595.84",
       "operating_system": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
       "kernel": "6.8.0-139-generic",
-      "python_executable": "/home/xinyang/miniconda3/envs/pytorch/bin/python",
+      "python_executable": "python",
       "torch_num_threads": 1,
       "torch_num_interop_threads": 56,
       "dependency_lock": {
@@ -72,7 +72,7 @@
       }
     },
     "environment_variables": {
-      "CUDA_VISIBLE_DEVICES": "GPU-f989bf75-9cc6-41aa-3cdf-754be94c4c1b",
+      "CUDA_VISIBLE_DEVICES": "GPU-ANON-0",
       "CUDA_DEVICE_ORDER": null,
       "CUBLAS_WORKSPACE_CONFIG": null,
       "PYTORCH_CUDA_ALLOC_CONF": null,
@@ -534,7 +534,7 @@
     "all_finite": true
   },
   "artifacts": {
-    "result_path": "/home/xinyang/feno-rt-results/a69f11e_server2_pinned/graph_on_batch4_run3.json",
+    "result_path": "/tmp/feno-graph-ab/session/graph_on_batch4_run3.json",
     "workload_path": "benchmarks/workloads/graph_ab_batch4.json"
   },
   "notes": [

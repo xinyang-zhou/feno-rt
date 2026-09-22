@@ -3,14 +3,14 @@
   "summary_class": "formal",
   "status": "passed",
   "benchmark": "cuda_graph_ab",
-  "created_at_utc": "2026-09-22T07:40:04.174740+00:00",
+  "created_at_utc": "2026-09-22T15:50:19.875821+00:00",
   "identity": {
     "git_commit": "a69f11ecc1d656f02cac09cff6fc1dddb4892bb3",
     "config_sha256": "5ff68bac23b15355dc7cc9c3b91bc18f687c71d0d0184def577432d1f4a74282",
     "checkpoint_sha256": "4807ff56b2cb6968547083df8c715a0ad868ae8f4b8de1c51576374e57f94cf2",
     "normalization_sha256": "b9f754ea9ff8e39b779c64740c71da1581025e0f86e1e950b986848775a3cc4a",
     "velocity_sha256": "6f1d9d9c453168d7092555d371155c62924a418441ac1aa45cd6407133aa2d3c",
-    "gpu_uuid": "GPU-f989bf75-9cc6-41aa-3cdf-754be94c4c1b",
+    "gpu_uuid": "GPU-ANON-0",
     "gpu_name": "NVIDIA GeForce RTX 5090",
     "gpu_logical_index": 0,
     "gpu_physical_index": 0,
@@ -37,7 +37,7 @@
     "torch_num_interop_threads": 56,
     "dependency_lock_sha256": "9bf9bde6f05fda97132b8dddb5228b953f7c58561138d3d9d727e6c4bebe7346",
     "environment_variables": {
-      "CUDA_VISIBLE_DEVICES": "GPU-f989bf75-9cc6-41aa-3cdf-754be94c4c1b",
+      "CUDA_VISIBLE_DEVICES": "GPU-ANON-0",
       "CUDA_DEVICE_ORDER": null,
       "CUBLAS_WORKSPACE_CONFIG": null,
       "PYTORCH_CUDA_ALLOC_CONF": null,
@@ -67,7 +67,7 @@
     {
       "run_id": "graph_off_batch1_run1",
       "path": "graph_off_batch1_run1.json",
-      "sha256": "f45cbdcb009e5c16b3581ea120e23ef871eb555e7ea370ac9b5d3d7fe0f54e62",
+      "sha256": "ee20eb1915020c81d23df89212f4e24c7f77165751c58c6e1a419e6bc8ed682d",
       "status": "passed",
       "mode": "off",
       "batch_size": 1,
@@ -76,7 +76,7 @@
     {
       "run_id": "graph_on_batch1_run1",
       "path": "graph_on_batch1_run1.json",
-      "sha256": "923323b2ffaaf70a339c029a71092a604d2554c09e9bfca0cd79b8d8b0b808cf",
+      "sha256": "c86fc3d9d697e04d2aa4d19d322c0ec5b1487d19abe92f3d16f464bb485f1c16",
       "status": "passed",
       "mode": "on",
       "batch_size": 1,
@@ -85,7 +85,7 @@
     {
       "run_id": "graph_off_batch1_run2",
       "path": "graph_off_batch1_run2.json",
-      "sha256": "747c29c393bba79dc4150d0ae9edda8cf8bdb831459016053b0372cacfe9865f",
+      "sha256": "47b2791f6a362c4acd193de65eeb3f702a5f0bfc0e9f31caa7d355428483ece8",
       "status": "passed",
       "mode": "off",
       "batch_size": 1,
@@ -94,7 +94,7 @@
     {
       "run_id": "graph_on_batch1_run2",
       "path": "graph_on_batch1_run2.json",
-      "sha256": "c2fe0bad0549ccc73e779f6839957c56ba186b06d36431696fe9064900398e31",
+      "sha256": "9524f01cfda860ccd9fd3fdb4020240078fbebb2e00f9e9179032e9c53fb7d45",
       "status": "passed",
       "mode": "on",
       "batch_size": 1,
@@ -103,7 +103,7 @@
     {
       "run_id": "graph_off_batch1_run3",
       "path": "graph_off_batch1_run3.json",
-      "sha256": "5d1bb63fe9954c3d2e3656d4cafaa4af7eb192a437a6ae69ae1394a14f0fd203",
+      "sha256": "f1c39cc588768beef8a979cb2cf50b4322ce0d40ee575d067bf060ed7fa1af0e",
       "status": "passed",
       "mode": "off",
       "batch_size": 1,
@@ -112,7 +112,7 @@
     {
       "run_id": "graph_on_batch1_run3",
       "path": "graph_on_batch1_run3.json",
-      "sha256": "bd9b084b7819de3a26fad1fa650d154e6d01fcd3ea8ba42bb12f65028ee8a201",
+      "sha256": "61e780f4eb22ea65236a19b7b7240033151c3215b1df5a58f4ed9464c874c9dd",
       "status": "passed",
       "mode": "on",
       "batch_size": 1,
@@ -121,7 +121,7 @@
     {
       "run_id": "graph_off_batch2_run1",
       "path": "graph_off_batch2_run1.json",
-      "sha256": "848059d16e9c28cba2f68c2829272e7e59a43459f3e17df2ad3d08f0bfac31d0",
+      "sha256": "47d3fe62ee6127f44f90b8ac22f21aa73d2c900a1f52b041d019f2e5981df36c",
       "status": "passed",
       "mode": "off",
       "batch_size": 2,
@@ -130,7 +130,7 @@
     {
       "run_id": "graph_on_batch2_run1",
       "path": "graph_on_batch2_run1.json",
-      "sha256": "b1f9f61fedae46a5c75897c62d0d57575d6e73ebc26fd75ab0db6af00c8bfd9b",
+      "sha256": "fc21141d8a0ade75d0a76bfbcb32aa1d863020ec1d4260e4d62ffd34f2031f4f",
       "status": "passed",
       "mode": "on",
       "batch_size": 2,
@@ -139,7 +139,7 @@
     {
       "run_id": "graph_off_batch2_run2",
       "path": "graph_off_batch2_run2.json",
-      "sha256": "3d4dffbf96d4f403b4fa555be9cf9636af3aa09e15e07b6ab8cd4e92e413dc0b",
+      "sha256": "db8f5bcde1003a424dc92825260dba72ffa76b459f3de2e5e0eb6eacbe20cd0a",
       "status": "passed",
       "mode": "off",
       "batch_size": 2,
@@ -148,7 +148,7 @@
     {
       "run_id": "graph_on_batch2_run2",
       "path": "graph_on_batch2_run2.json",
-      "sha256": "ed0564644a21ba33610ff5ce04dd727df2b73c2d64c628872dfcbd2d0abfb55a",
+      "sha256": "b847a4641fb8ece0a11525494b475838c49449a255d5a7fff9638b815a1b4df7",
       "status": "passed",
       "mode": "on",
       "batch_size": 2,
@@ -157,7 +157,7 @@
     {
       "run_id": "graph_off_batch2_run3",
       "path": "graph_off_batch2_run3.json",
-      "sha256": "1e2ca38843917e1a9f80ceda99b6ed25cf68fa8f337cab0a9e7f0096ebf6b808",
+      "sha256": "2a5907e99a521f0bbf12f96d42eb0263a1d43c1aa55307fdb129b6724fec6288",
       "status": "passed",
       "mode": "off",
       "batch_size": 2,
@@ -166,7 +166,7 @@
     {
       "run_id": "graph_on_batch2_run3",
       "path": "graph_on_batch2_run3.json",
-      "sha256": "ea8c2d1245031797b73d71384fc21dd3cc7f3f28696c0ee6fe6878727ec1b0c8",
+      "sha256": "18182a3d9a9058332f00ef3f5d81b920dff2586a2ac81ebd1474160888fe4bd2",
       "status": "passed",
       "mode": "on",
       "batch_size": 2,
@@ -175,7 +175,7 @@
     {
       "run_id": "graph_off_batch4_run1",
       "path": "graph_off_batch4_run1.json",
-      "sha256": "986789b4eae1dfabec1ed0c02f887640092c92633fe6c79104c87da2a5693b41",
+      "sha256": "a539cd7a77ea07be758da273dba248c58ae917db88fbf683b2a118db4247884e",
       "status": "passed",
       "mode": "off",
       "batch_size": 4,
@@ -184,7 +184,7 @@
     {
       "run_id": "graph_on_batch4_run1",
       "path": "graph_on_batch4_run1.json",
-      "sha256": "b0e0c38b985c1eb7155b5018b1838e78ab8493dc1d733b5953863cb838e991f4",
+      "sha256": "d0870a43af4696d265e01eeca9a25819f6b3cc9f34b7f013f2b9101c816adda4",
       "status": "passed",
       "mode": "on",
       "batch_size": 4,
@@ -193,7 +193,7 @@
     {
       "run_id": "graph_off_batch4_run2",
       "path": "graph_off_batch4_run2.json",
-      "sha256": "d194684b80faab8f26cdcc917c0f7a1b764b022a6e8af626d3df571e9a72836c",
+      "sha256": "2e1b95e914054a14e9fb772c9ff0ac577578c05df5b595bf853d33ad00e2820b",
       "status": "passed",
       "mode": "off",
       "batch_size": 4,
@@ -202,7 +202,7 @@
     {
       "run_id": "graph_on_batch4_run2",
       "path": "graph_on_batch4_run2.json",
-      "sha256": "88633b070d0765404c9dc0ad66278e4e9106b10c0230d7ff18deabcb690e52f3",
+      "sha256": "1be6a72e8d08fc11b056626bb068459551a637f1fb8c8fb3e6cfff63a63cc717",
       "status": "passed",
       "mode": "on",
       "batch_size": 4,
@@ -211,7 +211,7 @@
     {
       "run_id": "graph_off_batch4_run3",
       "path": "graph_off_batch4_run3.json",
-      "sha256": "12d52997a0b90daad83de7cab9b89bf98627ba2333df35ea3c5b5a59bd977f6d",
+      "sha256": "602f69bec4ecd1c1520691ff4f74ff7016899ec9430a3e356115a22816bd6b91",
       "status": "passed",
       "mode": "off",
       "batch_size": 4,
@@ -220,7 +220,7 @@
     {
       "run_id": "graph_on_batch4_run3",
       "path": "graph_on_batch4_run3.json",
-      "sha256": "a58046ade5a01e856007d308ebecc71412fc3f04e1f225fe930acb025416f613",
+      "sha256": "874d0de7f84377f436e1cd90211fb8b8c49346642eb6f49dae505ee94afbf95c",
       "status": "passed",
       "mode": "on",
       "batch_size": 4,
@@ -229,7 +229,7 @@
     {
       "run_id": "graph_off_batch8_run1",
       "path": "graph_off_batch8_run1.json",
-      "sha256": "413196b2644676a8512799a78869520a4288b8f5ecc9d23539d9ac03f0f7515a",
+      "sha256": "bce9519d697647b95908d98b79c18a73de731e5c8b69cac74303f97c6639421b",
       "status": "passed",
       "mode": "off",
       "batch_size": 8,
@@ -238,7 +238,7 @@
     {
       "run_id": "graph_on_batch8_run1",
       "path": "graph_on_batch8_run1.json",
-      "sha256": "b925e36b7e3ba19962618d5ed65ee455f5d09ef660310b0e00308d9c0bf81b28",
+      "sha256": "5eb16fd0a7ee5e6224360870ca7fb7faa03c1a6fb02f7105160ae39dabe493fa",
       "status": "passed",
       "mode": "on",
       "batch_size": 8,
@@ -247,7 +247,7 @@
     {
       "run_id": "graph_off_batch8_run2",
       "path": "graph_off_batch8_run2.json",
-      "sha256": "37cdf82d110eb9990728d3e4303484db7f6acfa5e74a2bcb07628e3882d01623",
+      "sha256": "72913b14fb918b5cb8755a482de28bbc3b1adf5aac3b862e24d2b6a23fbbb275",
       "status": "passed",
       "mode": "off",
       "batch_size": 8,
@@ -256,7 +256,7 @@
     {
       "run_id": "graph_on_batch8_run2",
       "path": "graph_on_batch8_run2.json",
-      "sha256": "09f55a1abd3ee1c1b8e88c361962d8aa40f3399b4922624cd91e761d6e31b914",
+      "sha256": "412bf2de153fdac4590b2cfe2ec21e4ea7933522d5c8ea298e0373441014c724",
       "status": "passed",
       "mode": "on",
       "batch_size": 8,
@@ -265,7 +265,7 @@
     {
       "run_id": "graph_off_batch8_run3",
       "path": "graph_off_batch8_run3.json",
-      "sha256": "9f91e513a8c28ff56d18812a27cfc88100749f645832b34a673a376d8df04cdc",
+      "sha256": "d456a02b5e79395fc1ac4cd68fd54aa4832cbac9ca242836446c56e088e9b2b4",
       "status": "passed",
       "mode": "off",
       "batch_size": 8,
@@ -274,7 +274,7 @@
     {
       "run_id": "graph_on_batch8_run3",
       "path": "graph_on_batch8_run3.json",
-      "sha256": "d5ec2f7ba822a7456cf84bb4292654dab4d34108796bd67c27bbf3f7c0e08134",
+      "sha256": "39554f82ac83fdd045ca1f1711f405dede512db174ac836af9ae6a99505157f8",
       "status": "passed",
       "mode": "on",
       "batch_size": 8,
@@ -549,7 +549,7 @@
           "median": 0.717867,
           "min": 0.7177385000000001,
           "max": 0.9343005,
-          "cv_percent": 12.919250582995728
+          "cv_percent": 12.919250582995732
         },
         "p95_latency_ms": {
           "count": 3,
@@ -694,7 +694,7 @@
           "median": 3075.1334911604595,
           "min": 2263.9655408506364,
           "max": 3078.7015338605183,
-          "cv_percent": 13.657914557223707
+          "cv_percent": 13.657914557223705
         },
         "baseline_allocated_bytes": {
           "count": 3,
@@ -1155,7 +1155,7 @@
           "median": 43.60962807492058,
           "min": 40.271482310760085,
           "max": 45.26363915593509,
-          "cv_percent": 4.8232798980791305
+          "cv_percent": 4.823279898079131
         },
         "throughput_speedup": {
           "count": 3,

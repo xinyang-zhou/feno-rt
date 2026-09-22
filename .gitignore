@@ -15,6 +15,17 @@ build/
 !benchmarks/results/**/*.log
 nohup.out
 
+# Local notes, raw collections and archive containers are not publication inputs.
+.local/
+*.nsys-rep
+*.qdstrm
+*.sqlite
+*.sqlite-*
+*.tar.gz
+*.zip
+/feno_results_*/
+/feno-rt-results/
+
 # Model artifacts are intentionally kept outside Git.
 artifacts/
 data/

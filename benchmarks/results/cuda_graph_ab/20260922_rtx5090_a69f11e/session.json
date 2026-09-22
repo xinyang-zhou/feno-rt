@@ -8,10 +8,10 @@
     "git_commit": "a69f11ecc1d656f02cac09cff6fc1dddb4892bb3",
     "git_dirty": false,
     "command": [
-      "/home/xinyang/miniconda3/envs/pytorch/bin/python",
+      "python",
       "benchmarks/run_graph_ab_matrix.py",
       "--output-dir",
-      "/home/xinyang/feno-rt-results/a69f11e_server2_pinned"
+      "/tmp/feno-graph-ab/session"
     ],
     "resume_commands": [],
     "config_path": "benchmarks/configs/graph_ab.json",
@@ -44,7 +44,7 @@
     "process_isolation": "one_configuration_per_fresh_process",
     "pairing": "adjacent_counterbalanced_graph_off_on"
   },
-  "output_directory": "/home/xinyang/feno-rt-results/a69f11e_server2_pinned",
+  "output_directory": "/tmp/feno-graph-ab/session",
   "execution_order": [
     {
       "sequence": 1,

@@ -154,6 +154,8 @@ CUDA Graph 对小 batch 收益最大，因为固定的 host/framework dispatch �
 
 完整的 p50/p95/p99、capture 成本、正确性、环境信息、24 个原始 run 和日志见
 [正式结果](benchmarks/results/cuda_graph_ab/20260922_rtx5090_a69f11e/summary.md)。
+公开文件保留原始测量值，机器路径与设备标识已脱敏，详见
+[发布说明](benchmarks/results/cuda_graph_ab/20260922_rtx5090_a69f11e/README.md)。
 
 实验边界见 [CUDA Graph 案例](docs/NSYS_CASE_STUDY.md)，相关概念见
 [LLM Serving 对照](docs/LLM_SERVING_MAPPING.md)，分析步骤见
@@ -215,4 +217,5 @@ docs/RELEASE_HISTORY.md
 
 ## License
 
-MIT
+代码采用 [MIT License](LICENSE)。开发环境、贡献方式和性能材料提交要求见
+[CONTRIBUTING.md](CONTRIBUTING.md)。模型权重不随仓库分发；当前版本为 `0.9.0.dev0`。

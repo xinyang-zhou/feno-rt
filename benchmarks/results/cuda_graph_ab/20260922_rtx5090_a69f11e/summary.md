@@ -3,7 +3,7 @@
 Status: `passed`
 
 - Commit: `a69f11ecc1d656f02cac09cff6fc1dddb4892bb3`
-- GPU: `NVIDIA GeForce RTX 5090` (`GPU-f989bf75-9cc6-41aa-3cdf-754be94c4c1b`)
+- GPU: `NVIDIA GeForce RTX 5090` (`GPU-ANON-0`)
 - PyTorch/CUDA: `2.8.0+cu128` / `12.8`
 - Runs: 24 passed / 24 expected
 
