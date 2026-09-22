@@ -2,6 +2,9 @@
 
 import sys
 import unittest
+import asyncio
+import gc
+from unittest.mock import patch
 from pathlib import Path
 
 import torch
@@ -11,7 +14,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from feno_rt.config import FENOModelConfig
 from feno_rt.models.feno_freq import FENOFreq
-from feno_rt.runtime import FENOModelRunner
+from feno_rt.runtime import FENOModelRunner, AsyncFENOEngine, DynamicBatchConfig
 
 
 def _config() -> FENOModelConfig:
@@ -77,6 +80,58 @@ class CUDAGraphGPUIntegrationTest(unittest.TestCase):
         self.assertEqual(metrics["replays"], 2)
         self.assertEqual(metrics["padded_slots"], 2)
         self.assertGreater(metrics["static_buffer_bytes"], 0)
+
+    def test_replay_preserves_owned_outputs_and_allocations_stabilize(self):
+        runner = self._runner()
+        context = runner.prepare_medium(self.velocity, already_normalized=True)
+        runner.enable_cuda_graphs(buckets=(4,), fallback_on_error=False)
+        first = runner.forward_batch(context, self.sources, self.frequencies)
+        saved = first.clone()
+        changed = self.frequencies + 1
+        # Populate all cache signatures and allocator paths before the check.
+        result = runner.forward_batch(context, self.sources, changed)
+        del result
+        gc.collect()
+        torch.cuda.synchronize()
+        before = torch.cuda.memory_allocated()
+        for _ in range(30):
+            result = runner.forward_batch(context, self.sources, changed)
+            del result
+        gc.collect()
+        torch.cuda.synchronize()
+        self.assertLessEqual(torch.cuda.memory_allocated(), before + 4096)
+        torch.testing.assert_close(first, saved, rtol=0, atol=0)
+        self.assertEqual(runner.execution_config()["cuda_graph"]["resident_graphs"], 1)
+
+    def test_capture_failure_falls_back_and_is_not_retried(self):
+        runner = self._runner()
+        context = runner.prepare_medium(self.velocity, already_normalized=True)
+        expected = runner.forward_batch(context, self.sources, self.frequencies)
+        runner.enable_cuda_graphs(buckets=(4,))
+        with patch.object(runner._cuda_graph_runner, "_capture", side_effect=RuntimeError("injected")) as capture:
+            for _ in range(2):
+                actual = runner.forward_batch(context, self.sources, self.frequencies)
+                torch.testing.assert_close(actual, expected)
+        self.assertEqual(capture.call_count, 1)
+        self.assertEqual(runner.execution_config()["cuda_graph"]["fallbacks"], 2)
+
+    def test_async_engine_can_replay_graph_on_its_execution_thread(self):
+        runner = self._runner()
+        context = runner.prepare_medium(self.velocity, already_normalized=True)
+        expected = runner.forward_batch(context, self.sources, self.frequencies)
+        runner.enable_cuda_graphs(buckets=(1, 4), fallback_on_error=False)
+
+        async def execute():
+            async with AsyncFENOEngine(runner, DynamicBatchConfig(max_batch_size=3),
+                                       double_buffer=True) as engine:
+                handles = await asyncio.gather(*[
+                    engine.submit(context, source, frequency)
+                    for source, frequency in zip(self.sources, self.frequencies)
+                ])
+                return torch.stack(await asyncio.gather(*handles))
+
+        actual = asyncio.run(execute())
+        torch.testing.assert_close(actual, expected, rtol=1e-5, atol=1e-5)
 
 
 if __name__ == "__main__":

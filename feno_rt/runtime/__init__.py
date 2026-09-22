@@ -15,6 +15,7 @@ from .context_cache import (
     value_nbytes,
 )
 from .cuda_graph import CUDAGraphKey, CUDAGraphTailRunner
+from .diagnostics import EngineTrace
 from .engine import AsyncFENOEngine, AsyncRequestQueue
 from .model_runner import FENOModelRunner, MediumContext
 from .request import (
@@ -41,6 +42,7 @@ __all__ = [
     "CUDAGraphTailRunner",
     "DynamicBatchConfig",
     "EngineClosedError",
+    "EngineTrace",
     "FCFSScheduler",
     "FENOCacheBundle",
     "FENOCacheConfig",

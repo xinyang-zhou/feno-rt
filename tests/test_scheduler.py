@@ -49,6 +49,15 @@ def make_request(
 
 
 class SchedulerPolicyTest(unittest.TestCase):
+    def test_each_resource_budget_can_independently_limit_a_batch(self):
+        for budget, limit in [("max_query_tokens", 2), ("max_activation_bytes", 32),
+                              ("max_output_bytes", 32)]:
+            for scheduler_type in (FCFSScheduler, CacheAwareScheduler):
+                with self.subTest(budget=budget, policy=scheduler_type.__name__):
+                    config = DynamicBatchConfig(max_batch_size=8, **{budget: limit})
+                    pending = [make_request(i, "a", "g", "f") for i in range(4)]
+                    self.assertEqual(len(scheduler_type(config).select_batch(pending)), 2)
+
     def test_fcfs_does_not_skip_incompatible_head_items(self):
         config = DynamicBatchConfig(policy=SchedulingPolicy.FCFS, max_batch_size=4)
         scheduler = FCFSScheduler(config)

@@ -38,7 +38,7 @@ concurrent requests
 
 缓存由单个 model runner 私有持有。medium key 只包含规范化速度模型摘要，
 geometry key 组合 medium 与震源/接收器几何，wavelet key 使用精确频率 bit。
-删除一个 medium 时会同时失效对应的 geometry-prefix；wavelet 与 medium
+显式调用 medium 级联失效时会同时清除对应的 geometry-prefix；wavelet 与 medium
 无关，因此会保留。
 
 详细设计见 [docs/architecture.md](docs/architecture.md)。
@@ -130,8 +130,11 @@ CPU 环境会自动跳过 CUDA Graph 集成测试。
 CUDA Graph A/B 的单进程正式运行入口和服务器命令见
 [benchmarks/README.md](benchmarks/README.md)。
 FCFS 与 Cache-Aware 的受控实验设计、指标和解释边界见
-[docs/SCHEDULER_EVALUATION.md](docs/SCHEDULER_EVALUATION.md)。正式服务器结果尚未发布，
-因此当前 README 不声明调度性能数字。
+[docs/SCHEDULER_EVALUATION.md](docs/SCHEDULER_EVALUATION.md)。
+
+完整 Engine 的 NVTX/JSON 诊断入口见 [ENGINE_PROFILING.md](docs/ENGINE_PROFILING.md)。
+测试、调度矩阵与配对诊断的复现命令见
+[BENCHMARK_REPRODUCTION.md](docs/BENCHMARK_REPRODUCTION.md)。
 
 ## CUDA Graph performance
 
@@ -151,6 +154,10 @@ CUDA Graph 对小 batch 收益最大，因为固定的 host/framework dispatch �
 
 完整的 p50/p95/p99、capture 成本、正确性、环境信息、24 个原始 run 和日志见
 [正式结果](benchmarks/results/cuda_graph_ab/20260922_rtx5090_a69f11e/summary.md)。
+
+实验边界见 [CUDA Graph 案例](docs/NSYS_CASE_STUDY.md)，相关概念见
+[LLM Serving 对照](docs/LLM_SERVING_MAPPING.md)，分析步骤见
+[性能分析流程](docs/PERFORMANCE_WORKFLOW.md)。
 
 ## Repository layout
 

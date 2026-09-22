@@ -21,6 +21,7 @@ from feno_rt.preprocessing import (
     prepare_source_receiver_batch,
 )
 from feno_rt.runtime.cuda_graph import CUDAGraphTailRunner
+from feno_rt.runtime.diagnostics import EngineTrace
 from feno_rt.runtime.context_cache import (
     FENOCacheBundle,
     FENOCacheConfig,
@@ -56,6 +57,8 @@ class FENOModelRunner:
 
     def _nvtx_range(self, name: str):
         """Return an NVTX range on CUDA and a no-op context on CPU."""
+        if self.trace is not None:
+            return self.trace.span(name)
         if self.device.type == "cuda":
             return torch.cuda.nvtx.range(name)
         return nullcontext()
@@ -68,8 +71,10 @@ class FENOModelRunner:
         normalization: Optional[NormalizationStats] = None,
         device: Optional[Union[str, torch.device]] = None,
         cache_config: Optional[FENOCacheConfig] = None,
+        trace: Optional[EngineTrace] = None,
     ) -> None:
         self.config = config
+        self.trace = trace
         self.normalization = normalization
         if device is None:
             device = next(model.parameters()).device

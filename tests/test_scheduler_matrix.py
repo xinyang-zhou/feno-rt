@@ -93,6 +93,7 @@ class SchedulerMatrixTest(unittest.TestCase):
         result["workload"].update(
             name=scenario,
             sha256=scenario_hashes[scenario] * 64,
+            slo_timeout_us=self.config["workloads"]["slo_timeout_us"],
         )
         result["execution"]["policy"] = policy
         result["timing"].update(
@@ -148,6 +149,46 @@ class SchedulerMatrixTest(unittest.TestCase):
             0.9 if policy == "cache_aware" else 0.75
         )
         return result
+
+    def test_incomplete_matrix_withholds_performance_comparisons(self):
+        result = self._result("cache_aware", "hotspot_reuse", 1, file_sha256(DEFAULT_CONFIG))
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "result.json"
+            path.write_text(json.dumps(result))
+            summary = build_summary(self.config, DEFAULT_CONFIG, [(path, result)])
+        self.assertEqual(summary["status"], "incomplete")
+        self.assertEqual(summary["groups"], [])
+        self.assertEqual(summary["comparisons"], [])
+        self.assertEqual(len(summary["run_health"]), 1)
+        self.assertIn("withheld", render_markdown(summary))
+        self.assertIn("withheld", render_reuse_throughput_svg(summary))
+
+    def test_summary_rejects_changed_slo_even_with_matching_config_hash(self):
+        result = self._result("fcfs", "no_reuse", 1, file_sha256(DEFAULT_CONFIG))
+        result["workload"]["slo_timeout_us"] = 1
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "result.json"
+            path.write_text(json.dumps(result))
+            with self.assertRaisesRegex(ValueError, "SLO mismatch"):
+                build_summary(self.config, DEFAULT_CONFIG, [(path, result)])
+
+    def test_one_failed_run_suppresses_comparison_for_complete_matrix(self):
+        loaded = []
+        with tempfile.TemporaryDirectory() as directory:
+            for entry in build_plan(self.config):
+                result = self._result(entry["policy"], entry["scenario"],
+                                      entry["repeat_index"], file_sha256(DEFAULT_CONFIG))
+                if not loaded:
+                    result["status"] = "failed"
+                    result["correctness"]["passed"] = False
+                path = Path(directory) / entry["result_file"]
+                path.write_text(json.dumps(result))
+                loaded.append((path, result))
+            summary = build_summary(self.config, DEFAULT_CONFIG, loaded)
+        self.assertEqual(summary["status"], "failed")
+        self.assertEqual(summary["groups"], [])
+        self.assertEqual(summary["comparisons"], [])
+        self.assertEqual(len(summary["run_health"]), 24)
 
     def test_resume_requires_same_commit_config_and_model_artifacts(self):
         artifacts = {

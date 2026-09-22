@@ -283,6 +283,13 @@ def build_summary(
             raise ValueError(f"scheduler policy mismatch in {result['run_id']}")
         if result["execution"]["graph_enabled"]:
             raise ValueError(f"CUDA Graph must remain disabled in {result['run_id']}")
+        for name, value in result["execution"]["scheduler"].items():
+            if value != config["scheduler"].get(name):
+                raise ValueError(f"scheduler {name} mismatch in {result['run_id']}")
+        if result["execution"]["double_buffer"] != config["scheduler"]["double_buffer"]:
+            raise ValueError(f"double_buffer mismatch in {result['run_id']}")
+        if result["workload"]["slo_timeout_us"] != config["workloads"]["slo_timeout_us"]:
+            raise ValueError(f"SLO mismatch in {result['run_id']}")
         if result["execution"]["warmup_requests"] != config["measurement"][
             "warmup_requests"
         ]:
@@ -333,6 +340,11 @@ def build_summary(
             comparisons.append(_paired_comparison(scenario, pairs))
 
     status = "incomplete" if missing else "failed" if failed_run_ids else "passed"
+    # A subset of successful runs is not an admissible A/B experiment.
+    # Preserve completion diagnostics for every run without survivor-only curves.
+    if status != "passed":
+        groups = []
+        comparisons = []
     shared_gpu = any(
         result["environment"]["hardware"]["other_gpu_processes"]
         for result in by_key.values()
@@ -343,6 +355,8 @@ def build_summary(
         "Throughput speedup is cache-aware / FCFS.",
         "Latency reduction is (FCFS - cache-aware) / FCFS * 100%.",
         "CUDA Graph is disabled for every run so the comparison isolates scheduling.",
+        "The interleaved-medium trace forces strict FCFS into singleton batches; "
+        "a speedup alone cannot be attributed to cache hits.",
     ]
     if shared_gpu:
         notes.append("At least one run observed another compute process on the measured GPU.")
@@ -362,6 +376,7 @@ def build_summary(
             "raw_samples_pooled": False,
             "profiler_enabled": False,
             "cuda_graph_enabled": False,
+            "slo_timeout_us": config["workloads"]["slo_timeout_us"],
             "shared_gpu_observed": shared_gpu,
         },
         "missing_matrix_entries": [
@@ -369,6 +384,18 @@ def build_summary(
             for policy, scenario, repeat in missing
         ],
         "failed_run_ids": failed_run_ids,
+        "run_health": [
+            {
+                "run_id": result["run_id"],
+                "status": result["status"],
+                "requests": result["metrics"]["requests"],
+                "mean_batch_size": result["metrics"]["mean_batch_size"],
+                "correctness_passed": result["correctness"]["passed"],
+                "missing_probe_indices": result["correctness"].get("missing_probe_indices"),
+                "notes": result["notes"],
+            }
+            for _key, result in sorted(by_key.items())
+        ],
         "inputs": sorted(
             inputs,
             key=lambda item: (
@@ -407,7 +434,9 @@ def render_markdown(summary: Mapping[str, Any]) -> str:
             "raw samples are not pooled."
         ),
         "",
-        "![Reuse degree versus throughput](reuse_throughput.svg)",
+        ("![Reuse degree versus throughput](reuse_throughput.svg)"
+         if summary["status"] == "passed" else
+         "Performance comparison withheld: the complete matrix has not passed."),
         "",
         "## Run-level metrics",
         "",
@@ -479,6 +508,16 @@ def render_markdown(summary: Mapping[str, Any]) -> str:
                 ),
             )
         )
+    lines.extend(["", "## Completion and correctness", "",
+                  "| Run | Status | Succeeded | Timed out | Failed | Mean batch | Probes passed |",
+                  "|:---|:---|---:|---:|---:|---:|:---|"])
+    for run in summary.get("run_health", []):
+        requests = run["requests"]
+        lines.append(
+            f"| {run['run_id']} | {run['status']} | {requests['succeeded']} | "
+            f"{requests['timed_out']} | {requests['failed']} | "
+            f"{run['mean_batch_size']:.2f} | {run['correctness_passed']} |"
+        )
     lines.extend(["", "## Notes", ""])
     lines.extend(f"- {note}" for note in summary["notes"])
     if summary["missing_matrix_entries"]:
@@ -489,6 +528,9 @@ def render_markdown(summary: Mapping[str, Any]) -> str:
 
 
 def render_reuse_throughput_svg(summary: Mapping[str, Any]) -> str:
+    if summary["status"] != "passed":
+        return ('<svg xmlns="http://www.w3.org/2000/svg" width="760" height="100">'
+                '<text x="20" y="50">Comparison withheld: complete matrix has not passed.</text></svg>\n')
     width, height = 760, 440
     left, right, top, bottom = 80, 30, 40, 95
     chart_width = width - left - right

@@ -1,6 +1,8 @@
 """Policy and lifecycle tests for capacity-bounded caches."""
 
 import unittest
+from concurrent.futures import ThreadPoolExecutor
+from threading import Barrier
 
 import torch
 
@@ -19,6 +21,28 @@ def medium_key(name: str) -> MediumCacheKey:
 
 
 class TensorLRUCacheTest(unittest.TestCase):
+    def test_concurrent_leases_pin_until_every_reader_releases(self):
+        cache = TensorLRUCache(4, name="concurrent")
+        cache.put("shared", torch.tensor([7.0]))
+        acquired = Barrier(5)
+        release = Barrier(5)
+
+        def reader():
+            with cache.acquire("shared") as value:
+                acquired.wait(timeout=5)
+                release.wait(timeout=5)
+                return value.item()
+
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            futures = [pool.submit(reader) for _ in range(4)]
+            acquired.wait(timeout=5)
+            self.assertFalse(cache.put("other", torch.tensor([1.0])))
+            self.assertFalse(cache.invalidate("shared"))
+            release.wait(timeout=5)
+            self.assertEqual([future.result(timeout=5) for future in futures], [7.0] * 4)
+        self.assertEqual(cache.snapshot().pinned_entries, 0)
+        self.assertTrue(cache.put("other", torch.tensor([1.0])))
+
     def test_lru_evicts_least_recently_used_entry(self) -> None:
         cache = TensorLRUCache[str, torch.Tensor](8, name="test")
         cache.put("a", torch.tensor([1.0]))

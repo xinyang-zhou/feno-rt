@@ -1071,6 +1071,23 @@ def _validate_scheduler_result(document: Mapping[str, Any]) -> List[str]:
     if model.get("random_initialized") is False and model.get("checkpoint") is None:
         errors.append("non-random model requires checkpoint identity")
     correctness = _mapping(document.get("correctness"), "correctness", errors)
+    probe_count = correctness.get("probe_requests")
+    completed = correctness.get("completed_probe_requests")
+    missing = correctness.get("missing_probe_indices", [])
+    if completed is not None:
+        if not _non_negative_int(completed) or not _positive_int(probe_count):
+            errors.append("invalid correctness probe counts")
+        elif not isinstance(missing, list) or completed + len(missing) != probe_count:
+            errors.append("completed and missing correctness probes must sum to probe_requests")
+    for name in ("missing_probe_indices", "nonfinite_probe_indices", "mismatched_probe_indices"):
+        indices = correctness.get(name, [])
+        if not isinstance(indices, list) or any(
+            not _non_negative_int(index) or
+            (_positive_int(request_count) and index >= request_count) for index in indices
+        ):
+            errors.append(f"correctness.{name} must contain valid request indices")
+        elif document.get("status") == "passed" and indices:
+            errors.append(f"passed result requires correctness.{name} to be empty")
     if document.get("status") == "passed":
         if correctness.get("passed") is not True:
             errors.append("status=passed requires correctness.passed=true")

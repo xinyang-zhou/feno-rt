@@ -16,6 +16,20 @@ FENO-RT 的版本演进分为完整 serving 系统和聚焦运行时核心两条
 - 按 batch bucket 捕获并复用 decoder tail 的 CUDA Graph；
 - CPU 单元测试和 CUDA Graph GPU 集成测试。
 
+诊断工具可选输出完整 Engine 的 NVTX 与 Chrome trace JSON；这不等于恢复历史
+Prometheus/HTTP 服务。正常推理默认不创建 EngineTrace，CUDA Graph 仍需显式启用。
+
+## 发布形态与事实索引
+
+| 能力/结果 | 对应版本 | 证据 |
+|---|---|---|
+| 三级 cache、lease、多重预算、单设备 Engine | main / `0.9.0.dev0` | runtime、tests、architecture |
+| 多 GPU replica、router、pinned CPU medium tier、HTTP/metrics/replay | `v0.8.0` | 固定 tag 的源码 |
+| CUDA Graph 正式性能数字 | `a69f11e` | `benchmarks/results/cuda_graph_ab/20260922_rtx5090_a69f11e/` |
+
+保持 main 为可安装的运行时核心，保留历史 tag，不重新合并外围服务。`0.9.0.dev0`
+仍是开发版本。性能报告以运行时记录的完整 commit 为准，不能用包版本代替源码身份。
+
 当前源码不提供多 GPU 编排、HTTP API、Prometheus、trace replay、进程 worker、
 GPU↔pinned CPU medium tier、模型权重或训练代码。
 

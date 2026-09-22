@@ -25,6 +25,10 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Run core CPU benchmark
         run: python benchmarks/benchmark_core.py --device cpu --repeats 3
+      - name: Check full engine diagnostic artifacts
+        run: |
+          python benchmarks/profile_engine.py --toy --device cpu --requests 16 --output-dir /tmp/feno-engine-ci
+          python benchmarks/summarize_engine_profile.py /tmp/feno-engine-ci
       - name: Verify source and wheel builds
         run: |
           python -m pip install build

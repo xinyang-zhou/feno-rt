@@ -26,6 +26,7 @@ from .request import (
     RequestTimeoutError,
 )
 from .scheduler import BaseBatchScheduler, DynamicBatchConfig, make_scheduler
+from .diagnostics import EngineTrace, diagnostic_range, span
 
 
 @dataclass(frozen=True)
@@ -44,8 +45,10 @@ class AsyncRequestQueue:
         self,
         config: DynamicBatchConfig,
         terminal_callback: Callable[[InferenceRequest], None],
+        trace: Optional[EngineTrace] = None,
     ) -> None:
         self._config = config
+        self.trace = trace
         self._terminal_callback = terminal_callback
         self._pending: List[InferenceRequest] = []
         self._condition = asyncio.Condition()
@@ -217,7 +220,8 @@ class AsyncRequestQueue:
                     return None
                 if self._pending:
                     selection_started_ns = perf_counter_ns()
-                    batch = scheduler.select_batch(self._pending, now_ns=now_ns)
+                    with span(self.trace, "feno.scheduler_select", pending=len(self._pending)):
+                        batch = scheduler.select_batch(self._pending, now_ns=now_ns)
                     selection_ns = perf_counter_ns() - selection_started_ns
                     self._selection_calls += 1
                     self._selection_total_ns += selection_ns
@@ -278,8 +282,10 @@ class AsyncFENOEngine:
         execution_stream: Optional[torch.cuda.Stream] = None,
         executor_initializer: Optional[Callable[[], None]] = None,
         context_acquirer: Optional[Callable[[Any], Any]] = None,
+        trace: Optional[EngineTrace] = None,
     ) -> None:
         self.runner = runner
+        self.trace = trace
         self.config = config or DynamicBatchConfig()
         self.double_buffer = bool(double_buffer)
         self.execution_stream = execution_stream
@@ -317,9 +323,10 @@ class AsyncFENOEngine:
                 thread_name_prefix="feno-worker",
                 initializer=self.executor_initializer,
             )
-            self._queue = AsyncRequestQueue(self.config, self._record_terminal)
+            self._queue = AsyncRequestQueue(self.config, self._record_terminal, self.trace)
             self._worker_task = asyncio.create_task(self._worker_loop(), name="feno-batcher")
 
+    @diagnostic_range("feno.cache_lookup")
     def _cache_probe(self, request: InferenceRequest) -> Mapping[str, bool]:
         probe = getattr(self.runner, "cache_residency", None)
         if probe is None:
@@ -335,6 +342,7 @@ class AsyncFENOEngine:
         digest.update(tensor.view(torch.uint8).numpy().tobytes())
         return digest.hexdigest()
 
+    @diagnostic_range("feno.cache_identity")
     def _prepare_identity(
         self,
         context: Any,
@@ -518,12 +526,16 @@ class AsyncFENOEngine:
         self._request_ids.add(resolved_request_id)
         self._sequence += 1
         self._metrics.submitted += 1
+        if self.trace is not None:
+            self.trace.request_enqueued(request)
         assert self._queue is not None
         try:
             await self._queue.put(request)
         except BaseException:
             self._metrics.submitted -= 1
             self._request_ids.remove(resolved_request_id)
+            if self.trace is not None:
+                self.trace.request_completed(request, "enqueue_failed")
             raise
         try:
             # An unbounded Condition.put() may complete without suspending.
@@ -548,7 +560,8 @@ class AsyncFENOEngine:
         if self.execution_stream is None:
             result = function()
             if synchronize and device.type == "cuda":
-                torch.cuda.synchronize(device)
+                with span(self.trace, "feno.device_synchronize"):
+                    torch.cuda.synchronize(device)
             return result
 
         with torch.cuda.device(device):
@@ -556,7 +569,8 @@ class AsyncFENOEngine:
             with torch.cuda.stream(self.execution_stream):
                 result = function()
             if synchronize:
-                self.execution_stream.synchronize()
+                with span(self.trace, "feno.device_synchronize"):
+                    self.execution_stream.synchronize()
         return result
 
     def _run_serialized_sync(self, function: Callable[[], Any]) -> Any:
@@ -604,6 +618,11 @@ class AsyncFENOEngine:
             self._metrics.failed += 1
         else:
             self._metrics.succeeded += 1
+        if self.trace is not None:
+            status = ("cancelled" if request.future.cancelled() else
+                      "timed_out" if isinstance(request.error, RequestTimeoutError) else
+                      "failed" if request.error is not None else "succeeded")
+            self.trace.request_completed(request, status)
         if request.started_ns is not None:
             self._metrics.queue_ms.append((request.started_ns - request.enqueued_ns) / 1e6)
         if request.completed_ns is not None:
@@ -624,6 +643,7 @@ class AsyncFENOEngine:
         ]
         return torch.stack(values)
 
+    @diagnostic_range("feno.batch_build")
     def _prepare_batch(self, requests: Sequence[InferenceRequest]) -> _PreparedBatch:
         started_ns = perf_counter_ns()
         sources = torch.stack(
@@ -642,6 +662,7 @@ class AsyncFENOEngine:
             preparation_ms=preparation_ms,
         )
 
+    @diagnostic_range("feno.runner_execute")
     def _run_batch_sync(self, prepared: _PreparedBatch) -> List[torch.Tensor]:
         def run() -> List[torch.Tensor]:
             requests = prepared.requests
@@ -671,16 +692,17 @@ class AsyncFENOEngine:
                 raise RuntimeError(
                     f"runner returned batch {output.shape[0]} for {len(requests)} requests"
                 )
-            owned_output = (
-                output
-                if getattr(self.runner, "forward_output_owned", False)
-                else output.clone()
-            )
-            output_lease = getattr(owned_output, "_feno_output_lease", None)
-            results = [owned_output[index] for index in range(len(requests))]
-            if output_lease is not None:
-                for result in results:
-                    result._feno_output_lease = output_lease
+            with span(self.trace, "feno.output_ownership"):
+                owned_output = (
+                    output
+                    if getattr(self.runner, "forward_output_owned", False)
+                    else output.clone()
+                )
+                output_lease = getattr(owned_output, "_feno_output_lease", None)
+                results = [owned_output[index] for index in range(len(requests))]
+                if output_lease is not None:
+                    for result in results:
+                        result._feno_output_lease = output_lease
             return results
 
         return self._run_on_execution_stream(
@@ -716,6 +738,7 @@ class AsyncFENOEngine:
             right = await self._execute_isolated(self._prepare_batch(requests[midpoint:]))
             return left + right
 
+    @diagnostic_range("feno.completion")
     def _deliver(
         self,
         results: Iterable[Tuple[InferenceRequest, Optional[torch.Tensor], Optional[BaseException]]],
@@ -785,6 +808,8 @@ class AsyncFENOEngine:
         for request in prepared.requests:
             request.state = RequestState.RUNNING
             request.started_ns = started_ns
+            if self.trace is not None:
+                self.trace.request_started(request)
         return prepared
 
     async def _single_buffer_loop(self, scheduler: BaseBatchScheduler) -> None:

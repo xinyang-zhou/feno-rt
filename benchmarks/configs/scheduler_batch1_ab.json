@@ -64,7 +64,7 @@
   "scheduler": {
     "policies": ["fcfs", "cache_aware"],
     "max_wait_us": 2000,
-    "max_batch_size": 8,
+    "max_batch_size": 1,
     "max_query_tokens": 5600,
     "max_activation_bytes": 2147483648,
     "max_output_bytes": 536870912,

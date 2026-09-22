@@ -15,7 +15,7 @@
     "request_count": 1000,
     "arrival_pattern": "burst",
     "arrival_interval_us": 0,
-    "slo_timeout_us": 30000000,
+    "slo_timeout_us": 5000000,
     "medium_count": 4,
     "positions_are_normalized": false,
     "receiver_positions": "model_default",

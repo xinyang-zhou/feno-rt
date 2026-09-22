@@ -210,12 +210,15 @@ def compare_correctness_probes(
     output_dtype: Optional[str] = None
     all_finite = True
     passed = True
+    missing_indices: List[int] = []
+    nonfinite_indices: List[int] = []
+    mismatch_indices: List[int] = []
     for index in probe_indices:
         request = requests[index]
         candidate = retained_outputs.get(index)
         if candidate is None:
             passed = False
-            all_finite = False
+            missing_indices.append(index)
             continue
         reference = runner.forward_uncached(
             velocities[str(request["medium_id"])],
@@ -231,6 +234,11 @@ def compare_correctness_probes(
         all_finite = all_finite and finite
         if not finite:
             passed = False
+            nonfinite_indices.append(index)
+            continue
+        if candidate.shape != reference.shape or candidate.dtype != reference.dtype:
+            passed = False
+            mismatch_indices.append(index)
             continue
         difference = (candidate - reference).float()
         relative = torch.linalg.vector_norm(difference) / torch.linalg.vector_norm(
@@ -242,6 +250,7 @@ def compare_correctness_probes(
             torch.testing.assert_close(candidate, reference, rtol=rtol, atol=atol)
         except AssertionError:
             passed = False
+            mismatch_indices.append(index)
     return {
         "passed": passed and all_finite and len(retained_outputs) == len(probe_indices),
         "relative_l2_error": max(relative_errors) if relative_errors else None,
@@ -249,6 +258,10 @@ def compare_correctness_probes(
         "rtol": rtol,
         "atol": atol,
         "probe_requests": len(probe_indices),
+        "completed_probe_requests": len(probe_indices) - len(missing_indices),
+        "missing_probe_indices": missing_indices,
+        "nonfinite_probe_indices": nonfinite_indices,
+        "mismatched_probe_indices": mismatch_indices,
         "output_shape": output_shape or [],
         "output_dtype": output_dtype or "unknown",
         "all_finite": all_finite,

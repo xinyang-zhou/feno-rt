@@ -16,7 +16,7 @@ CUDA Graph 在全部 run 中关闭，避免把 Graph replay 收益混入调度�
 ## Controlled workload
 
 [`scheduler_ab.json`](../benchmarks/configs/scheduler_ab.json) 固定 1000 个 burst 请求、
-4 个 medium、batch 上限 8、同一资源预算和 5 秒请求 timeout。medium context 在计时前
+4 个 medium、batch 上限 8、同一资源预算和 30 秒请求 timeout。medium context 在计时前
 预热，geometry-prefix 与 wavelet cache 在计时前清空。四个确定性 trace 只改变复用分布：
 
 | Scenario | Purpose |
@@ -30,6 +30,22 @@ CUDA Graph 在全部 run 中关闭，避免把 Graph replay 收益混入调度�
 写入每个结果。每种策略与场景运行 3 个全新进程，执行顺序按 repeat 反转，共 24 个 run。
 
 ## Metrics and interpretation
+
+`14678d6` 使用 5 秒 timeout，原配置保存在
+[`scheduler_ab_5s_legacy.json`](../benchmarks/configs/scheduler_ab_5s_legacy.json)。
+当前协议采用 30 秒完整完成窗口，适用于两种策略和所有场景。30 秒结果不能用来证明
+原 5 秒 SLO；复现旧协议需使用旧 commit 的 trace，不能混用当前 30 秒 trace。
+新增 `scheduler_batch1_ab.json` 固定两策略 batch 上限为 1，帮助分析组批收益与调度开销。
+主矩阵和该对照分别运行、分别汇总；不合并样本。任一矩阵不完整或有失败时不生成性能对比。
+
+trace 的相邻请求使用不同 medium，严格 FCFS 因兼容性限制只能形成 batch=1；Cache-Aware
+可以跨过不兼容项组批。因此主矩阵的全部收益不能归因于缓存命中。`no_reuse` 消除的是
+geometry/wavelet 复用，medium 仍有复用。batch=1 对照消除 batch size 差异，但仍受
+50 ms starvation guard 影响，不能视为纯缓存收益的精确分解。
+
+`starvation_guard_requests` 统计触发等待阈值的 dispatch 请求数；50 ms 不是最大 queue
+latency 保证。正确性字段分别报告探针缺失、非有限值和数值不匹配；缺失探针会使运行
+失败，但不表示已返回的输出含有 NaN/Inf。
 
 每个 run 保存原始 batch size 以及逐请求 queue、execution 和 end-to-end latency。
 正式汇总报告：
@@ -57,11 +73,12 @@ export FENO_CHECKPOINT=/path/to/feno_test.pth
 export FENO_NORMALIZATION=/path/to/norm_params_freq.npz
 export CUDA_VISIBLE_DEVICES=GPU-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 python benchmarks/run_scheduler_ab_matrix.py \
-  --output-dir /home/xinyang/feno-rt-results/scheduler_<session-name>
+  --output-dir /tmp/feno-scheduler-ab/<session-name>
 ```
 
 该目录必须在仓库外。矩阵完成后先检查 `summary.md`、`session.json` 和 24 个 run 的状态，
-再将整个结果目录复制到 `benchmarks/results/scheduler_ab/` 并提交。
+保留全部成功与失败记录。原始结果可能包含机器路径和设备标识；发布前按
+[复现步骤](BENCHMARK_REPRODUCTION.md) 准备公开副本并检查元数据。
 
 ## Scope
 

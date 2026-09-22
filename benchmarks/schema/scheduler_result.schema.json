@@ -246,6 +246,10 @@
         "rtol": {"type": "number", "minimum": 0},
         "atol": {"type": "number", "minimum": 0},
         "probe_requests": {"type": "integer", "minimum": 1},
+        "completed_probe_requests": {"type": "integer", "minimum": 0},
+        "missing_probe_indices": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+        "nonfinite_probe_indices": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+        "mismatched_probe_indices": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
         "output_shape": {"$ref": "#/$defs/shape"},
         "output_dtype": {"type": "string", "minLength": 1},
         "all_finite": {"type": "boolean"}

@@ -2,6 +2,13 @@
 
 本目录将功能 smoke benchmark 与正式性能实验分开。
 
+调度实验使用统一 30 秒 deadline，协议与解释边界见
+[调度实验设计](../docs/SCHEDULER_EVALUATION.md)。测试、两套调度矩阵和 Engine 采集命令见
+[实验复现步骤](../docs/BENCHMARK_REPRODUCTION.md)。
+
+`profile_engine.py` 与 `summarize_engine_profile.py` 只生成 diagnostic 材料，不进入正式
+性能汇总。`scheduler_batch1_ab.json` 是固定 batch=1 的独立对照配置。
+
 - `benchmark_core.py`：使用小型随机模型检查主要运行路径和数值等价性；
 - `configs/`：版本化实验配置；
 - `schema/`：配置和结果的机器可读契约；
@@ -158,7 +165,7 @@ python benchmarks/benchmark_scheduler_ab.py \
   --policy fcfs \
   --scenario uniform_reuse \
   --repeat-index 1 \
-  --output /home/xinyang/feno-rt-results/scheduler_fcfs_uniform_reuse_run1.json
+  --output /tmp/feno-scheduler-ab/scheduler_fcfs_uniform_reuse_run1.json
 ```
 
 完整矩阵：
@@ -168,7 +175,7 @@ export FENO_CHECKPOINT=/path/to/feno_test.pth
 export FENO_NORMALIZATION=/path/to/norm_params_freq.npz
 export CUDA_VISIBLE_DEVICES=GPU-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 python benchmarks/run_scheduler_ab_matrix.py \
-  --output-dir /home/xinyang/feno-rt-results/scheduler_<session-name>
+  --output-dir /tmp/feno-scheduler-ab/<session-name>
 ```
 
 结果目录必须位于 Git 仓库外，且首次运行时不存在。runner 要求干净工作树，并验证模型
