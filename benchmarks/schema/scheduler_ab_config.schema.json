@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/xinyang-zhou/feno-rt/benchmarks/schema/scheduler_ab_config.schema.json",
+  "title": "FENO-RT scheduler A/B configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "benchmark",
+    "device",
+    "seed",
+    "model",
+    "workloads",
+    "scheduler",
+    "measurement",
+    "execution",
+    "correctness"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "benchmark": {"const": "scheduler_ab"},
+    "device": {"type": "string", "pattern": "^cuda:[0-9]+$"},
+    "seed": {"type": "integer", "minimum": 0},
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "config_source",
+        "model_source",
+        "checkpoint_env",
+        "normalization_env",
+        "dtype"
+      ],
+      "properties": {
+        "config_source": {"const": "default_inference"},
+        "model_source": {"const": "checkpoint"},
+        "checkpoint_env": {"type": "string", "minLength": 1},
+        "normalization_env": {"type": "string", "minLength": 1},
+        "dtype": {"const": "float32"}
+      }
+    },
+    "workloads": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "request_count",
+        "arrival_pattern",
+        "arrival_interval_us",
+        "slo_timeout_us",
+        "medium_count",
+        "positions_are_normalized",
+        "receiver_positions",
+        "velocity",
+        "cache_state",
+        "scenarios"
+      ],
+      "properties": {
+        "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "request_count": {"type": "integer", "minimum": 1000},
+        "arrival_pattern": {"const": "burst"},
+        "arrival_interval_us": {"type": "integer", "minimum": 0},
+        "slo_timeout_us": {"type": "integer", "minimum": 1},
+        "medium_count": {"type": "integer", "minimum": 2},
+        "positions_are_normalized": {"const": false},
+        "receiver_positions": {"const": "model_default"},
+        "velocity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "generator",
+            "z_sine_amplitude",
+            "z_cycles",
+            "x_cosine_amplitude",
+            "x_cycles",
+            "phase_step"
+          ],
+          "properties": {
+            "generator": {"const": "physical_sine_cosine_family_v1"},
+            "z_sine_amplitude": {"type": "number"},
+            "z_cycles": {"type": "number", "exclusiveMinimum": 0},
+            "x_cosine_amplitude": {"type": "number"},
+            "x_cycles": {"type": "number", "exclusiveMinimum": 0},
+            "phase_step": {"type": "number"}
+          }
+        },
+        "cache_state": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["medium", "geometry", "wavelet"],
+          "properties": {
+            "medium": {"const": "warm"},
+            "geometry": {"const": "cold"},
+            "wavelet": {"const": "cold"}
+          }
+        },
+        "scenarios": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {"$ref": "#/$defs/scenario"}
+        }
+      }
+    },
+    "scheduler": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policies",
+        "max_wait_us",
+        "max_batch_size",
+        "max_query_tokens",
+        "max_activation_bytes",
+        "max_output_bytes",
+        "deadline_guard_us",
+        "starvation_timeout_us",
+        "error_isolation",
+        "synchronize_device",
+        "double_buffer"
+      ],
+      "properties": {
+        "policies": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {"enum": ["fcfs", "cache_aware"]}
+        },
+        "max_wait_us": {"type": "integer", "minimum": 0},
+        "max_batch_size": {"type": "integer", "minimum": 1},
+        "max_query_tokens": {"type": "integer", "minimum": 1},
+        "max_activation_bytes": {"type": "integer", "minimum": 1},
+        "max_output_bytes": {"type": "integer", "minimum": 1},
+        "deadline_guard_us": {"type": "integer", "minimum": 0},
+        "starvation_timeout_us": {"type": "integer", "minimum": 1},
+        "error_isolation": {"type": "boolean"},
+        "synchronize_device": {"type": "boolean"},
+        "double_buffer": {"type": "boolean"}
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "independent_runs",
+        "warmup_requests",
+        "clock",
+        "profiler_enabled",
+        "save_raw_request_latency_samples",
+        "record_peak_memory",
+        "correctness_probe_requests"
+      ],
+      "properties": {
+        "independent_runs": {"type": "integer", "minimum": 3},
+        "warmup_requests": {"type": "integer", "minimum": 1},
+        "clock": {"const": "perf_counter_ns"},
+        "profiler_enabled": {"const": false},
+        "save_raw_request_latency_samples": {"const": true},
+        "record_peak_memory": {"const": true},
+        "correctness_probe_requests": {"type": "integer", "minimum": 1}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cuda_graph_enabled",
+        "tf32_enabled",
+        "cudnn_benchmark",
+        "deterministic_algorithms"
+      ],
+      "properties": {
+        "cuda_graph_enabled": {"const": false},
+        "tf32_enabled": {"type": "boolean"},
+        "cudnn_benchmark": {"type": "boolean"},
+        "deterministic_algorithms": {"type": "boolean"}
+      }
+    },
+    "correctness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference", "rtol", "atol", "require_finite"],
+      "properties": {
+        "reference": {"const": "uncached_same_commit"},
+        "rtol": {"type": "number", "minimum": 0},
+        "atol": {"type": "number", "minimum": 0},
+        "require_finite": {"const": true}
+      }
+    }
+  },
+  "$defs": {
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "pattern", "geometry_pool_size", "frequency_pool_size"],
+      "properties": {
+        "name": {
+          "enum": ["no_reuse", "uniform_reuse", "long_tail_reuse", "hotspot_reuse"]
+        },
+        "pattern": {"enum": ["unique", "uniform", "zipf", "hotspot"]},
+        "geometry_pool_size": {"type": "integer", "minimum": 1, "maximum": 1024},
+        "frequency_pool_size": {"type": "integer", "minimum": 1},
+        "zipf_exponent": {"type": "number", "exclusiveMinimum": 0},
+        "hotspot_probability": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        }
+      }
+    }
+  }
+}

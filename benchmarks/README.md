@@ -133,3 +133,50 @@ python benchmarks/run_graph_ab_matrix.py \
 python benchmarks/summarize_graph_ab.py \
   --input-dir /tmp/feno-graph-ab/<session-name>
 ```
+
+## Scheduler A/B baseline configuration
+
+[`configs/scheduler_ab.json`](configs/scheduler_ab.json) 比较严格 FCFS 和 Cache-Aware
+调度。两种策略逐对读取完全相同的 checked-in trace；CUDA Graph 固定关闭，batch limit、
+资源预算、SLO、模型和 cache 初始状态保持一致。
+
+主矩阵包含 4 种复用分布：几乎无 geometry/wavelet 复用、均匀复用、长尾复用和高热点
+复用。每个 trace 有 1000 个请求和 4 个已预热 medium，geometry/wavelet 在计时前清空。
+2 种策略 × 4 个 trace × 3 次独立进程，共 24 个 run。
+
+先检查配置和 trace：
+
+```bash
+python benchmarks/validate_result.py benchmarks/configs/scheduler_ab.json --kind config
+python benchmarks/scheduler_workload.py --check
+```
+
+一次单独运行：
+
+```bash
+python benchmarks/benchmark_scheduler_ab.py \
+  --policy fcfs \
+  --scenario uniform_reuse \
+  --repeat-index 1 \
+  --output /home/xinyang/feno-rt-results/scheduler_fcfs_uniform_reuse_run1.json
+```
+
+完整矩阵：
+
+```bash
+export FENO_CHECKPOINT=/path/to/feno_test.pth
+export FENO_NORMALIZATION=/path/to/norm_params_freq.npz
+export CUDA_VISIBLE_DEVICES=GPU-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+python benchmarks/run_scheduler_ab_matrix.py \
+  --output-dir /home/xinyang/feno-rt-results/scheduler_<session-name>
+```
+
+结果目录必须位于 Git 仓库外，且首次运行时不存在。runner 要求干净工作树，并验证模型
+文件、依赖 lock、GPU 映射和 trace。执行中断后可在同一 commit、配置和模型文件上加
+`--resume`。完整输出包含 24 个原始 JSON、日志、`session.json`、`summary.json`、
+`summary.md` 和 `reuse_throughput.svg`。
+
+结果同时记录吞吐、queue/execution/end-to-end p50/p95/p99、batch fill、各层 cache
+指标、批内共享比例、deadline/starvation、调度器 CPU 开销、峰值显存和正确性。汇总只对
+run-level 指标取统计量，不合并三轮原始请求 samples。实验设计与结论准入见
+[`docs/SCHEDULER_EVALUATION.md`](../docs/SCHEDULER_EVALUATION.md)。

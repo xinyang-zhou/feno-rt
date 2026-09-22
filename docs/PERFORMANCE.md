@@ -226,6 +226,17 @@ capture 在 steady-state 测量前完成并单独计时。每轮 Graph on/off �
 Graph 收益应描述为减少 host/framework dispatch 和 CUDA launch 开销。除非另有独立的
 GPU kernel 证据，不得声称 Graph 加快了单个 kernel 的计算。
 
+## Scheduler A/B contract
+
+FCFS 与 Cache-Aware 的 Formal A/B 必须保持 Git commit、模型、GPU、请求 trace、请求
+顺序、到达时间、SLO、batch limit、资源预算、cache 初始状态和 Graph 开关一致。每个
+策略对使用相同 trace SHA256，并在相邻、顺序反转的独立进程中执行。
+
+除吞吐外，必须同时报告 queue 和 end-to-end p50/p95/p99、batch fill、各层 cache 指标、
+批内共享比例、deadline violation、starvation、最长等待、调度器 CPU 开销和峰值显存。
+调度收益必须区分 batch quality 与 cache locality，并公开无复用 workload 下的开销或
+退化。详细协议见 [SCHEDULER_EVALUATION.md](SCHEDULER_EVALUATION.md)。
+
 ## Claim admission policy
 
 正式写入 README、release note 或性能摘要的数字必须同时满足：

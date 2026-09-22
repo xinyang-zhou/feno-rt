@@ -1,0 +1,506 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/xinyang-zhou/feno-rt/benchmarks/schema/scheduler_result.schema.json",
+  "title": "FENO-RT formal scheduler A/B result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "result_class",
+    "status",
+    "benchmark",
+    "run_id",
+    "repeat_index",
+    "created_at_utc",
+    "source",
+    "environment",
+    "model",
+    "workload",
+    "execution",
+    "timing",
+    "metrics",
+    "correctness",
+    "artifacts",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "result_class": {"const": "formal"},
+    "status": {"enum": ["passed", "failed"]},
+    "benchmark": {"const": "scheduler_ab"},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"},
+    "repeat_index": {"type": "integer", "minimum": 1},
+    "created_at_utc": {"type": "string", "format": "date-time"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["git_commit", "git_dirty", "command", "config_path", "config_sha256"],
+      "properties": {
+        "git_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "git_dirty": {"const": false},
+        "command": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string"}
+        },
+        "config_path": {"type": "string", "minLength": 1},
+        "config_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "environment": {"$ref": "#/$defs/environment"},
+    "model": {"$ref": "#/$defs/model"},
+    "workload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "schema_version",
+        "sha256",
+        "seed",
+        "request_count",
+        "arrival_pattern",
+        "arrival_interval_us",
+        "slo_timeout_us",
+        "medium_count",
+        "velocity_sha256",
+        "positions_are_normalized",
+        "receiver_positions",
+        "cache_state",
+        "reuse"
+      ],
+      "properties": {
+        "name": {
+          "enum": ["no_reuse", "uniform_reuse", "long_tail_reuse", "hotspot_reuse"]
+        },
+        "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "seed": {"type": "integer", "minimum": 0},
+        "request_count": {"type": "integer", "minimum": 1000},
+        "arrival_pattern": {"const": "burst"},
+        "arrival_interval_us": {"type": "integer", "minimum": 0},
+        "slo_timeout_us": {"type": "integer", "minimum": 1},
+        "medium_count": {"type": "integer", "minimum": 1},
+        "velocity_sha256": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "positions_are_normalized": {"const": false},
+        "receiver_positions": {"const": "model_default"},
+        "cache_state": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["medium", "geometry", "wavelet"],
+          "properties": {
+            "medium": {"const": "warm"},
+            "geometry": {"const": "cold"},
+            "wavelet": {"const": "cold"}
+          }
+        },
+        "reuse": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unique_mediums",
+            "unique_geometries",
+            "unique_wavelets",
+            "medium_reuse_ratio",
+            "geometry_reuse_ratio",
+            "wavelet_reuse_ratio"
+          ],
+          "properties": {
+            "unique_mediums": {"type": "integer", "minimum": 1},
+            "unique_geometries": {"type": "integer", "minimum": 1},
+            "unique_wavelets": {"type": "integer", "minimum": 1},
+            "medium_reuse_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+            "geometry_reuse_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+            "wavelet_reuse_ratio": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "device",
+        "policy",
+        "profiler_enabled",
+        "warmup_requests",
+        "dtype",
+        "graph_enabled",
+        "tf32_enabled",
+        "cudnn_benchmark",
+        "deterministic",
+        "double_buffer",
+        "scheduler"
+      ],
+      "properties": {
+        "device": {"type": "string", "pattern": "^cuda:[0-9]+$"},
+        "policy": {"enum": ["fcfs", "cache_aware"]},
+        "profiler_enabled": {"const": false},
+        "warmup_requests": {"type": "integer", "minimum": 1},
+        "dtype": {"type": "string", "minLength": 1},
+        "graph_enabled": {"const": false},
+        "tf32_enabled": {"type": "boolean"},
+        "cudnn_benchmark": {"type": "boolean"},
+        "deterministic": {"type": "boolean"},
+        "double_buffer": {"type": "boolean"},
+        "scheduler": {"$ref": "#/$defs/schedulerConfig"}
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clock", "setup_included", "measured_wall_time_seconds", "raw_samples"],
+      "properties": {
+        "clock": {"const": "perf_counter_ns"},
+        "setup_included": {"const": false},
+        "measured_wall_time_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "raw_samples": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "batch_sizes",
+            "queue_latency_ms",
+            "execution_latency_ms",
+            "end_to_end_latency_ms"
+          ],
+          "properties": {
+            "batch_sizes": {
+              "type": "array",
+              "items": {"type": "integer", "minimum": 1}
+            },
+            "queue_latency_ms": {"$ref": "#/$defs/nonNegativeSamples"},
+            "execution_latency_ms": {"$ref": "#/$defs/nonNegativeSamples"},
+            "end_to_end_latency_ms": {"$ref": "#/$defs/nonNegativeSamples"}
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "throughput_requests_per_second",
+        "requests",
+        "batches",
+        "mean_batch_size",
+        "max_observed_batch_size",
+        "effective_batch_fill_ratio",
+        "queue_latency",
+        "execution_latency",
+        "end_to_end_latency",
+        "scheduler",
+        "cache",
+        "pipeline",
+        "memory"
+      ],
+      "properties": {
+        "throughput_requests_per_second": {"type": "number", "minimum": 0},
+        "requests": {"$ref": "#/$defs/requestCounts"},
+        "batches": {"type": "integer", "minimum": 0},
+        "mean_batch_size": {"type": "number", "minimum": 0},
+        "max_observed_batch_size": {"type": "integer", "minimum": 0},
+        "effective_batch_fill_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "queue_latency": {"$ref": "#/$defs/latencySummary"},
+        "execution_latency": {"$ref": "#/$defs/latencySummary"},
+        "end_to_end_latency": {"$ref": "#/$defs/latencySummary"},
+        "scheduler": {"$ref": "#/$defs/schedulerMetrics"},
+        "cache": {"type": "object"},
+        "pipeline": {"type": "object"},
+        "memory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "baseline_allocated_bytes",
+            "peak_allocated_bytes",
+            "peak_reserved_bytes"
+          ],
+          "properties": {
+            "baseline_allocated_bytes": {"type": "integer", "minimum": 0},
+            "peak_allocated_bytes": {"type": "integer", "minimum": 0},
+            "peak_reserved_bytes": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "correctness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "passed",
+        "relative_l2_error",
+        "max_absolute_error",
+        "rtol",
+        "atol",
+        "probe_requests",
+        "output_shape",
+        "output_dtype",
+        "all_finite"
+      ],
+      "properties": {
+        "passed": {"type": "boolean"},
+        "relative_l2_error": {"type": ["number", "null"], "minimum": 0},
+        "max_absolute_error": {"type": ["number", "null"], "minimum": 0},
+        "rtol": {"type": "number", "minimum": 0},
+        "atol": {"type": "number", "minimum": 0},
+        "probe_requests": {"type": "integer", "minimum": 1},
+        "output_shape": {"$ref": "#/$defs/shape"},
+        "output_dtype": {"type": "string", "minLength": 1},
+        "all_finite": {"type": "boolean"}
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result_path", "workload_path"],
+      "properties": {
+        "result_path": {"type": "string", "minLength": 1},
+        "workload_path": {"type": "string", "minLength": 1}
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "$defs": {
+    "shape": {
+      "type": "array",
+      "items": {"type": "integer", "minimum": 0}
+    },
+    "optionalArtifactIdentity": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["identifier", "sha256"],
+          "properties": {
+            "identifier": {"type": "string", "minLength": 1},
+            "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          }
+        }
+      ]
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hardware", "software", "environment_variables"],
+      "properties": {
+        "hardware": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "gpus",
+            "system_gpu_count",
+            "visible_cuda_device_count",
+            "cpu_model",
+            "logical_cpu_count",
+            "cpu_affinity",
+            "system_memory_bytes",
+            "other_gpu_processes"
+          ],
+          "properties": {
+            "gpus": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "logical_index",
+                  "physical_index",
+                  "name",
+                  "uuid",
+                  "total_memory_bytes",
+                  "persistence_mode",
+                  "power_limit_watts",
+                  "application_clocks"
+                ],
+                "properties": {
+                  "logical_index": {"type": "integer", "minimum": 0},
+                  "physical_index": {"type": ["integer", "null"], "minimum": 0},
+                  "name": {"type": "string", "minLength": 1},
+                  "uuid": {"type": "string", "minLength": 1},
+                  "total_memory_bytes": {"type": "integer", "minimum": 1},
+                  "persistence_mode": {"type": ["string", "null"]},
+                  "power_limit_watts": {"type": ["number", "null"], "exclusiveMinimum": 0},
+                  "application_clocks": {"type": ["string", "null"]}
+                }
+              }
+            },
+            "system_gpu_count": {"type": "integer", "minimum": 1},
+            "visible_cuda_device_count": {"type": "integer", "minimum": 1},
+            "cpu_model": {"type": "string", "minLength": 1},
+            "logical_cpu_count": {"type": "integer", "minimum": 1},
+            "cpu_affinity": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {"type": "integer", "minimum": 0}
+            },
+            "system_memory_bytes": {"type": "integer", "minimum": 1},
+            "other_gpu_processes": {"type": "boolean"}
+          }
+        },
+        "software": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "python",
+            "pytorch",
+            "cuda_runtime",
+            "cudnn",
+            "driver",
+            "operating_system",
+            "kernel",
+            "python_executable",
+            "torch_num_threads",
+            "torch_num_interop_threads",
+            "dependency_lock",
+            "direct_dependencies"
+          ],
+          "properties": {
+            "python": {"type": "string", "minLength": 1},
+            "pytorch": {"type": "string", "minLength": 1},
+            "cuda_runtime": {"type": "string", "minLength": 1},
+            "cudnn": {"type": ["string", "null"]},
+            "driver": {"type": "string", "minLength": 1},
+            "operating_system": {"type": "string", "minLength": 1},
+            "kernel": {"type": "string", "minLength": 1},
+            "python_executable": {"type": "string", "minLength": 1},
+            "torch_num_threads": {"type": "integer", "minimum": 1},
+            "torch_num_interop_threads": {"type": "integer", "minimum": 1},
+            "dependency_lock": {"$ref": "#/$defs/optionalArtifactIdentity"},
+            "direct_dependencies": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "environment_variables": {
+          "type": "object",
+          "additionalProperties": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "random_initialized",
+        "seed",
+        "checkpoint",
+        "normalization",
+        "config",
+        "parameter_count",
+        "parameter_dtype"
+      ],
+      "properties": {
+        "random_initialized": {"type": "boolean"},
+        "seed": {"type": "integer", "minimum": 0},
+        "checkpoint": {"$ref": "#/$defs/optionalArtifactIdentity"},
+        "normalization": {"$ref": "#/$defs/optionalArtifactIdentity"},
+        "config": {"type": "object"},
+        "parameter_count": {"type": "integer", "minimum": 1},
+        "parameter_dtype": {"type": "string", "minLength": 1}
+      }
+    },
+    "schedulerConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_wait_us",
+        "max_batch_size",
+        "max_query_tokens",
+        "max_activation_bytes",
+        "max_output_bytes",
+        "deadline_guard_us",
+        "starvation_timeout_us",
+        "error_isolation",
+        "synchronize_device"
+      ],
+      "properties": {
+        "max_wait_us": {"type": "integer", "minimum": 0},
+        "max_batch_size": {"type": "integer", "minimum": 1},
+        "max_query_tokens": {"type": "integer", "minimum": 1},
+        "max_activation_bytes": {"type": "integer", "minimum": 1},
+        "max_output_bytes": {"type": "integer", "minimum": 1},
+        "deadline_guard_us": {"type": "integer", "minimum": 0},
+        "starvation_timeout_us": {"type": "integer", "minimum": 1},
+        "error_isolation": {"type": "boolean"},
+        "synchronize_device": {"type": "boolean"}
+      }
+    },
+    "requestCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["submitted", "succeeded", "failed", "cancelled", "timed_out", "pending"],
+      "properties": {
+        "submitted": {"type": "integer", "minimum": 0},
+        "succeeded": {"type": "integer", "minimum": 0},
+        "failed": {"type": "integer", "minimum": 0},
+        "cancelled": {"type": "integer", "minimum": 0},
+        "timed_out": {"type": "integer", "minimum": 0},
+        "pending": {"type": "integer", "minimum": 0}
+      }
+    },
+    "latencySummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mean_ms", "p50_ms", "p95_ms", "p99_ms", "max_ms"],
+      "properties": {
+        "mean_ms": {"type": "number", "minimum": 0},
+        "p50_ms": {"type": "number", "minimum": 0},
+        "p95_ms": {"type": "number", "minimum": 0},
+        "p99_ms": {"type": "number", "minimum": 0},
+        "max_ms": {"type": "number", "minimum": 0}
+      }
+    },
+    "nonNegativeSamples": {
+      "type": "array",
+      "items": {"type": "number", "minimum": 0}
+    },
+    "schedulerMetrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selection_calls",
+        "selection_total_ms",
+        "selection_mean_us",
+        "selection_max_us",
+        "selection_us_per_dispatched_request",
+        "dispatches",
+        "dispatched_requests",
+        "singleton_batch_ratio",
+        "geometry_shared_request_ratio",
+        "geometry_in_batch_dedup_rate",
+        "wavelet_shared_request_ratio",
+        "wavelet_in_batch_dedup_rate",
+        "deadline_guard_requests",
+        "starvation_guard_requests",
+        "max_dispatch_age_ms"
+      ],
+      "properties": {
+        "selection_calls": {"type": "integer", "minimum": 0},
+        "selection_total_ms": {"type": "number", "minimum": 0},
+        "selection_mean_us": {"type": "number", "minimum": 0},
+        "selection_max_us": {"type": "number", "minimum": 0},
+        "selection_us_per_dispatched_request": {"type": "number", "minimum": 0},
+        "dispatches": {"type": "integer", "minimum": 0},
+        "dispatched_requests": {"type": "integer", "minimum": 0},
+        "singleton_batch_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "geometry_shared_request_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "geometry_in_batch_dedup_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "wavelet_shared_request_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "wavelet_in_batch_dedup_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "deadline_guard_requests": {"type": "integer", "minimum": 0},
+        "starvation_guard_requests": {"type": "integer", "minimum": 0},
+        "max_dispatch_age_ms": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

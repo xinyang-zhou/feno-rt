@@ -104,7 +104,7 @@ class AsyncFENOEngineTest(unittest.IsolatedAsyncioTestCase):
                 ]
             )
             actual = await asyncio.gather(*handles)
-            stats = engine.stats()
+            stats = engine.stats(include_raw_samples=True)
 
         expected = self.runner.forward_batch(self.context, sources, frequencies)
         torch.testing.assert_close(torch.stack(actual), expected, rtol=1e-5, atol=1e-6)
@@ -113,6 +113,18 @@ class AsyncFENOEngineTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(stats["requests"]["succeeded"], 3)
         self.assertTrue(stats["pipeline"]["double_buffered"])
         self.assertEqual(stats["pipeline"]["prepared_batches"], 1)
+        self.assertEqual(stats["scheduler"]["dispatches"], 1)
+        self.assertEqual(stats["scheduler"]["dispatched_requests"], 3)
+        self.assertAlmostEqual(
+            stats["scheduler"]["geometry_shared_request_ratio"], 2.0 / 3.0
+        )
+        self.assertAlmostEqual(
+            stats["scheduler"]["wavelet_shared_request_ratio"], 2.0 / 3.0
+        )
+        self.assertEqual(stats["raw_samples"]["batch_sizes"], [3])
+        self.assertEqual(len(stats["raw_samples"]["queue_latency_ms"]), 3)
+        self.assertEqual(len(stats["raw_samples"]["execution_latency_ms"]), 3)
+        self.assertEqual(len(stats["raw_samples"]["end_to_end_latency_ms"]), 3)
 
     async def test_queued_request_can_be_cancelled(self):
         config = DynamicBatchConfig(

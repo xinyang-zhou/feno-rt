@@ -177,6 +177,177 @@ def make_valid_result():
     }
 
 
+def make_valid_scheduler_result():
+    shared = make_valid_result()
+    samples = [1.0] * 1000
+    return {
+        "schema_version": "1.0.0",
+        "result_class": "formal",
+        "status": "passed",
+        "benchmark": "scheduler_ab",
+        "run_id": "scheduler_cache_aware_uniform_reuse_run1",
+        "repeat_index": 1,
+        "created_at_utc": "2026-01-01T00:00:00Z",
+        "source": {
+            **shared["source"],
+            "command": ["python", "benchmarks/benchmark_scheduler_ab.py"],
+            "config_path": "benchmarks/configs/scheduler_ab.json",
+        },
+        "environment": shared["environment"],
+        "model": shared["model"],
+        "workload": {
+            "name": "uniform_reuse",
+            "schema_version": "1.0.0",
+            "sha256": "e" * 64,
+            "seed": 29,
+            "request_count": 1000,
+            "arrival_pattern": "burst",
+            "arrival_interval_us": 0,
+            "slo_timeout_us": 5_000_000,
+            "medium_count": 4,
+            "velocity_sha256": {
+                f"medium-{index}": f"{index + 1:x}" * 64 for index in range(4)
+            },
+            "positions_are_normalized": False,
+            "receiver_positions": "model_default",
+            "cache_state": {
+                "medium": "warm",
+                "geometry": "cold",
+                "wavelet": "cold",
+            },
+            "reuse": {
+                "unique_mediums": 4,
+                "unique_geometries": 440,
+                "unique_wavelets": 64,
+                "medium_reuse_ratio": 0.996,
+                "geometry_reuse_ratio": 0.56,
+                "wavelet_reuse_ratio": 0.936,
+            },
+        },
+        "execution": {
+            "device": "cuda:0",
+            "policy": "cache_aware",
+            "profiler_enabled": False,
+            "warmup_requests": 32,
+            "dtype": "torch.float32",
+            "graph_enabled": False,
+            "tf32_enabled": False,
+            "cudnn_benchmark": False,
+            "deterministic": False,
+            "double_buffer": True,
+            "scheduler": {
+                "max_wait_us": 2000,
+                "max_batch_size": 8,
+                "max_query_tokens": 5600,
+                "max_activation_bytes": 2_147_483_648,
+                "max_output_bytes": 536_870_912,
+                "deadline_guard_us": 500,
+                "starvation_timeout_us": 50_000,
+                "error_isolation": False,
+                "synchronize_device": True,
+            },
+        },
+        "timing": {
+            "clock": "perf_counter_ns",
+            "setup_included": False,
+            "measured_wall_time_seconds": 1.0,
+            "raw_samples": {
+                "batch_sizes": [8] * 125,
+                "queue_latency_ms": samples,
+                "execution_latency_ms": samples,
+                "end_to_end_latency_ms": samples,
+            },
+        },
+        "metrics": {
+            "throughput_requests_per_second": 1000.0,
+            "requests": {
+                "submitted": 1000,
+                "succeeded": 1000,
+                "failed": 0,
+                "cancelled": 0,
+                "timed_out": 0,
+                "pending": 0,
+            },
+            "batches": 125,
+            "mean_batch_size": 8.0,
+            "max_observed_batch_size": 8,
+            "effective_batch_fill_ratio": 1.0,
+            "queue_latency": {
+                "mean_ms": 1.0,
+                "p50_ms": 1.0,
+                "p95_ms": 1.0,
+                "p99_ms": 1.0,
+                "max_ms": 1.0,
+            },
+            "execution_latency": {
+                "mean_ms": 1.0,
+                "p50_ms": 1.0,
+                "p95_ms": 1.0,
+                "p99_ms": 1.0,
+                "max_ms": 1.0,
+            },
+            "end_to_end_latency": {
+                "mean_ms": 1.0,
+                "p50_ms": 1.0,
+                "p95_ms": 1.0,
+                "p99_ms": 1.0,
+                "max_ms": 1.0,
+            },
+            "scheduler": {
+                "selection_calls": 125,
+                "selection_total_ms": 1.0,
+                "selection_mean_us": 8.0,
+                "selection_max_us": 10.0,
+                "selection_us_per_dispatched_request": 1.0,
+                "dispatches": 125,
+                "dispatched_requests": 1000,
+                "singleton_batch_ratio": 0.0,
+                "geometry_shared_request_ratio": 0.8,
+                "geometry_in_batch_dedup_rate": 0.5,
+                "wavelet_shared_request_ratio": 0.9,
+                "wavelet_in_batch_dedup_rate": 0.6,
+                "deadline_guard_requests": 0,
+                "starvation_guard_requests": 0,
+                "max_dispatch_age_ms": 10.0,
+            },
+            "cache": {
+                "caches": {
+                    "medium": {"hit_rate": 0.0},
+                    "geometry_prefix": {"hit_rate": 0.5},
+                    "wavelet": {"hit_rate": 0.75},
+                },
+                "runtime": {},
+            },
+            "pipeline": {
+                "double_buffered": True,
+                "prepared_batches": 125,
+                "mean_preparation_ms": 0.01,
+            },
+            "memory": {
+                "baseline_allocated_bytes": 100,
+                "peak_allocated_bytes": 120,
+                "peak_reserved_bytes": 128,
+            },
+        },
+        "correctness": {
+            "passed": True,
+            "relative_l2_error": 0.0,
+            "max_absolute_error": 0.0,
+            "rtol": 1e-5,
+            "atol": 1e-5,
+            "probe_requests": 8,
+            "output_shape": [700, 1024],
+            "output_dtype": "torch.float32",
+            "all_finite": True,
+        },
+        "artifacts": {
+            "result_path": "benchmarks/results/scheduler.json",
+            "workload_path": "benchmarks/workloads/scheduler_uniform_reuse.json",
+        },
+        "notes": [],
+    }
+
+
 class BenchmarkValidationTest(unittest.TestCase):
     def test_checked_in_graph_configuration_is_valid(self):
         with (PROJECT_ROOT / "benchmarks/configs/graph_ab.json").open(
@@ -221,8 +392,63 @@ class BenchmarkValidationTest(unittest.TestCase):
         self.assertTrue(any("arrival_pattern" in error for error in errors))
         self.assertTrue(any("cache_state.geometry" in error for error in errors))
 
+    def test_checked_in_scheduler_configuration_is_valid(self):
+        with (PROJECT_ROOT / "benchmarks/configs/scheduler_ab.json").open(
+            "r", encoding="utf-8"
+        ) as handle:
+            config = json.load(handle)
+
+        errors, kind, _status = validate_document(config)
+
+        self.assertEqual(kind, "config")
+        self.assertEqual(errors, [])
+
     def test_valid_formal_result_is_accepted(self):
         errors, kind, _status = validate_document(make_valid_result())
+
+        self.assertEqual(kind, "result")
+        self.assertEqual(errors, [])
+
+    def test_valid_scheduler_result_is_accepted(self):
+        errors, kind, _status = validate_document(make_valid_scheduler_result())
+
+        self.assertEqual(kind, "result")
+        self.assertEqual(errors, [])
+
+    def test_scheduler_result_rejects_inconsistent_raw_samples(self):
+        result = make_valid_scheduler_result()
+        result["timing"]["raw_samples"]["batch_sizes"][-1] = 7
+        result["metrics"]["queue_latency"]["p99_ms"] = 0.5
+
+        errors, _kind, _status = validate_document(result)
+
+        self.assertTrue(any("batch_sizes" in error for error in errors))
+        self.assertTrue(any("queue_latency.p99_ms" in error for error in errors))
+
+    def test_failed_scheduler_result_can_preserve_timeout_evidence(self):
+        result = make_valid_scheduler_result()
+        result["status"] = "failed"
+        result["metrics"]["requests"].update(
+            {"succeeded": 998, "timed_out": 2}
+        )
+        result["metrics"]["throughput_requests_per_second"] = 998.0
+        result["metrics"]["batches"] = 125
+        result["metrics"]["mean_batch_size"] = 998 / 125
+        result["metrics"]["effective_batch_fill_ratio"] = 998 / 125 / 8
+        result["metrics"]["scheduler"]["dispatched_requests"] = 998
+        result["timing"]["raw_samples"]["batch_sizes"][-1] = 6
+        for name in ("queue_latency_ms", "execution_latency_ms"):
+            result["timing"]["raw_samples"][name] = [1.0] * 998
+        result["correctness"].update(
+            {
+                "passed": False,
+                "relative_l2_error": None,
+                "max_absolute_error": None,
+                "all_finite": False,
+            }
+        )
+
+        errors, kind, _status = validate_document(result)
 
         self.assertEqual(kind, "result")
         self.assertEqual(errors, [])

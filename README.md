@@ -129,6 +129,9 @@ CPU 环境会自动跳过 CUDA Graph 集成测试。
 [docs/PERFORMANCE.md](docs/PERFORMANCE.md)。
 CUDA Graph A/B 的单进程正式运行入口和服务器命令见
 [benchmarks/README.md](benchmarks/README.md)。
+FCFS 与 Cache-Aware 的受控实验设计、指标和解释边界见
+[docs/SCHEDULER_EVALUATION.md](docs/SCHEDULER_EVALUATION.md)。正式服务器结果尚未发布，
+因此当前 README 不声明调度性能数字。
 
 ## CUDA Graph performance
 
@@ -166,6 +169,10 @@ benchmarks/
   graph_workload.py          deterministic workload manifest generator
   run_graph_ab_matrix.py     isolated-process formal matrix orchestrator
   summarize_graph_ab.py      run-level A/B summary generator
+  scheduler_workload.py      deterministic scheduler request traces
+  benchmark_scheduler_ab.py  one-process formal scheduler runner
+  run_scheduler_ab_matrix.py isolated-process scheduler matrix orchestrator
+  summarize_scheduler_ab.py  scheduler A/B summary and SVG generator
   configs/                   versioned experiment configurations
   schema/                    machine-readable result contracts
   workloads/                 deterministic workload definitions

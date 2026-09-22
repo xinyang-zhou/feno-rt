@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "benchmark": "scheduler_ab",
+  "device": "cuda:0",
+  "seed": 29,
+  "model": {
+    "config_source": "default_inference",
+    "model_source": "checkpoint",
+    "checkpoint_env": "FENO_CHECKPOINT",
+    "normalization_env": "FENO_NORMALIZATION",
+    "dtype": "float32"
+  },
+  "workloads": {
+    "schema_version": "1.0.0",
+    "request_count": 1000,
+    "arrival_pattern": "burst",
+    "arrival_interval_us": 0,
+    "slo_timeout_us": 5000000,
+    "medium_count": 4,
+    "positions_are_normalized": false,
+    "receiver_positions": "model_default",
+    "velocity": {
+      "generator": "physical_sine_cosine_family_v1",
+      "z_sine_amplitude": 0.45,
+      "z_cycles": 1.0,
+      "x_cosine_amplitude": 0.2,
+      "x_cycles": 2.0,
+      "phase_step": 0.37
+    },
+    "cache_state": {
+      "medium": "warm",
+      "geometry": "cold",
+      "wavelet": "cold"
+    },
+    "scenarios": [
+      {
+        "name": "no_reuse",
+        "pattern": "unique",
+        "geometry_pool_size": 1000,
+        "frequency_pool_size": 1000
+      },
+      {
+        "name": "uniform_reuse",
+        "pattern": "uniform",
+        "geometry_pool_size": 128,
+        "frequency_pool_size": 64
+      },
+      {
+        "name": "long_tail_reuse",
+        "pattern": "zipf",
+        "geometry_pool_size": 64,
+        "frequency_pool_size": 32,
+        "zipf_exponent": 1.2
+      },
+      {
+        "name": "hotspot_reuse",
+        "pattern": "hotspot",
+        "geometry_pool_size": 16,
+        "frequency_pool_size": 8,
+        "hotspot_probability": 0.8
+      }
+    ]
+  },
+  "scheduler": {
+    "policies": ["fcfs", "cache_aware"],
+    "max_wait_us": 2000,
+    "max_batch_size": 8,
+    "max_query_tokens": 5600,
+    "max_activation_bytes": 2147483648,
+    "max_output_bytes": 536870912,
+    "deadline_guard_us": 500,
+    "starvation_timeout_us": 50000,
+    "error_isolation": false,
+    "synchronize_device": true,
+    "double_buffer": true
+  },
+  "measurement": {
+    "independent_runs": 3,
+    "warmup_requests": 32,
+    "clock": "perf_counter_ns",
+    "profiler_enabled": false,
+    "save_raw_request_latency_samples": true,
+    "record_peak_memory": true,
+    "correctness_probe_requests": 8
+  },
+  "execution": {
+    "cuda_graph_enabled": false,
+    "tf32_enabled": false,
+    "cudnn_benchmark": false,
+    "deterministic_algorithms": false
+  },
+  "correctness": {
+    "reference": "uncached_same_commit",
+    "rtol": 0.00001,
+    "atol": 0.00001,
+    "require_finite": true
+  }
+}

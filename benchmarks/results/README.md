@@ -24,6 +24,10 @@ results/
         └── summary.md
 ```
 
+Scheduler 结果使用 `scheduler_ab/<YYYYMMDD>_<gpu-slug>_<commit12>/`，原始 run 命名为
+`scheduler_<policy>_<scenario>_run<repeat>.json`，并额外保存自动生成的
+`reuse_throughput.svg`。在正式服务器矩阵完成前，不建立占位结果目录或发布性能数字。
+
 每个 run 文件必须自包含关键环境、模型、workload、计时、显存和正确性信息。机器绝对
 路径可以用于当次运行日志，但可提交结果应优先保存仓库相对路径、非敏感标识和 SHA256。
 建议正式运行先写入仓库外的临时目录，全部验证通过后再整体复制到本目录；源码

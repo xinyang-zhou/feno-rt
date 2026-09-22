@@ -154,11 +154,16 @@ class RequestMetrics:
             "max_ms": max(values) if values else 0.0,
         }
 
-    def snapshot(self, *, max_batch_size: int) -> Dict[str, Any]:
+    def snapshot(
+        self,
+        *,
+        max_batch_size: int,
+        include_raw_samples: bool = False,
+    ) -> Dict[str, Any]:
         elapsed_s = max((perf_counter_ns() - self.started_ns) / 1e9, 1e-12)
         mean_batch = sum(self.batch_sizes) / len(self.batch_sizes) if self.batch_sizes else 0.0
         terminal = self.succeeded + self.failed + self.cancelled + self.timed_out
-        return {
+        snapshot = {
             "requests": {
                 "submitted": self.submitted,
                 "succeeded": self.succeeded,
@@ -177,3 +182,11 @@ class RequestMetrics:
             "execution_latency": self._latency_summary(self.execution_ms),
             "end_to_end_latency": self._latency_summary(self.end_to_end_ms),
         }
+        if include_raw_samples:
+            snapshot["raw_samples"] = {
+                "batch_sizes": list(self.batch_sizes),
+                "queue_latency_ms": list(self.queue_ms),
+                "execution_latency_ms": list(self.execution_ms),
+                "end_to_end_latency_ms": list(self.end_to_end_ms),
+            }
+        return snapshot

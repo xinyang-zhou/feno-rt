@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from functools import partial
@@ -49,6 +50,19 @@ class AsyncRequestQueue:
         self._pending: List[InferenceRequest] = []
         self._condition = asyncio.Condition()
         self._closed = False
+        self._selection_calls = 0
+        self._selection_total_ns = 0
+        self._selection_max_ns = 0
+        self._dispatches = 0
+        self._dispatched_requests = 0
+        self._singleton_batches = 0
+        self._geometry_shared_requests = 0
+        self._geometry_dedup_requests = 0
+        self._wavelet_shared_requests = 0
+        self._wavelet_dedup_requests = 0
+        self._deadline_guard_requests = 0
+        self._starvation_guard_requests = 0
+        self._max_dispatch_age_us = 0.0
 
     @property
     def closed(self) -> bool:
@@ -64,6 +78,80 @@ class AsyncRequestQueue:
     async def wake(self) -> None:
         async with self._condition:
             self._condition.notify_all()
+
+    def _record_dispatch(
+        self,
+        batch: Sequence[InferenceRequest],
+        now_ns: int,
+    ) -> None:
+        geometry_counts = Counter(request.geometry_key for request in batch)
+        wavelet_counts = Counter(request.frequency_key for request in batch)
+        self._dispatches += 1
+        self._dispatched_requests += len(batch)
+        self._singleton_batches += int(len(batch) == 1)
+        self._geometry_shared_requests += sum(
+            count for count in geometry_counts.values() if count > 1
+        )
+        self._geometry_dedup_requests += sum(
+            count - 1 for count in geometry_counts.values()
+        )
+        self._wavelet_shared_requests += sum(
+            count for count in wavelet_counts.values() if count > 1
+        )
+        self._wavelet_dedup_requests += sum(
+            count - 1 for count in wavelet_counts.values()
+        )
+        self._deadline_guard_requests += sum(
+            request.deadline_slack_us(now_ns) <= self._config.deadline_guard_us
+            for request in batch
+        )
+        self._starvation_guard_requests += sum(
+            request.age_us(now_ns) >= self._config.starvation_timeout_us
+            for request in batch
+        )
+        self._max_dispatch_age_us = max(
+            self._max_dispatch_age_us,
+            max((request.age_us(now_ns) for request in batch), default=0.0),
+        )
+
+    def metrics(self) -> Dict[str, Any]:
+        request_count = self._dispatched_requests
+        dispatch_count = self._dispatches
+        return {
+            "selection_calls": self._selection_calls,
+            "selection_total_ms": self._selection_total_ns / 1e6,
+            "selection_mean_us": (
+                self._selection_total_ns / self._selection_calls / 1e3
+                if self._selection_calls
+                else 0.0
+            ),
+            "selection_max_us": self._selection_max_ns / 1e3,
+            "selection_us_per_dispatched_request": (
+                self._selection_total_ns / request_count / 1e3
+                if request_count
+                else 0.0
+            ),
+            "dispatches": dispatch_count,
+            "dispatched_requests": request_count,
+            "singleton_batch_ratio": (
+                self._singleton_batches / dispatch_count if dispatch_count else 0.0
+            ),
+            "geometry_shared_request_ratio": (
+                self._geometry_shared_requests / request_count if request_count else 0.0
+            ),
+            "geometry_in_batch_dedup_rate": (
+                self._geometry_dedup_requests / request_count if request_count else 0.0
+            ),
+            "wavelet_shared_request_ratio": (
+                self._wavelet_shared_requests / request_count if request_count else 0.0
+            ),
+            "wavelet_in_batch_dedup_rate": (
+                self._wavelet_dedup_requests / request_count if request_count else 0.0
+            ),
+            "deadline_guard_requests": self._deadline_guard_requests,
+            "starvation_guard_requests": self._starvation_guard_requests,
+            "max_dispatch_age_ms": self._max_dispatch_age_us / 1e3,
+        }
 
     def _remove_terminal_and_expired(self, now_ns: int) -> None:
         retained: List[InferenceRequest] = []
@@ -128,10 +216,16 @@ class AsyncRequestQueue:
                 if self._closed and not self._pending:
                     return None
                 if self._pending:
+                    selection_started_ns = perf_counter_ns()
                     batch = scheduler.select_batch(self._pending, now_ns=now_ns)
+                    selection_ns = perf_counter_ns() - selection_started_ns
+                    self._selection_calls += 1
+                    self._selection_total_ns += selection_ns
+                    self._selection_max_ns = max(self._selection_max_ns, selection_ns)
                     if not batch:
                         raise RuntimeError("scheduler could not admit the head request")
                     if self._dispatch_ready(batch, scheduler, now_ns):
+                        self._record_dispatch(batch, now_ns)
                         selected_ids = {request.request_id for request in batch}
                         self._pending = [
                             request
@@ -731,8 +825,11 @@ class AsyncFENOEngine:
             self._deliver(results, execution_ms)
             prepared = await next_batch_task
 
-    def stats(self) -> Dict[str, Any]:
-        metrics = self._metrics.snapshot(max_batch_size=self.config.max_batch_size)
+    def stats(self, *, include_raw_samples: bool = False) -> Dict[str, Any]:
+        metrics = self._metrics.snapshot(
+            max_batch_size=self.config.max_batch_size,
+            include_raw_samples=include_raw_samples,
+        )
         metrics["policy"] = self.config.policy.value
         metrics["limits"] = {
             "max_wait_us": self.config.max_wait_us,
@@ -751,6 +848,7 @@ class AsyncFENOEngine:
         }
         cache_metrics = getattr(self.runner, "cache_metrics", None)
         metrics["cache"] = cache_metrics() if cache_metrics is not None else {}
+        metrics["scheduler"] = self._queue.metrics() if self._queue is not None else {}
         return metrics
 
     async def close(self, *, graceful: bool = True) -> None:

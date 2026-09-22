@@ -26,3 +26,15 @@ Formal benchmark 的 workload 必须能够由固定 trace 或确定性生成配�
 python benchmarks/graph_workload.py --write
 python benchmarks/graph_workload.py --check
 ```
+
+Scheduler A/B 使用 4 个确定性请求 trace：`no_reuse`、`uniform_reuse`、
+`long_tail_reuse` 和 `hotspot_reuse`。FCFS 与 Cache-Aware 必须读取同一个对应文件，
+策略本身不编码在 trace 中：
+
+```bash
+python benchmarks/scheduler_workload.py --write
+python benchmarks/scheduler_workload.py --check
+```
+
+这些 trace 固定请求顺序、到达时间、timeout、medium、source、frequency 和 priority。
+配置或生成算法变化后，必须重新生成 manifest 并使检查通过。
