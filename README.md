@@ -130,6 +130,25 @@ CPU 环境会自动跳过 CUDA Graph 集成测试。
 CUDA Graph A/B 的单进程正式运行入口和服务器命令见
 [benchmarks/README.md](benchmarks/README.md)。
 
+## CUDA Graph performance
+
+在 NVIDIA GeForce RTX 5090 上，使用同一模型、同一 workload 和 all-hit cache，
+Graph off/on 各运行 3 个独立进程，每个配置测量 1000 个请求。表中 latency 是一次
+batch invocation 的同步 wall-clock 时间，数值为 3 次 run-level 指标的中位数。
+
+| Batch | Graph off mean | Graph on mean | Mean latency reduction | Throughput speedup | Peak allocated delta |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.152 ms | 0.682 ms | 41.11% | 1.688x | +11.02 MiB |
+| 2 | 1.204 ms | 0.721 ms | 40.07% | 1.660x | +14.03 MiB |
+| 4 | 1.293 ms | 0.909 ms | 29.97% | 1.423x | +20.65 MiB |
+| 8 | 1.486 ms | 1.200 ms | 19.48% | 1.239x | +33.17 MiB |
+
+CUDA Graph 对小 batch 收益最大，因为固定的 host/framework dispatch 与 kernel launch
+开销在小 batch 总耗时中占比更高。该结论不表示单个 GPU kernel 的计算变快。
+
+完整的 p50/p95/p99、capture 成本、正确性、环境信息、24 个原始 run 和日志见
+[正式结果](benchmarks/results/cuda_graph_ab/20260922_rtx5090_a69f11e/summary.md)。
+
 ## Repository layout
 
 ```text

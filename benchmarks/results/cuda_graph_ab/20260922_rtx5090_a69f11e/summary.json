@@ -1,0 +1,1414 @@
+{
+  "schema_version": "1.0.0",
+  "summary_class": "formal",
+  "status": "passed",
+  "benchmark": "cuda_graph_ab",
+  "created_at_utc": "2026-09-22T07:40:04.174740+00:00",
+  "identity": {
+    "git_commit": "a69f11ecc1d656f02cac09cff6fc1dddb4892bb3",
+    "config_sha256": "5ff68bac23b15355dc7cc9c3b91bc18f687c71d0d0184def577432d1f4a74282",
+    "checkpoint_sha256": "4807ff56b2cb6968547083df8c715a0ad868ae8f4b8de1c51576374e57f94cf2",
+    "normalization_sha256": "b9f754ea9ff8e39b779c64740c71da1581025e0f86e1e950b986848775a3cc4a",
+    "velocity_sha256": "6f1d9d9c453168d7092555d371155c62924a418441ac1aa45cd6407133aa2d3c",
+    "gpu_uuid": "GPU-f989bf75-9cc6-41aa-3cdf-754be94c4c1b",
+    "gpu_name": "NVIDIA GeForce RTX 5090",
+    "gpu_logical_index": 0,
+    "gpu_physical_index": 0,
+    "gpu_total_memory_bytes": 33670758400,
+    "gpu_persistence_mode": "Disabled",
+    "gpu_power_limit_watts": 575.0,
+    "gpu_application_clocks": "graphics=[Requested functionality has been deprecated] MHz,memory=[Requested functionality has been deprecated] MHz",
+    "system_gpu_count": 4,
+    "visible_cuda_device_count": 1,
+    "cpu_model": "Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz",
+    "logical_cpu_count": 112,
+    "cpu_affinity": [
+      1
+    ],
+    "system_memory_bytes": 134763077632,
+    "python": "3.9.25",
+    "pytorch": "2.8.0+cu128",
+    "cuda_runtime": "12.8",
+    "cudnn": "91002",
+    "driver": "595.84",
+    "operating_system": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "kernel": "6.8.0-139-generic",
+    "torch_num_threads": 1,
+    "torch_num_interop_threads": 56,
+    "dependency_lock_sha256": "9bf9bde6f05fda97132b8dddb5228b953f7c58561138d3d9d727e6c4bebe7346",
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "GPU-f989bf75-9cc6-41aa-3cdf-754be94c4c1b",
+      "CUDA_DEVICE_ORDER": null,
+      "CUBLAS_WORKSPACE_CONFIG": null,
+      "PYTORCH_CUDA_ALLOC_CONF": null,
+      "CUDA_LAUNCH_BLOCKING": null,
+      "CUDA_MODULE_LOADING": "LAZY",
+      "NVIDIA_TF32_OVERRIDE": null,
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "model_config_sha256": "150196b1d19fa34da3736ff004654b3220ed02422caf8ca4184a0ae92dd98fd5",
+    "parameter_count": 95659456,
+    "parameter_dtype": "torch.float32"
+  },
+  "protocol": {
+    "expected_run_count": 24,
+    "observed_run_count": 24,
+    "passed_run_count": 24,
+    "independent_runs_per_configuration": 3,
+    "request_count_per_run": 1000,
+    "raw_samples_pooled": false,
+    "profiler_enabled": false,
+    "shared_gpu_observed": false
+  },
+  "missing_matrix_entries": [],
+  "failed_run_ids": [],
+  "inputs": [
+    {
+      "run_id": "graph_off_batch1_run1",
+      "path": "graph_off_batch1_run1.json",
+      "sha256": "f45cbdcb009e5c16b3581ea120e23ef871eb555e7ea370ac9b5d3d7fe0f54e62",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 1,
+      "repeat_index": 1
+    },
+    {
+      "run_id": "graph_on_batch1_run1",
+      "path": "graph_on_batch1_run1.json",
+      "sha256": "923323b2ffaaf70a339c029a71092a604d2554c09e9bfca0cd79b8d8b0b808cf",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 1,
+      "repeat_index": 1
+    },
+    {
+      "run_id": "graph_off_batch1_run2",
+      "path": "graph_off_batch1_run2.json",
+      "sha256": "747c29c393bba79dc4150d0ae9edda8cf8bdb831459016053b0372cacfe9865f",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 1,
+      "repeat_index": 2
+    },
+    {
+      "run_id": "graph_on_batch1_run2",
+      "path": "graph_on_batch1_run2.json",
+      "sha256": "c2fe0bad0549ccc73e779f6839957c56ba186b06d36431696fe9064900398e31",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 1,
+      "repeat_index": 2
+    },
+    {
+      "run_id": "graph_off_batch1_run3",
+      "path": "graph_off_batch1_run3.json",
+      "sha256": "5d1bb63fe9954c3d2e3656d4cafaa4af7eb192a437a6ae69ae1394a14f0fd203",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 1,
+      "repeat_index": 3
+    },
+    {
+      "run_id": "graph_on_batch1_run3",
+      "path": "graph_on_batch1_run3.json",
+      "sha256": "bd9b084b7819de3a26fad1fa650d154e6d01fcd3ea8ba42bb12f65028ee8a201",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 1,
+      "repeat_index": 3
+    },
+    {
+      "run_id": "graph_off_batch2_run1",
+      "path": "graph_off_batch2_run1.json",
+      "sha256": "848059d16e9c28cba2f68c2829272e7e59a43459f3e17df2ad3d08f0bfac31d0",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 2,
+      "repeat_index": 1
+    },
+    {
+      "run_id": "graph_on_batch2_run1",
+      "path": "graph_on_batch2_run1.json",
+      "sha256": "b1f9f61fedae46a5c75897c62d0d57575d6e73ebc26fd75ab0db6af00c8bfd9b",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 2,
+      "repeat_index": 1
+    },
+    {
+      "run_id": "graph_off_batch2_run2",
+      "path": "graph_off_batch2_run2.json",
+      "sha256": "3d4dffbf96d4f403b4fa555be9cf9636af3aa09e15e07b6ab8cd4e92e413dc0b",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 2,
+      "repeat_index": 2
+    },
+    {
+      "run_id": "graph_on_batch2_run2",
+      "path": "graph_on_batch2_run2.json",
+      "sha256": "ed0564644a21ba33610ff5ce04dd727df2b73c2d64c628872dfcbd2d0abfb55a",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 2,
+      "repeat_index": 2
+    },
+    {
+      "run_id": "graph_off_batch2_run3",
+      "path": "graph_off_batch2_run3.json",
+      "sha256": "1e2ca38843917e1a9f80ceda99b6ed25cf68fa8f337cab0a9e7f0096ebf6b808",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 2,
+      "repeat_index": 3
+    },
+    {
+      "run_id": "graph_on_batch2_run3",
+      "path": "graph_on_batch2_run3.json",
+      "sha256": "ea8c2d1245031797b73d71384fc21dd3cc7f3f28696c0ee6fe6878727ec1b0c8",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 2,
+      "repeat_index": 3
+    },
+    {
+      "run_id": "graph_off_batch4_run1",
+      "path": "graph_off_batch4_run1.json",
+      "sha256": "986789b4eae1dfabec1ed0c02f887640092c92633fe6c79104c87da2a5693b41",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 4,
+      "repeat_index": 1
+    },
+    {
+      "run_id": "graph_on_batch4_run1",
+      "path": "graph_on_batch4_run1.json",
+      "sha256": "b0e0c38b985c1eb7155b5018b1838e78ab8493dc1d733b5953863cb838e991f4",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 4,
+      "repeat_index": 1
+    },
+    {
+      "run_id": "graph_off_batch4_run2",
+      "path": "graph_off_batch4_run2.json",
+      "sha256": "d194684b80faab8f26cdcc917c0f7a1b764b022a6e8af626d3df571e9a72836c",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 4,
+      "repeat_index": 2
+    },
+    {
+      "run_id": "graph_on_batch4_run2",
+      "path": "graph_on_batch4_run2.json",
+      "sha256": "88633b070d0765404c9dc0ad66278e4e9106b10c0230d7ff18deabcb690e52f3",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 4,
+      "repeat_index": 2
+    },
+    {
+      "run_id": "graph_off_batch4_run3",
+      "path": "graph_off_batch4_run3.json",
+      "sha256": "12d52997a0b90daad83de7cab9b89bf98627ba2333df35ea3c5b5a59bd977f6d",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 4,
+      "repeat_index": 3
+    },
+    {
+      "run_id": "graph_on_batch4_run3",
+      "path": "graph_on_batch4_run3.json",
+      "sha256": "a58046ade5a01e856007d308ebecc71412fc3f04e1f225fe930acb025416f613",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 4,
+      "repeat_index": 3
+    },
+    {
+      "run_id": "graph_off_batch8_run1",
+      "path": "graph_off_batch8_run1.json",
+      "sha256": "413196b2644676a8512799a78869520a4288b8f5ecc9d23539d9ac03f0f7515a",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 8,
+      "repeat_index": 1
+    },
+    {
+      "run_id": "graph_on_batch8_run1",
+      "path": "graph_on_batch8_run1.json",
+      "sha256": "b925e36b7e3ba19962618d5ed65ee455f5d09ef660310b0e00308d9c0bf81b28",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 8,
+      "repeat_index": 1
+    },
+    {
+      "run_id": "graph_off_batch8_run2",
+      "path": "graph_off_batch8_run2.json",
+      "sha256": "37cdf82d110eb9990728d3e4303484db7f6acfa5e74a2bcb07628e3882d01623",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 8,
+      "repeat_index": 2
+    },
+    {
+      "run_id": "graph_on_batch8_run2",
+      "path": "graph_on_batch8_run2.json",
+      "sha256": "09f55a1abd3ee1c1b8e88c361962d8aa40f3399b4922624cd91e761d6e31b914",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 8,
+      "repeat_index": 2
+    },
+    {
+      "run_id": "graph_off_batch8_run3",
+      "path": "graph_off_batch8_run3.json",
+      "sha256": "9f91e513a8c28ff56d18812a27cfc88100749f645832b34a673a376d8df04cdc",
+      "status": "passed",
+      "mode": "off",
+      "batch_size": 8,
+      "repeat_index": 3
+    },
+    {
+      "run_id": "graph_on_batch8_run3",
+      "path": "graph_on_batch8_run3.json",
+      "sha256": "d5ec2f7ba822a7456cf84bb4292654dab4d34108796bd67c27bbf3f7c0e08134",
+      "status": "passed",
+      "mode": "on",
+      "batch_size": 8,
+      "repeat_index": 3
+    }
+  ],
+  "groups": [
+    {
+      "mode": "off",
+      "batch_size": 1,
+      "run_count": 3,
+      "metrics": {
+        "mean_latency_ms": {
+          "count": 3,
+          "median": 1.1517895020000004,
+          "min": 1.145789237,
+          "max": 1.5248422109999986,
+          "cv_percent": 13.914474799783266
+        },
+        "p50_latency_ms": {
+          "count": 3,
+          "median": 1.1426064999999999,
+          "min": 1.137057,
+          "max": 1.612888,
+          "cv_percent": 17.187623316509583
+        },
+        "p95_latency_ms": {
+          "count": 3,
+          "median": 1.1862456,
+          "min": 1.1819824,
+          "max": 1.6997152500000001,
+          "cv_percent": 17.92524943288242
+        },
+        "p99_latency_ms": {
+          "count": 3,
+          "median": 1.3083555,
+          "min": 1.2116106100000001,
+          "max": 1.81276865,
+          "cv_percent": 18.249103835162096
+        },
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 862.6580300657303,
+          "min": 651.4072583881053,
+          "max": 867.2021872004681,
+          "cv_percent": 12.683085649924807
+        },
+        "baseline_allocated_bytes": {
+          "count": 3,
+          "median": 727969792.0,
+          "min": 727969792.0,
+          "max": 727969792.0,
+          "cv_percent": 0.0
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 737956864.0,
+          "min": 737956864.0,
+          "max": 737956864.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_bytes": {
+          "count": 3,
+          "median": 2879389696.0,
+          "min": 2879389696.0,
+          "max": 2879389696.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "mode": "on",
+      "batch_size": 1,
+      "run_count": 3,
+      "metrics": {
+        "mean_latency_ms": {
+          "count": 3,
+          "median": 0.6817875689999999,
+          "min": 0.6783374270000003,
+          "max": 0.8018859990000013,
+          "cv_percent": 7.9711092566153425
+        },
+        "p50_latency_ms": {
+          "count": 3,
+          "median": 0.6791165,
+          "min": 0.6759145,
+          "max": 0.845429,
+          "cv_percent": 10.793103658824448
+        },
+        "p95_latency_ms": {
+          "count": 3,
+          "median": 0.6970233,
+          "min": 0.6875599,
+          "max": 0.9249829,
+          "cv_percent": 14.257190442632373
+        },
+        "p99_latency_ms": {
+          "count": 3,
+          "median": 0.7142007,
+          "min": 0.7078997,
+          "max": 0.94499006,
+          "cv_percent": 13.9804929290351
+        },
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 1448.6436025453202,
+          "min": 1229.983338780991,
+          "max": 1455.9940108094045,
+          "cv_percent": 7.607920626665915
+        },
+        "baseline_allocated_bytes": {
+          "count": 3,
+          "median": 741289472.0,
+          "min": 741289472.0,
+          "max": 741289472.0,
+          "cv_percent": 0.0
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 749509632.0,
+          "min": 749509632.0,
+          "max": 749509632.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_bytes": {
+          "count": 3,
+          "median": 803209216.0,
+          "min": 803209216.0,
+          "max": 803209216.0,
+          "cv_percent": 0.0
+        }
+      },
+      "graph_setup": {
+        "capture_wall_time_ms": {
+          "count": 3,
+          "median": 51.069353,
+          "min": 49.45069,
+          "max": 61.182075,
+          "cv_percent": 9.630558076830155
+        },
+        "capture_allocated_delta_bytes": {
+          "count": 3,
+          "median": 16186880.0,
+          "min": 16186880.0,
+          "max": 16186880.0,
+          "cv_percent": 0.0
+        },
+        "capture_reserved_delta_bytes": {
+          "count": 3,
+          "median": -2076180480.0,
+          "min": -2076180480.0,
+          "max": -2076180480.0,
+          "cv_percent": 0.0
+        },
+        "static_buffer_bytes": {
+          "count": 3,
+          "median": 4798468.0,
+          "min": 4798468.0,
+          "max": 4798468.0,
+          "cv_percent": 0.0
+        },
+        "resident_graphs": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        }
+      },
+      "graph_execution": {
+        "selected_bucket": 1,
+        "measured_replay_rate": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "measured_fallbacks": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "measured_padded_requests": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        }
+      }
+    },
+    {
+      "mode": "off",
+      "batch_size": 2,
+      "run_count": 3,
+      "metrics": {
+        "mean_latency_ms": {
+          "count": 3,
+          "median": 1.203528896,
+          "min": 1.1912482959999986,
+          "max": 1.5847093680000004,
+          "cv_percent": 13.769634323657378
+        },
+        "p50_latency_ms": {
+          "count": 3,
+          "median": 1.1868284999999998,
+          "min": 1.1830855,
+          "max": 1.6726145,
+          "cv_percent": 17.06029001715987
+        },
+        "p95_latency_ms": {
+          "count": 3,
+          "median": 1.25574665,
+          "min": 1.2086166999999999,
+          "max": 1.74858,
+          "cv_percent": 17.388677237728892
+        },
+        "p99_latency_ms": {
+          "count": 3,
+          "median": 1.39331276,
+          "min": 1.2738023299999996,
+          "max": 1.7868485799999996,
+          "cv_percent": 14.763214332706168
+        },
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 1651.391070819158,
+          "min": 1253.823849284355,
+          "max": 1668.1478735487663,
+          "cv_percent": 12.561009060554346
+        },
+        "baseline_allocated_bytes": {
+          "count": 3,
+          "median": 729901056.0,
+          "min": 729901056.0,
+          "max": 729901056.0,
+          "cv_percent": 0.0
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 748665856.0,
+          "min": 748665856.0,
+          "max": 748665856.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_bytes": {
+          "count": 3,
+          "median": 2879389696.0,
+          "min": 2879389696.0,
+          "max": 2879389696.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "mode": "on",
+      "batch_size": 2,
+      "run_count": 3,
+      "metrics": {
+        "mean_latency_ms": {
+          "count": 3,
+          "median": 0.7212179620000008,
+          "min": 0.719536182,
+          "max": 0.8783193939999999,
+          "cv_percent": 9.63202188184013
+        },
+        "p50_latency_ms": {
+          "count": 3,
+          "median": 0.717867,
+          "min": 0.7177385000000001,
+          "max": 0.9343005,
+          "cv_percent": 12.919250582995728
+        },
+        "p95_latency_ms": {
+          "count": 3,
+          "median": 0.7416676,
+          "min": 0.72958605,
+          "max": 0.9888572999999999,
+          "cv_percent": 14.569567597729186
+        },
+        "p99_latency_ms": {
+          "count": 3,
+          "median": 0.7626487000000001,
+          "min": 0.76082325,
+          "max": 1.00761056,
+          "cv_percent": 13.738246726973099
+        },
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 2740.486411015861,
+          "min": 2246.3206957360167,
+          "max": 2746.972865432252,
+          "cv_percent": 9.096293563923883
+        },
+        "baseline_allocated_bytes": {
+          "count": 3,
+          "median": 748019200.0,
+          "min": 748019200.0,
+          "max": 748019200.0,
+          "cv_percent": 0.0
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 763373568.0,
+          "min": 763373568.0,
+          "max": 763373568.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_bytes": {
+          "count": 3,
+          "median": 832569344.0,
+          "min": 832569344.0,
+          "max": 832569344.0,
+          "cv_percent": 0.0
+        }
+      },
+      "graph_setup": {
+        "capture_wall_time_ms": {
+          "count": 3,
+          "median": 56.550611,
+          "min": 50.029572,
+          "max": 69.043574,
+          "cv_percent": 13.476008851473251
+        },
+        "capture_allocated_delta_bytes": {
+          "count": 3,
+          "median": 23852544.0,
+          "min": 23852544.0,
+          "max": 23852544.0,
+          "cv_percent": 0.0
+        },
+        "capture_reserved_delta_bytes": {
+          "count": 3,
+          "median": -2046820352.0,
+          "min": -2046820352.0,
+          "max": -2046820352.0,
+          "cv_percent": 0.0
+        },
+        "static_buffer_bytes": {
+          "count": 3,
+          "median": 9596936.0,
+          "min": 9596936.0,
+          "max": 9596936.0,
+          "cv_percent": 0.0
+        },
+        "resident_graphs": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        }
+      },
+      "graph_execution": {
+        "selected_bucket": 2,
+        "measured_replay_rate": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "measured_fallbacks": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "measured_padded_requests": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        }
+      }
+    },
+    {
+      "mode": "off",
+      "batch_size": 4,
+      "run_count": 3,
+      "metrics": {
+        "mean_latency_ms": {
+          "count": 3,
+          "median": 1.2932547440000006,
+          "min": 1.2917354320000012,
+          "max": 1.755967408,
+          "cv_percent": 15.099237192065166
+        },
+        "p50_latency_ms": {
+          "count": 3,
+          "median": 1.2860795,
+          "min": 1.2851335000000002,
+          "max": 1.8476335000000002,
+          "cv_percent": 17.987206622008607
+        },
+        "p95_latency_ms": {
+          "count": 3,
+          "median": 1.32678725,
+          "min": 1.3153573500000002,
+          "max": 1.9160245000000002,
+          "cv_percent": 18.46148960794973
+        },
+        "p99_latency_ms": {
+          "count": 3,
+          "median": 1.4067750899999993,
+          "min": 1.34201435,
+          "max": 1.95649528,
+          "cv_percent": 17.576548150729025
+        },
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 3075.1334911604595,
+          "min": 2263.9655408506364,
+          "max": 3078.7015338605183,
+          "cv_percent": 13.657914557223707
+        },
+        "baseline_allocated_bytes": {
+          "count": 3,
+          "median": 733763584.0,
+          "min": 733763584.0,
+          "max": 733763584.0,
+          "cv_percent": 0.0
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 772521984.0,
+          "min": 772521984.0,
+          "max": 772521984.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_bytes": {
+          "count": 3,
+          "median": 2879389696.0,
+          "min": 2879389696.0,
+          "max": 2879389696.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "mode": "on",
+      "batch_size": 4,
+      "run_count": 3,
+      "metrics": {
+        "mean_latency_ms": {
+          "count": 3,
+          "median": 0.9093014679999998,
+          "min": 0.9045954879999999,
+          "max": 0.920395784,
+          "cv_percent": 0.7267537086123521
+        },
+        "p50_latency_ms": {
+          "count": 3,
+          "median": 0.9036105,
+          "min": 0.8998495,
+          "max": 0.9067784999999999,
+          "cv_percent": 0.3135004637147742
+        },
+        "p95_latency_ms": {
+          "count": 3,
+          "median": 0.9223553,
+          "min": 0.9210882,
+          "max": 0.9465936000000001,
+          "cv_percent": 1.261930356768488
+        },
+        "p99_latency_ms": {
+          "count": 3,
+          "median": 0.9907213399999999,
+          "min": 0.9709132599999997,
+          "max": 1.0643761699999985,
+          "cv_percent": 3.9865889766206
+        },
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 4357.282109031904,
+          "min": 4304.77504244336,
+          "max": 4379.565406790371,
+          "cv_percent": 0.721223260145121
+        },
+        "baseline_allocated_bytes": {
+          "count": 3,
+          "median": 761478656.0,
+          "min": 761478656.0,
+          "max": 761478656.0,
+          "cv_percent": 0.0
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 794171904.0,
+          "min": 794171904.0,
+          "max": 794171904.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_bytes": {
+          "count": 3,
+          "median": 878706688.0,
+          "min": 878706688.0,
+          "max": 878706688.0,
+          "cv_percent": 0.0
+        }
+      },
+      "graph_setup": {
+        "capture_wall_time_ms": {
+          "count": 3,
+          "median": 52.47526,
+          "min": 49.640646,
+          "max": 57.157024,
+          "cv_percent": 5.837679535507434
+        },
+        "capture_allocated_delta_bytes": {
+          "count": 3,
+          "median": 39183872.0,
+          "min": 39183872.0,
+          "max": 39183872.0,
+          "cv_percent": 0.0
+        },
+        "capture_reserved_delta_bytes": {
+          "count": 3,
+          "median": -2000683008.0,
+          "min": -2000683008.0,
+          "max": -2000683008.0,
+          "cv_percent": 0.0
+        },
+        "static_buffer_bytes": {
+          "count": 3,
+          "median": 19193872.0,
+          "min": 19193872.0,
+          "max": 19193872.0,
+          "cv_percent": 0.0
+        },
+        "resident_graphs": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        }
+      },
+      "graph_execution": {
+        "selected_bucket": 4,
+        "measured_replay_rate": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "measured_fallbacks": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "measured_padded_requests": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        }
+      }
+    },
+    {
+      "mode": "off",
+      "batch_size": 8,
+      "run_count": 3,
+      "metrics": {
+        "mean_latency_ms": {
+          "count": 3,
+          "median": 1.486290431999999,
+          "min": 1.48523692,
+          "max": 1.492715784,
+          "cv_percent": 0.22212208462657246
+        },
+        "p50_latency_ms": {
+          "count": 3,
+          "median": 1.473876,
+          "min": 1.471884,
+          "max": 1.480307,
+          "cv_percent": 0.24362451960800502
+        },
+        "p95_latency_ms": {
+          "count": 3,
+          "median": 1.5189512,
+          "min": 1.5114459999999998,
+          "max": 1.524791,
+          "cv_percent": 0.35973463224817565
+        },
+        "p99_latency_ms": {
+          "count": 3,
+          "median": 1.6194875600000007,
+          "min": 1.6022783200000006,
+          "max": 1.796513840000001,
+          "cv_percent": 5.248142540258989
+        },
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 5354.822937478298,
+          "min": 5332.035586965274,
+          "max": 5358.5274145075755,
+          "cv_percent": 0.21900233444619122
+        },
+        "baseline_allocated_bytes": {
+          "count": 3,
+          "median": 735197184.0,
+          "min": 735197184.0,
+          "max": 735197184.0,
+          "cv_percent": 0.0
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 809677824.0,
+          "min": 809677824.0,
+          "max": 809677824.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_bytes": {
+          "count": 3,
+          "median": 2879389696.0,
+          "min": 2879389696.0,
+          "max": 2879389696.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "mode": "on",
+      "batch_size": 8,
+      "run_count": 3,
+      "metrics": {
+        "mean_latency_ms": {
+          "count": 3,
+          "median": 1.200258528,
+          "min": 1.1968339520000002,
+          "max": 1.2101117919999997,
+          "cv_percent": 0.4681011720983266
+        },
+        "p50_latency_ms": {
+          "count": 3,
+          "median": 1.190893,
+          "min": 1.190688,
+          "max": 1.19122,
+          "cv_percent": 0.018395940127257388
+        },
+        "p95_latency_ms": {
+          "count": 3,
+          "median": 1.2238132,
+          "min": 1.2194088,
+          "max": 1.2269272,
+          "cv_percent": 0.2521210759377036
+        },
+        "p99_latency_ms": {
+          "count": 3,
+          "median": 1.4938846400000014,
+          "min": 1.2826410400000003,
+          "max": 1.6325458400000015,
+          "cv_percent": 9.78905605943937
+        },
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 6617.148208562957,
+          "min": 6562.779572358914,
+          "max": 6636.653243017862,
+          "cv_percent": 0.4732138485937269
+        },
+        "baseline_allocated_bytes": {
+          "count": 3,
+          "median": 782779904.0,
+          "min": 782779904.0,
+          "max": 782779904.0,
+          "cv_percent": 0.0
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 844457984.0,
+          "min": 844457984.0,
+          "max": 844457984.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_bytes": {
+          "count": 3,
+          "median": 1021313024.0,
+          "min": 1021313024.0,
+          "max": 1021313024.0,
+          "cv_percent": 0.0
+        }
+      },
+      "graph_setup": {
+        "capture_wall_time_ms": {
+          "count": 3,
+          "median": 55.80156,
+          "min": 52.676425,
+          "max": 57.686251,
+          "cv_percent": 3.730126166150334
+        },
+        "capture_allocated_delta_bytes": {
+          "count": 3,
+          "median": 70651392.0,
+          "min": 70651392.0,
+          "max": 70651392.0,
+          "cv_percent": 0.0
+        },
+        "capture_reserved_delta_bytes": {
+          "count": 3,
+          "median": -1904214016.0,
+          "min": -1904214016.0,
+          "max": -1904214016.0,
+          "cv_percent": 0.0
+        },
+        "static_buffer_bytes": {
+          "count": 3,
+          "median": 38387744.0,
+          "min": 38387744.0,
+          "max": 38387744.0,
+          "cv_percent": 0.0
+        },
+        "resident_graphs": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        }
+      },
+      "graph_execution": {
+        "selected_bucket": 8,
+        "measured_replay_rate": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "measured_fallbacks": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "measured_padded_requests": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        }
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "batch_size": 1,
+      "paired_run_count": 3,
+      "metrics": {
+        "mean_latency_reduction_percent": {
+          "count": 3,
+          "median": 41.105781410395245,
+          "min": 40.496249486064954,
+          "max": 47.41187034203882,
+          "cv_percent": 7.269695500698667
+        },
+        "p50_latency_reduction_percent": {
+          "count": 3,
+          "median": 40.844507711097386,
+          "min": 40.27419030004652,
+          "max": 47.58290718264381,
+          "cv_percent": 7.736764888570064
+        },
+        "p95_latency_reduction_percent": {
+          "count": 3,
+          "median": 42.0389925998461,
+          "min": 41.02929959024771,
+          "max": 45.58012584755005,
+          "cv_percent": 4.550373579234755
+        },
+        "p99_latency_reduction_percent": {
+          "count": 3,
+          "median": 45.89393326202244,
+          "min": 41.053611275325494,
+          "max": 47.870344072863354,
+          "cv_percent": 6.372191048883842
+        },
+        "throughput_speedup": {
+          "count": 3,
+          "median": 1.687799753858971,
+          "min": 1.670479645838857,
+          "max": 1.8881940950804894,
+          "cv_percent": 5.649653820261273
+        },
+        "peak_allocated_delta_bytes": {
+          "count": 3,
+          "median": 11552768.0,
+          "min": 11552768.0,
+          "max": 11552768.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_delta_bytes": {
+          "count": 3,
+          "median": -2076180480.0,
+          "min": -2076180480.0,
+          "max": -2076180480.0,
+          "cv_percent": 0.0
+        }
+      },
+      "pairs": [
+        {
+          "repeat_index": 1,
+          "graph_off_run_id": "graph_off_batch1_run1",
+          "graph_on_run_id": "graph_on_batch1_run1",
+          "mean_latency_reduction_percent": 47.41187034203882,
+          "p50_latency_reduction_percent": 47.58290718264381,
+          "p95_latency_reduction_percent": 45.58012584755005,
+          "p99_latency_reduction_percent": 47.870344072863354,
+          "throughput_speedup": 1.8881940950804894,
+          "peak_allocated_delta_bytes": 11552768,
+          "peak_reserved_delta_bytes": -2076180480
+        },
+        {
+          "repeat_index": 2,
+          "graph_off_run_id": "graph_off_batch1_run2",
+          "graph_on_run_id": "graph_on_batch1_run2",
+          "mean_latency_reduction_percent": 41.105781410395245,
+          "p50_latency_reduction_percent": 40.844507711097386,
+          "p95_latency_reduction_percent": 42.0389925998461,
+          "p99_latency_reduction_percent": 45.89393326202244,
+          "throughput_speedup": 1.687799753858971,
+          "peak_allocated_delta_bytes": 11552768,
+          "peak_reserved_delta_bytes": -2076180480
+        },
+        {
+          "repeat_index": 3,
+          "graph_off_run_id": "graph_off_batch1_run3",
+          "graph_on_run_id": "graph_on_batch1_run3",
+          "mean_latency_reduction_percent": 40.496249486064954,
+          "p50_latency_reduction_percent": 40.27419030004652,
+          "p95_latency_reduction_percent": 41.02929959024771,
+          "p99_latency_reduction_percent": 41.053611275325494,
+          "throughput_speedup": 1.670479645838857,
+          "peak_allocated_delta_bytes": 11552768,
+          "peak_reserved_delta_bytes": -2076180480
+        }
+      ]
+    },
+    {
+      "batch_size": 2,
+      "paired_run_count": 3,
+      "metrics": {
+        "mean_latency_reduction_percent": {
+          "count": 3,
+          "median": 40.07472820993233,
+          "min": 39.598135467133474,
+          "max": 44.57536430743181,
+          "cv_percent": 5.414349789380203
+        },
+        "p50_latency_reduction_percent": {
+          "count": 3,
+          "median": 39.52466594794445,
+          "min": 39.32247500286327,
+          "max": 44.14131289666567,
+          "cv_percent": 5.428549635171946
+        },
+        "p95_latency_reduction_percent": {
+          "count": 3,
+          "median": 40.93811836965681,
+          "min": 39.634621133399854,
+          "max": 43.44798064715369,
+          "cv_percent": 3.8281140630691968
+        },
+        "p99_latency_reduction_percent": {
+          "count": 3,
+          "median": 43.60962807492058,
+          "min": 40.271482310760085,
+          "max": 45.26363915593509,
+          "cv_percent": 4.8232798980791305
+        },
+        "throughput_speedup": {
+          "count": 3,
+          "median": 1.659501773651027,
+          "min": 1.6467202392485907,
+          "max": 1.7915759833553566,
+          "cv_percent": 3.8535022528705283
+        },
+        "peak_allocated_delta_bytes": {
+          "count": 3,
+          "median": 14707712.0,
+          "min": 14707712.0,
+          "max": 14707712.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_delta_bytes": {
+          "count": 3,
+          "median": -2046820352.0,
+          "min": -2046820352.0,
+          "max": -2046820352.0,
+          "cv_percent": 0.0
+        }
+      },
+      "pairs": [
+        {
+          "repeat_index": 1,
+          "graph_off_run_id": "graph_off_batch2_run1",
+          "graph_on_run_id": "graph_on_batch2_run1",
+          "mean_latency_reduction_percent": 44.57536430743181,
+          "p50_latency_reduction_percent": 44.14131289666567,
+          "p95_latency_reduction_percent": 43.44798064715369,
+          "p99_latency_reduction_percent": 43.60962807492058,
+          "throughput_speedup": 1.7915759833553566,
+          "peak_allocated_delta_bytes": 14707712,
+          "peak_reserved_delta_bytes": -2046820352
+        },
+        {
+          "repeat_index": 2,
+          "graph_off_run_id": "graph_off_batch2_run2",
+          "graph_on_run_id": "graph_on_batch2_run2",
+          "mean_latency_reduction_percent": 39.598135467133474,
+          "p50_latency_reduction_percent": 39.32247500286327,
+          "p95_latency_reduction_percent": 39.634621133399854,
+          "p99_latency_reduction_percent": 40.271482310760085,
+          "throughput_speedup": 1.6467202392485907,
+          "peak_allocated_delta_bytes": 14707712,
+          "peak_reserved_delta_bytes": -2046820352
+        },
+        {
+          "repeat_index": 3,
+          "graph_off_run_id": "graph_off_batch2_run3",
+          "graph_on_run_id": "graph_on_batch2_run3",
+          "mean_latency_reduction_percent": 40.07472820993233,
+          "p50_latency_reduction_percent": 39.52466594794445,
+          "p95_latency_reduction_percent": 40.93811836965681,
+          "p99_latency_reduction_percent": 45.26363915593509,
+          "throughput_speedup": 1.659501773651027,
+          "peak_allocated_delta_bytes": 14707712,
+          "peak_reserved_delta_bytes": -2046820352
+        }
+      ]
+    },
+    {
+      "batch_size": 4,
+      "paired_run_count": 3,
+      "metrics": {
+        "mean_latency_reduction_percent": {
+          "count": 3,
+          "median": 29.970529135412065,
+          "min": 29.68891301434118,
+          "max": 47.58468865613479,
+          "cv_percent": 23.415439636136497
+        },
+        "p50_latency_reduction_percent": {
+          "count": 3,
+          "median": 30.031580473835405,
+          "min": 29.687421579158908,
+          "max": 50.92216611140684,
+          "cv_percent": 26.924958643412396
+        },
+        "p95_latency_reduction_percent": {
+          "count": 3,
+          "median": 29.877968143029737,
+          "min": 28.655208286030774,
+          "max": 51.92711784217791,
+          "cv_percent": 29.043739777004024
+        },
+        "p99_latency_reduction_percent": {
+          "count": 3,
+          "median": 29.57500121785634,
+          "min": 27.65254261252872,
+          "max": 45.59781560014811,
+          "cv_percent": 23.471051004826908
+        },
+        "throughput_speedup": {
+          "count": 3,
+          "median": 1.4225365332178344,
+          "min": 1.4169407999870607,
+          "max": 1.9014313445892523,
+          "cv_percent": 14.369624842344638
+        },
+        "peak_allocated_delta_bytes": {
+          "count": 3,
+          "median": 21649920.0,
+          "min": 21649920.0,
+          "max": 21649920.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_delta_bytes": {
+          "count": 3,
+          "median": -2000683008.0,
+          "min": -2000683008.0,
+          "max": -2000683008.0,
+          "cv_percent": 0.0
+        }
+      },
+      "pairs": [
+        {
+          "repeat_index": 1,
+          "graph_off_run_id": "graph_off_batch4_run1",
+          "graph_on_run_id": "graph_on_batch4_run1",
+          "mean_latency_reduction_percent": 47.58468865613479,
+          "p50_latency_reduction_percent": 50.92216611140684,
+          "p95_latency_reduction_percent": 51.92711784217791,
+          "p99_latency_reduction_percent": 45.59781560014811,
+          "throughput_speedup": 1.9014313445892523,
+          "peak_allocated_delta_bytes": 21649920,
+          "peak_reserved_delta_bytes": -2000683008
+        },
+        {
+          "repeat_index": 2,
+          "graph_off_run_id": "graph_off_batch4_run2",
+          "graph_on_run_id": "graph_on_batch4_run2",
+          "mean_latency_reduction_percent": 29.68891301434118,
+          "p50_latency_reduction_percent": 29.687421579158908,
+          "p95_latency_reduction_percent": 28.655208286030774,
+          "p99_latency_reduction_percent": 29.57500121785634,
+          "throughput_speedup": 1.4169407999870607,
+          "peak_allocated_delta_bytes": 21649920,
+          "peak_reserved_delta_bytes": -2000683008
+        },
+        {
+          "repeat_index": 3,
+          "graph_off_run_id": "graph_off_batch4_run3",
+          "graph_on_run_id": "graph_on_batch4_run3",
+          "mean_latency_reduction_percent": 29.970529135412065,
+          "p50_latency_reduction_percent": 30.031580473835405,
+          "p95_latency_reduction_percent": 29.877968143029737,
+          "p99_latency_reduction_percent": 27.65254261252872,
+          "throughput_speedup": 1.4225365332178344,
+          "peak_allocated_delta_bytes": 21649920,
+          "peak_reserved_delta_bytes": -2000683008
+        }
+      ]
+    },
+    {
+      "batch_size": 8,
+      "paired_run_count": 3,
+      "metrics": {
+        "mean_latency_reduction_percent": {
+          "count": 3,
+          "median": 19.475095430069956,
+          "min": 18.52398929054364,
+          "max": 19.592293398031092,
+          "cv_percent": 2.4919264919993696
+        },
+        "p50_latency_reduction_percent": {
+          "count": 3,
+          "median": 19.19991912481104,
+          "min": 19.06835049501184,
+          "max": 19.564792978753736,
+          "cv_percent": 1.089340042981006
+        },
+        "p95_latency_reduction_percent": {
+          "count": 3,
+          "median": 19.430380646856865,
+          "min": 18.82427820775601,
+          "max": 20.027807089627363,
+          "cv_percent": 2.529111574718954
+        },
+        "p99_latency_reduction_percent": {
+          "count": 3,
+          "median": 16.845358675333074,
+          "min": -0.8063217231505471,
+          "max": 19.948923730054595,
+          "cv_percent": 76.19912668474318
+        },
+        "throughput_speedup": {
+          "count": 3,
+          "median": 1.2393786536933014,
+          "min": 1.2247356530435898,
+          "max": 1.241017262664052,
+          "cv_percent": 0.5926618332439815
+        },
+        "peak_allocated_delta_bytes": {
+          "count": 3,
+          "median": 34780160.0,
+          "min": 34780160.0,
+          "max": 34780160.0,
+          "cv_percent": 0.0
+        },
+        "peak_reserved_delta_bytes": {
+          "count": 3,
+          "median": -1858076672.0,
+          "min": -1858076672.0,
+          "max": -1858076672.0,
+          "cv_percent": 0.0
+        }
+      },
+      "pairs": [
+        {
+          "repeat_index": 1,
+          "graph_off_run_id": "graph_off_batch8_run1",
+          "graph_on_run_id": "graph_on_batch8_run1",
+          "mean_latency_reduction_percent": 18.52398929054364,
+          "p50_latency_reduction_percent": 19.06835049501184,
+          "p95_latency_reduction_percent": 18.82427820775601,
+          "p99_latency_reduction_percent": -0.8063217231505471,
+          "throughput_speedup": 1.2247356530435898,
+          "peak_allocated_delta_bytes": 34780160,
+          "peak_reserved_delta_bytes": -1858076672
+        },
+        {
+          "repeat_index": 2,
+          "graph_off_run_id": "graph_off_batch8_run2",
+          "graph_on_run_id": "graph_on_batch8_run2",
+          "mean_latency_reduction_percent": 19.475095430069956,
+          "p50_latency_reduction_percent": 19.19991912481104,
+          "p95_latency_reduction_percent": 20.027807089627363,
+          "p99_latency_reduction_percent": 19.948923730054595,
+          "throughput_speedup": 1.2393786536933014,
+          "peak_allocated_delta_bytes": 34780160,
+          "peak_reserved_delta_bytes": -1858076672
+        },
+        {
+          "repeat_index": 3,
+          "graph_off_run_id": "graph_off_batch8_run3",
+          "graph_on_run_id": "graph_on_batch8_run3",
+          "mean_latency_reduction_percent": 19.592293398031092,
+          "p50_latency_reduction_percent": 19.564792978753736,
+          "p95_latency_reduction_percent": 19.430380646856865,
+          "p99_latency_reduction_percent": 16.845358675333074,
+          "throughput_speedup": 1.241017262664052,
+          "peak_allocated_delta_bytes": 34780160,
+          "peak_reserved_delta_bytes": -1858076672
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "All percentiles are summarized from run-level metrics; raw samples are not pooled.",
+    "Latency reduction is (Graph off - Graph on) / Graph off * 100%.",
+    "Throughput speedup is Graph on / Graph off.",
+    "Formal runs do not collect kernel-launch counts; version-matched profiler diagnostics must report those separately."
+  ]
+}

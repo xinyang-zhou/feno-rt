@@ -1,0 +1,607 @@
+{
+  "schema_version": "1.0.0",
+  "benchmark": "cuda_graph_ab",
+  "status": "passed",
+  "created_at_utc": "2026-09-22T07:37:14.011543+00:00",
+  "completed_at_utc": "2026-09-22T07:40:04.176820+00:00",
+  "source": {
+    "git_commit": "a69f11ecc1d656f02cac09cff6fc1dddb4892bb3",
+    "git_dirty": false,
+    "command": [
+      "/home/xinyang/miniconda3/envs/pytorch/bin/python",
+      "benchmarks/run_graph_ab_matrix.py",
+      "--output-dir",
+      "/home/xinyang/feno-rt-results/a69f11e_server2_pinned"
+    ],
+    "resume_commands": [],
+    "config_path": "benchmarks/configs/graph_ab.json",
+    "config_sha256": "5ff68bac23b15355dc7cc9c3b91bc18f687c71d0d0184def577432d1f4a74282"
+  },
+  "model_artifacts": {
+    "checkpoint": {
+      "identifier": "feno_test.pth",
+      "sha256": "4807ff56b2cb6968547083df8c715a0ad868ae8f4b8de1c51576374e57f94cf2"
+    },
+    "normalization": {
+      "identifier": "norm_params_freq.npz",
+      "sha256": "b9f754ea9ff8e39b779c64740c71da1581025e0f86e1e950b986848775a3cc4a"
+    }
+  },
+  "matrix": {
+    "modes": [
+      "off",
+      "on"
+    ],
+    "batch_sizes": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "independent_runs": 3,
+    "requests_per_run": 1000,
+    "total_processes": 24,
+    "process_isolation": "one_configuration_per_fresh_process",
+    "pairing": "adjacent_counterbalanced_graph_off_on"
+  },
+  "output_directory": "/home/xinyang/feno-rt-results/a69f11e_server2_pinned",
+  "execution_order": [
+    {
+      "sequence": 1,
+      "pair_id": "batch1_run1",
+      "pair_position": 1,
+      "mode": "off",
+      "batch_size": 1,
+      "repeat_index": 1,
+      "result_file": "graph_off_batch1_run1.json",
+      "log_file": "logs/graph_off_batch1_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:37:14.012752+00:00",
+      "completed_at_utc": "2026-09-22T07:37:23.547169+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch1_run1.log",
+          "started_at_utc": "2026-09-22T07:37:14.012752+00:00",
+          "completed_at_utc": "2026-09-22T07:37:23.547169+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "pair_id": "batch1_run1",
+      "pair_position": 2,
+      "mode": "on",
+      "batch_size": 1,
+      "repeat_index": 1,
+      "result_file": "graph_on_batch1_run1.json",
+      "log_file": "logs/graph_on_batch1_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:37:23.645995+00:00",
+      "completed_at_utc": "2026-09-22T07:37:32.244190+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch1_run1.log",
+          "started_at_utc": "2026-09-22T07:37:23.645995+00:00",
+          "completed_at_utc": "2026-09-22T07:37:32.244190+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "pair_id": "batch2_run1",
+      "pair_position": 1,
+      "mode": "off",
+      "batch_size": 2,
+      "repeat_index": 1,
+      "result_file": "graph_off_batch2_run1.json",
+      "log_file": "logs/graph_off_batch2_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:37:32.334710+00:00",
+      "completed_at_utc": "2026-09-22T07:37:40.993444+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch2_run1.log",
+          "started_at_utc": "2026-09-22T07:37:32.334710+00:00",
+          "completed_at_utc": "2026-09-22T07:37:40.993444+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "pair_id": "batch2_run1",
+      "pair_position": 2,
+      "mode": "on",
+      "batch_size": 2,
+      "repeat_index": 1,
+      "result_file": "graph_on_batch2_run1.json",
+      "log_file": "logs/graph_on_batch2_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:37:41.094074+00:00",
+      "completed_at_utc": "2026-09-22T07:37:49.805587+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch2_run1.log",
+          "started_at_utc": "2026-09-22T07:37:41.094074+00:00",
+          "completed_at_utc": "2026-09-22T07:37:49.805587+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 5,
+      "pair_id": "batch4_run1",
+      "pair_position": 1,
+      "mode": "off",
+      "batch_size": 4,
+      "repeat_index": 1,
+      "result_file": "graph_off_batch4_run1.json",
+      "log_file": "logs/graph_off_batch4_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:37:49.899329+00:00",
+      "completed_at_utc": "2026-09-22T07:37:58.704251+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch4_run1.log",
+          "started_at_utc": "2026-09-22T07:37:49.899329+00:00",
+          "completed_at_utc": "2026-09-22T07:37:58.704251+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 6,
+      "pair_id": "batch4_run1",
+      "pair_position": 2,
+      "mode": "on",
+      "batch_size": 4,
+      "repeat_index": 1,
+      "result_file": "graph_on_batch4_run1.json",
+      "log_file": "logs/graph_on_batch4_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:37:58.801886+00:00",
+      "completed_at_utc": "2026-09-22T07:38:06.828065+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch4_run1.log",
+          "started_at_utc": "2026-09-22T07:37:58.801886+00:00",
+          "completed_at_utc": "2026-09-22T07:38:06.828065+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 7,
+      "pair_id": "batch8_run1",
+      "pair_position": 1,
+      "mode": "off",
+      "batch_size": 8,
+      "repeat_index": 1,
+      "result_file": "graph_off_batch8_run1.json",
+      "log_file": "logs/graph_off_batch8_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:38:06.896899+00:00",
+      "completed_at_utc": "2026-09-22T07:38:13.129522+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch8_run1.log",
+          "started_at_utc": "2026-09-22T07:38:06.896899+00:00",
+          "completed_at_utc": "2026-09-22T07:38:13.129522+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 8,
+      "pair_id": "batch8_run1",
+      "pair_position": 2,
+      "mode": "on",
+      "batch_size": 8,
+      "repeat_index": 1,
+      "result_file": "graph_on_batch8_run1.json",
+      "log_file": "logs/graph_on_batch8_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:38:13.197029+00:00",
+      "completed_at_utc": "2026-09-22T07:38:19.873625+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch8_run1.log",
+          "started_at_utc": "2026-09-22T07:38:13.197029+00:00",
+          "completed_at_utc": "2026-09-22T07:38:19.873625+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 9,
+      "pair_id": "batch8_run2",
+      "pair_position": 1,
+      "mode": "on",
+      "batch_size": 8,
+      "repeat_index": 2,
+      "result_file": "graph_on_batch8_run2.json",
+      "log_file": "logs/graph_on_batch8_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:38:19.940981+00:00",
+      "completed_at_utc": "2026-09-22T07:38:26.294377+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch8_run2.log",
+          "started_at_utc": "2026-09-22T07:38:19.940981+00:00",
+          "completed_at_utc": "2026-09-22T07:38:26.294377+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 10,
+      "pair_id": "batch8_run2",
+      "pair_position": 2,
+      "mode": "off",
+      "batch_size": 8,
+      "repeat_index": 2,
+      "result_file": "graph_off_batch8_run2.json",
+      "log_file": "logs/graph_off_batch8_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:38:26.362449+00:00",
+      "completed_at_utc": "2026-09-22T07:38:32.582618+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch8_run2.log",
+          "started_at_utc": "2026-09-22T07:38:26.362449+00:00",
+          "completed_at_utc": "2026-09-22T07:38:32.582618+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 11,
+      "pair_id": "batch4_run2",
+      "pair_position": 1,
+      "mode": "on",
+      "batch_size": 4,
+      "repeat_index": 2,
+      "result_file": "graph_on_batch4_run2.json",
+      "log_file": "logs/graph_on_batch4_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:38:32.650189+00:00",
+      "completed_at_utc": "2026-09-22T07:38:38.872271+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch4_run2.log",
+          "started_at_utc": "2026-09-22T07:38:32.650189+00:00",
+          "completed_at_utc": "2026-09-22T07:38:38.872271+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 12,
+      "pair_id": "batch4_run2",
+      "pair_position": 2,
+      "mode": "off",
+      "batch_size": 4,
+      "repeat_index": 2,
+      "result_file": "graph_off_batch4_run2.json",
+      "log_file": "logs/graph_off_batch4_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:38:38.941031+00:00",
+      "completed_at_utc": "2026-09-22T07:38:45.161608+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch4_run2.log",
+          "started_at_utc": "2026-09-22T07:38:38.941031+00:00",
+          "completed_at_utc": "2026-09-22T07:38:45.161608+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 13,
+      "pair_id": "batch2_run2",
+      "pair_position": 1,
+      "mode": "on",
+      "batch_size": 2,
+      "repeat_index": 2,
+      "result_file": "graph_on_batch2_run2.json",
+      "log_file": "logs/graph_on_batch2_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:38:45.230078+00:00",
+      "completed_at_utc": "2026-09-22T07:38:51.466552+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch2_run2.log",
+          "started_at_utc": "2026-09-22T07:38:45.230078+00:00",
+          "completed_at_utc": "2026-09-22T07:38:51.466552+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 14,
+      "pair_id": "batch2_run2",
+      "pair_position": 2,
+      "mode": "off",
+      "batch_size": 2,
+      "repeat_index": 2,
+      "result_file": "graph_off_batch2_run2.json",
+      "log_file": "logs/graph_off_batch2_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:38:51.536958+00:00",
+      "completed_at_utc": "2026-09-22T07:38:57.909498+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch2_run2.log",
+          "started_at_utc": "2026-09-22T07:38:51.536958+00:00",
+          "completed_at_utc": "2026-09-22T07:38:57.909498+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 15,
+      "pair_id": "batch1_run2",
+      "pair_position": 1,
+      "mode": "on",
+      "batch_size": 1,
+      "repeat_index": 2,
+      "result_file": "graph_on_batch1_run2.json",
+      "log_file": "logs/graph_on_batch1_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:38:57.979836+00:00",
+      "completed_at_utc": "2026-09-22T07:39:04.329600+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch1_run2.log",
+          "started_at_utc": "2026-09-22T07:38:57.979836+00:00",
+          "completed_at_utc": "2026-09-22T07:39:04.329600+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 16,
+      "pair_id": "batch1_run2",
+      "pair_position": 2,
+      "mode": "off",
+      "batch_size": 1,
+      "repeat_index": 2,
+      "result_file": "graph_off_batch1_run2.json",
+      "log_file": "logs/graph_off_batch1_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:39:04.403426+00:00",
+      "completed_at_utc": "2026-09-22T07:39:11.198814+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch1_run2.log",
+          "started_at_utc": "2026-09-22T07:39:04.403426+00:00",
+          "completed_at_utc": "2026-09-22T07:39:11.198814+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 17,
+      "pair_id": "batch1_run3",
+      "pair_position": 1,
+      "mode": "off",
+      "batch_size": 1,
+      "repeat_index": 3,
+      "result_file": "graph_off_batch1_run3.json",
+      "log_file": "logs/graph_off_batch1_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:39:11.273135+00:00",
+      "completed_at_utc": "2026-09-22T07:39:18.169064+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch1_run3.log",
+          "started_at_utc": "2026-09-22T07:39:11.273135+00:00",
+          "completed_at_utc": "2026-09-22T07:39:18.169064+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 18,
+      "pair_id": "batch1_run3",
+      "pair_position": 2,
+      "mode": "on",
+      "batch_size": 1,
+      "repeat_index": 3,
+      "result_file": "graph_on_batch1_run3.json",
+      "log_file": "logs/graph_on_batch1_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:39:18.243841+00:00",
+      "completed_at_utc": "2026-09-22T07:39:24.887635+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch1_run3.log",
+          "started_at_utc": "2026-09-22T07:39:18.243841+00:00",
+          "completed_at_utc": "2026-09-22T07:39:24.887635+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 19,
+      "pair_id": "batch2_run3",
+      "pair_position": 1,
+      "mode": "off",
+      "batch_size": 2,
+      "repeat_index": 3,
+      "result_file": "graph_off_batch2_run3.json",
+      "log_file": "logs/graph_off_batch2_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:39:24.962096+00:00",
+      "completed_at_utc": "2026-09-22T07:39:31.253203+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch2_run3.log",
+          "started_at_utc": "2026-09-22T07:39:24.962096+00:00",
+          "completed_at_utc": "2026-09-22T07:39:31.253203+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 20,
+      "pair_id": "batch2_run3",
+      "pair_position": 2,
+      "mode": "on",
+      "batch_size": 2,
+      "repeat_index": 3,
+      "result_file": "graph_on_batch2_run3.json",
+      "log_file": "logs/graph_on_batch2_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:39:31.323925+00:00",
+      "completed_at_utc": "2026-09-22T07:39:37.485197+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch2_run3.log",
+          "started_at_utc": "2026-09-22T07:39:31.323925+00:00",
+          "completed_at_utc": "2026-09-22T07:39:37.485197+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 21,
+      "pair_id": "batch4_run3",
+      "pair_position": 1,
+      "mode": "off",
+      "batch_size": 4,
+      "repeat_index": 3,
+      "result_file": "graph_off_batch4_run3.json",
+      "log_file": "logs/graph_off_batch4_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:39:37.557895+00:00",
+      "completed_at_utc": "2026-09-22T07:39:43.848823+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch4_run3.log",
+          "started_at_utc": "2026-09-22T07:39:37.557895+00:00",
+          "completed_at_utc": "2026-09-22T07:39:43.848823+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 22,
+      "pair_id": "batch4_run3",
+      "pair_position": 2,
+      "mode": "on",
+      "batch_size": 4,
+      "repeat_index": 3,
+      "result_file": "graph_on_batch4_run3.json",
+      "log_file": "logs/graph_on_batch4_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:39:43.918211+00:00",
+      "completed_at_utc": "2026-09-22T07:39:50.007601+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch4_run3.log",
+          "started_at_utc": "2026-09-22T07:39:43.918211+00:00",
+          "completed_at_utc": "2026-09-22T07:39:50.007601+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 23,
+      "pair_id": "batch8_run3",
+      "pair_position": 1,
+      "mode": "off",
+      "batch_size": 8,
+      "repeat_index": 3,
+      "result_file": "graph_off_batch8_run3.json",
+      "log_file": "logs/graph_off_batch8_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:39:50.076312+00:00",
+      "completed_at_utc": "2026-09-22T07:39:56.166430+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_off_batch8_run3.log",
+          "started_at_utc": "2026-09-22T07:39:50.076312+00:00",
+          "completed_at_utc": "2026-09-22T07:39:56.166430+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 24,
+      "pair_id": "batch8_run3",
+      "pair_position": 2,
+      "mode": "on",
+      "batch_size": 8,
+      "repeat_index": 3,
+      "result_file": "graph_on_batch8_run3.json",
+      "log_file": "logs/graph_on_batch8_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T07:39:56.233798+00:00",
+      "completed_at_utc": "2026-09-22T07:40:02.432284+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/graph_on_batch8_run3.log",
+          "started_at_utc": "2026-09-22T07:39:56.233798+00:00",
+          "completed_at_utc": "2026-09-22T07:40:02.432284+00:00",
+          "return_code": 0
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "json": "summary.json",
+    "markdown": "summary.md"
+  },
+  "errors": []
+}

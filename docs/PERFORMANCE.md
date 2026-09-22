@@ -3,8 +3,11 @@
 本文规定 FENO-RT 性能实验的公共协议。除非结果满足本文的正式实验要求，否则不得
 作为项目的正式性能结论。
 
-当前仓库尚未发布按本协议采集的正式 GPU 性能结果。`benchmark_core.py` 是小模型
-smoke benchmark，只用于检查运行路径、输出正确性和基本指标是否可用。
+当前仓库已发布一组按本协议采集的 CUDA Graph A/B 正式 GPU 结果：
+[RTX 5090 / commit `a69f11e`](../benchmarks/results/cuda_graph_ab/20260922_rtx5090_a69f11e/summary.md)。
+该结果包含 24 个独立进程 run 的原始 samples、环境与模型身份、正确性、显存、capture
+成本和自动生成的汇总。`benchmark_core.py` 仍只是小模型 smoke benchmark，只用于检查
+运行路径、输出正确性和基本指标是否可用。
 
 ## Result classes
 

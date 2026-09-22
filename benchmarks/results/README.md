@@ -3,6 +3,14 @@
 本目录只保存符合 `docs/PERFORMANCE.md` 的原始 Formal JSON 和由这些 JSON 生成的汇总。
 Diagnostic profiler 产物和 Historical 结果不能混入当前版本的 Formal 汇总。
 
+## Published results
+
+- [CUDA Graph A/B：RTX 5090，commit `a69f11e`](cuda_graph_ab/20260922_rtx5090_a69f11e/summary.md)
+  - 2026-09-22 UTC；
+  - batch 1/2/4/8，Graph off/on，每组 3 个独立进程；
+  - 每个配置 1000 个请求，steady all-hit cache；
+  - 24/24 runs 通过正确性与结果校验。
+
 建议目录格式：
 
 ```text

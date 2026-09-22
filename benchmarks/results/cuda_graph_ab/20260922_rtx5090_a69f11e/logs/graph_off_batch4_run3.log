@@ -1,0 +1,15 @@
+command: /home/xinyang/miniconda3/envs/pytorch/bin/python /home/xinyang/FENO-RT-formal/benchmarks/benchmark_graph_ab.py --config /home/xinyang/FENO-RT-formal/benchmarks/configs/graph_ab.json --mode off --batch-size 4 --repeat-index 3 --output /home/xinyang/feno-rt-results/a69f11e_server2_pinned/graph_off_batch4_run3.json
+return_code: 0
+
+[stdout]
+saved: /home/xinyang/feno-rt-results/a69f11e_server2_pinned/graph_off_batch4_run3.json
+validated against formal_result.schema.json
+{
+  "run_id": "graph_off_batch4_run3",
+  "status": "passed",
+  "mean_ms": 1.2917354320000012,
+  "p99_ms": 1.34201435,
+  "throughput_requests_per_second": 3078.7015338605183
+}
+
+[stderr]
