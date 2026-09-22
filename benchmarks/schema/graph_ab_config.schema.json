@@ -12,6 +12,7 @@
     "model",
     "workload",
     "measurement",
+    "execution",
     "cuda_graph",
     "correctness"
   ],
@@ -31,11 +32,11 @@
         "dtype"
       ],
       "properties": {
-        "config_source": {"type": "string", "minLength": 1},
-        "model_source": {"enum": ["checkpoint", "random_initialized"]},
-        "checkpoint_env": {"type": ["string", "null"]},
-        "normalization_env": {"type": ["string", "null"]},
-        "dtype": {"enum": ["float32", "float16", "bfloat16"]}
+        "config_source": {"const": "default_inference"},
+        "model_source": {"const": "checkpoint"},
+        "checkpoint_env": {"type": "string", "minLength": 1},
+        "normalization_env": {"type": "string", "minLength": 1},
+        "dtype": {"const": "float32"}
       }
     },
     "workload": {
@@ -47,12 +48,16 @@
         "request_count",
         "batch_sizes",
         "arrival_pattern",
-        "source_pattern",
+        "request_sequence",
+        "velocity",
+        "source_positions",
+        "positions_are_normalized",
+        "receiver_positions",
         "frequency_hz",
         "cache_state"
       ],
       "properties": {
-        "name": {"type": "string", "minLength": 1},
+        "name": {"const": "steady_all_hit"},
         "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
         "request_count": {"type": "integer", "minimum": 1000},
         "batch_sizes": {
@@ -61,8 +66,43 @@
           "uniqueItems": true,
           "items": {"type": "integer", "minimum": 1}
         },
-        "arrival_pattern": {"enum": ["closed_loop", "trace"]},
-        "source_pattern": {"type": "string", "minLength": 1},
+        "arrival_pattern": {"const": "closed_loop"},
+        "request_sequence": {"const": "repeat_fixed_batch"},
+        "velocity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "generator",
+            "z_sine_amplitude",
+            "z_cycles",
+            "x_cosine_amplitude",
+            "x_cycles"
+          ],
+          "properties": {
+            "generator": {"const": "physical_sine_cosine_v1"},
+            "z_sine_amplitude": {"type": "number"},
+            "z_cycles": {"type": "number", "exclusiveMinimum": 0},
+            "x_cosine_amplitude": {"type": "number"},
+            "x_cycles": {"type": "number", "exclusiveMinimum": 0}
+          }
+        },
+        "source_positions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {"type": "number", "minimum": 0},
+              {"type": "number", "minimum": 0}
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "positions_are_normalized": {"const": false},
+        "receiver_positions": {"const": "model_default"},
         "frequency_hz": {
           "type": "array",
           "minItems": 1,
@@ -74,9 +114,9 @@
           "additionalProperties": false,
           "required": ["medium", "geometry", "wavelet"],
           "properties": {
-            "medium": {"enum": ["warm", "cold", "mixed"]},
-            "geometry": {"enum": ["warm", "cold", "mixed"]},
-            "wavelet": {"enum": ["warm", "cold", "mixed"]}
+            "medium": {"const": "warm"},
+            "geometry": {"const": "warm"},
+            "wavelet": {"const": "warm"}
           }
         }
       }
@@ -101,6 +141,20 @@
         "profiler_enabled": {"const": false},
         "save_raw_batch_latency_samples": {"const": true},
         "record_peak_memory": {"const": true}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tf32_enabled",
+        "cudnn_benchmark",
+        "deterministic_algorithms"
+      ],
+      "properties": {
+        "tf32_enabled": {"type": "boolean"},
+        "cudnn_benchmark": {"type": "boolean"},
+        "deterministic_algorithms": {"type": "boolean"}
       }
     },
     "cuda_graph": {

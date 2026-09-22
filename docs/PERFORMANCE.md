@@ -161,6 +161,9 @@ throughput_requests_per_second = completed_requests / measured_wall_time_seconds
 
 Graph setup 还需单独保存 capture wall time、capture 前后 allocated/reserved memory 和
 resident graph 数量。显存字段统一使用 bytes 保存，展示时再转换为 MiB 或 GiB。
+累计 Graph counter 之外还要保存正式测量窗口的 counter 差值；exact-bucket 主实验要求
+每个 measured invocation 对应一次已有 Graph replay，且 measured capture、fallback 和
+padding 均为零。
 
 steady-state 显存测量应在 setup、cache 预填充和 Graph capture 完成后同步设备，先记录
 baseline，再调用 `reset_peak_memory_stats`，最后进入正式测量。这样 steady-state peak
@@ -249,3 +252,17 @@ GPU kernel 证据，不得声称 Graph 加快了单个 kernel 的计算。
 - [ ] correctness gate 通过；
 - [ ] Graph capture 成本和 fallback 状态齐全；
 - [ ] summary 能追溯到原始结果和复现命令。
+
+## Reference Graph A/B command
+
+仓库中的参考编排器用 24 个独立、串行的 Python 进程完成 Graph on/off、batch
+1/2/4/8、每组 3 次的正式矩阵，并自动保存 session、原始结果、日志和 run-level 汇总：
+
+```bash
+CUDA_VISIBLE_DEVICES=GPU-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+  python benchmarks/run_graph_ab_matrix.py \
+  --output-dir /tmp/feno-graph-ab/<session-name>
+```
+
+运行前还需要设置 `FENO_CHECKPOINT` 和 `FENO_NORMALIZATION`。完整命令、dry-run 和
+中断恢复方法见 [`benchmarks/README.md`](../benchmarks/README.md)。

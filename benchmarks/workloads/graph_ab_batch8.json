@@ -1,0 +1,91 @@
+{
+  "arrival_pattern": "closed_loop",
+  "batch_size": 8,
+  "batch_template": [
+    {
+      "frequency_hz": 10.0,
+      "slot": 0,
+      "source_position": [
+        23.0,
+        40.0
+      ]
+    },
+    {
+      "frequency_hz": 15.0,
+      "slot": 1,
+      "source_position": [
+        23.0,
+        120.0
+      ]
+    },
+    {
+      "frequency_hz": 20.0,
+      "slot": 2,
+      "source_position": [
+        23.0,
+        200.0
+      ]
+    },
+    {
+      "frequency_hz": 25.0,
+      "slot": 3,
+      "source_position": [
+        23.0,
+        280.0
+      ]
+    },
+    {
+      "frequency_hz": 10.0,
+      "slot": 4,
+      "source_position": [
+        23.0,
+        360.0
+      ]
+    },
+    {
+      "frequency_hz": 15.0,
+      "slot": 5,
+      "source_position": [
+        23.0,
+        440.0
+      ]
+    },
+    {
+      "frequency_hz": 20.0,
+      "slot": 6,
+      "source_position": [
+        23.0,
+        520.0
+      ]
+    },
+    {
+      "frequency_hz": 25.0,
+      "slot": 7,
+      "source_position": [
+        23.0,
+        600.0
+      ]
+    }
+  ],
+  "benchmark": "cuda_graph_ab",
+  "cache_state": {
+    "geometry": "warm",
+    "medium": "warm",
+    "wavelet": "warm"
+  },
+  "invocation_count": 125,
+  "name": "steady_all_hit",
+  "positions_are_normalized": false,
+  "receiver_positions": "model_default",
+  "request_count": 1000,
+  "request_sequence": "repeat_fixed_batch",
+  "schema_version": "1.0.0",
+  "seed": 7,
+  "velocity": {
+    "generator": "physical_sine_cosine_v1",
+    "x_cosine_amplitude": 0.2,
+    "x_cycles": 2.0,
+    "z_cycles": 1.0,
+    "z_sine_amplitude": 0.45
+  }
+}

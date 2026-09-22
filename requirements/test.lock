@@ -1,0 +1,2 @@
+# Test-only dependency for Draft 2020-12 benchmark schema validation.
+jsonschema==4.23.0

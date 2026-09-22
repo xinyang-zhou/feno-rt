@@ -10,6 +10,7 @@
     "status",
     "benchmark",
     "run_id",
+    "repeat_index",
     "created_at_utc",
     "source",
     "environment",
@@ -28,6 +29,7 @@
     "status": {"enum": ["passed", "failed"]},
     "benchmark": {"type": "string", "minLength": 1},
     "run_id": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"},
+    "repeat_index": {"type": "integer", "minimum": 1},
     "created_at_utc": {"type": "string", "format": "date-time"},
     "source": {
       "type": "object",
@@ -61,8 +63,11 @@
           "additionalProperties": false,
           "required": [
             "gpus",
+            "system_gpu_count",
+            "visible_cuda_device_count",
             "cpu_model",
             "logical_cpu_count",
+            "cpu_affinity",
             "system_memory_bytes",
             "other_gpu_processes"
           ],
@@ -79,6 +84,7 @@
                   "name",
                   "uuid",
                   "total_memory_bytes",
+                  "persistence_mode",
                   "power_limit_watts",
                   "application_clocks"
                 ],
@@ -88,13 +94,22 @@
                   "name": {"type": "string", "minLength": 1},
                   "uuid": {"type": "string", "minLength": 1},
                   "total_memory_bytes": {"type": "integer", "minimum": 1},
+                  "persistence_mode": {"type": ["string", "null"]},
                   "power_limit_watts": {"type": ["number", "null"], "exclusiveMinimum": 0},
                   "application_clocks": {"type": ["string", "null"]}
                 }
               }
             },
+            "system_gpu_count": {"type": "integer", "minimum": 1},
+            "visible_cuda_device_count": {"type": "integer", "minimum": 1},
             "cpu_model": {"type": "string", "minLength": 1},
             "logical_cpu_count": {"type": "integer", "minimum": 1},
+            "cpu_affinity": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {"type": "integer", "minimum": 0}
+            },
             "system_memory_bytes": {"type": "integer", "minimum": 1},
             "other_gpu_processes": {"type": "boolean"}
           }
@@ -109,7 +124,12 @@
             "cudnn",
             "driver",
             "operating_system",
-            "kernel"
+            "kernel",
+            "python_executable",
+            "torch_num_threads",
+            "torch_num_interop_threads",
+            "dependency_lock",
+            "direct_dependencies"
           ],
           "properties": {
             "python": {"type": "string", "minLength": 1},
@@ -118,7 +138,16 @@
             "cudnn": {"type": ["string", "null"]},
             "driver": {"type": "string", "minLength": 1},
             "operating_system": {"type": "string", "minLength": 1},
-            "kernel": {"type": "string", "minLength": 1}
+            "kernel": {"type": "string", "minLength": 1},
+            "python_executable": {"type": "string", "minLength": 1},
+            "torch_num_threads": {"type": "integer", "minimum": 1},
+            "torch_num_interop_threads": {"type": "integer", "minimum": 1},
+            "dependency_lock": {"$ref": "#/$defs/optionalArtifactIdentity"},
+            "direct_dependencies": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {"type": "string", "minLength": 1}
+            }
           }
         },
         "environment_variables": {
@@ -156,6 +185,7 @@
         "name",
         "schema_version",
         "sha256",
+        "velocity_sha256",
         "seed",
         "request_count",
         "batch_size",
@@ -170,6 +200,7 @@
         "name": {"type": "string", "minLength": 1},
         "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
         "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "velocity_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "seed": {"type": "integer", "minimum": 0},
         "request_count": {"type": "integer", "minimum": 1000},
         "batch_size": {"type": "integer", "minimum": 1},
@@ -202,6 +233,7 @@
         "warmup_invocations",
         "dtype",
         "tf32_enabled",
+        "cudnn_benchmark",
         "deterministic"
       ],
       "properties": {
@@ -217,6 +249,7 @@
         "warmup_invocations": {"type": "integer", "minimum": 1},
         "dtype": {"type": "string", "minLength": 1},
         "tf32_enabled": {"type": "boolean"},
+        "cudnn_benchmark": {"type": "boolean"},
         "deterministic": {"type": "boolean"}
       }
     },
@@ -276,6 +309,7 @@
           "type": "object",
           "additionalProperties": false,
           "required": [
+            "requests",
             "captures",
             "replays",
             "capture_failures",
@@ -283,9 +317,18 @@
             "padded_requests",
             "padded_slots",
             "resident_graphs",
-            "static_buffer_bytes"
+            "static_buffer_bytes",
+            "measured_requests",
+            "measured_captures",
+            "measured_replays",
+            "measured_capture_failures",
+            "measured_fallbacks",
+            "measured_padded_requests",
+            "measured_padded_slots",
+            "measured_replay_rate"
           ],
           "properties": {
+            "requests": {"type": "integer", "minimum": 0},
             "captures": {"type": "integer", "minimum": 0},
             "replays": {"type": "integer", "minimum": 0},
             "capture_failures": {"type": "integer", "minimum": 0},
@@ -293,7 +336,19 @@
             "padded_requests": {"type": "integer", "minimum": 0},
             "padded_slots": {"type": "integer", "minimum": 0},
             "resident_graphs": {"type": "integer", "minimum": 0},
-            "static_buffer_bytes": {"type": "integer", "minimum": 0}
+            "static_buffer_bytes": {"type": "integer", "minimum": 0},
+            "measured_requests": {"type": "integer", "minimum": 0},
+            "measured_captures": {"type": "integer", "minimum": 0},
+            "measured_replays": {"type": "integer", "minimum": 0},
+            "measured_capture_failures": {"type": "integer", "minimum": 0},
+            "measured_fallbacks": {"type": "integer", "minimum": 0},
+            "measured_padded_requests": {"type": "integer", "minimum": 0},
+            "measured_padded_slots": {"type": "integer", "minimum": 0},
+            "measured_replay_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
           }
         }
       }
@@ -313,8 +368,8 @@
       ],
       "properties": {
         "passed": {"type": "boolean"},
-        "relative_l2_error": {"type": "number", "minimum": 0},
-        "max_absolute_error": {"type": "number", "minimum": 0},
+        "relative_l2_error": {"type": ["number", "null"], "minimum": 0},
+        "max_absolute_error": {"type": ["number", "null"], "minimum": 0},
         "rtol": {"type": "number", "minimum": 0},
         "atol": {"type": "number", "minimum": 0},
         "output_shape": {"$ref": "#/$defs/shape"},

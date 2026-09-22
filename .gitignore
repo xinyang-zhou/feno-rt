@@ -12,6 +12,7 @@ build/
 .env
 .env.*
 *.log
+!benchmarks/results/**/*.log
 nohup.out
 
 # Model artifacts are intentionally kept outside Git.

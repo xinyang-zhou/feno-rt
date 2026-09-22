@@ -127,6 +127,8 @@ CPU 环境会自动跳过 CUDA Graph 集成测试。
 `benchmark_core.py` 用于功能和数值正确性 smoke test，不构成正式性能结论。
 正式实验的环境记录、计时边界、重复方式和结果准入规则见
 [docs/PERFORMANCE.md](docs/PERFORMANCE.md)。
+CUDA Graph A/B 的单进程正式运行入口和服务器命令见
+[benchmarks/README.md](benchmarks/README.md)。
 
 ## Repository layout
 
@@ -141,6 +143,10 @@ feno_rt/runtime/
   cuda_graph.py             bucketed CUDA Graph capture/replay
 benchmarks/
   benchmark_core.py          functional smoke benchmark
+  benchmark_graph_ab.py      one-process formal CUDA Graph A/B runner
+  graph_workload.py          deterministic workload manifest generator
+  run_graph_ab_matrix.py     isolated-process formal matrix orchestrator
+  summarize_graph_ab.py      run-level A/B summary generator
   configs/                   versioned experiment configurations
   schema/                    machine-readable result contracts
   workloads/                 deterministic workload definitions

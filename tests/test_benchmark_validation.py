@@ -19,6 +19,7 @@ def make_valid_result():
         "status": "passed",
         "benchmark": "cuda_graph_ab",
         "run_id": "graph_off_batch1_run1",
+        "repeat_index": 1,
         "created_at_utc": "2026-01-01T00:00:00Z",
         "source": {
             "git_commit": "a" * 40,
@@ -36,12 +37,16 @@ def make_valid_result():
                         "name": "Example GPU",
                         "uuid": "GPU-example",
                         "total_memory_bytes": 1024,
+                        "persistence_mode": "Enabled",
                         "power_limit_watts": None,
                         "application_clocks": None,
                     }
                 ],
+                "system_gpu_count": 2,
+                "visible_cuda_device_count": 1,
                 "cpu_model": "Example CPU",
                 "logical_cpu_count": 1,
+                "cpu_affinity": [0],
                 "system_memory_bytes": 1024,
                 "other_gpu_processes": False,
             },
@@ -53,6 +58,18 @@ def make_valid_result():
                 "driver": "example",
                 "operating_system": "Linux",
                 "kernel": "example",
+                "python_executable": "/usr/bin/python",
+                "torch_num_threads": 1,
+                "torch_num_interop_threads": 1,
+                "dependency_lock": {
+                    "identifier": "requirements/runtime.lock",
+                    "sha256": "1" * 64,
+                },
+                "direct_dependencies": {
+                    "kappamodules": "0.1.112",
+                    "numpy": "2.0.2",
+                    "torch": "2.8.0",
+                },
             },
             "environment_variables": {"CUDA_VISIBLE_DEVICES": "1"},
         },
@@ -69,6 +86,7 @@ def make_valid_result():
             "name": "steady_all_hit",
             "schema_version": "1.0.0",
             "sha256": "e" * 64,
+            "velocity_sha256": "f" * 64,
             "seed": 7,
             "request_count": 1000,
             "batch_size": 1,
@@ -92,6 +110,7 @@ def make_valid_result():
             "warmup_invocations": 20,
             "dtype": "torch.float32",
             "tf32_enabled": False,
+            "cudnn_benchmark": False,
             "deterministic": True,
         },
         "timing": {
@@ -121,6 +140,7 @@ def make_valid_result():
             },
             "cache": {},
             "graph": {
+                "requests": 0,
                 "captures": 0,
                 "replays": 0,
                 "capture_failures": 0,
@@ -129,6 +149,14 @@ def make_valid_result():
                 "padded_slots": 0,
                 "resident_graphs": 0,
                 "static_buffer_bytes": 0,
+                "measured_requests": 0,
+                "measured_captures": 0,
+                "measured_replays": 0,
+                "measured_capture_failures": 0,
+                "measured_fallbacks": 0,
+                "measured_padded_requests": 0,
+                "measured_padded_slots": 0,
+                "measured_replay_rate": 0.0,
             },
         },
         "correctness": {
@@ -161,6 +189,38 @@ class BenchmarkValidationTest(unittest.TestCase):
         self.assertEqual(kind, "config")
         self.assertEqual(errors, [])
 
+    def test_graph_configuration_rejects_unsupported_model_modes(self):
+        with (PROJECT_ROOT / "benchmarks/configs/graph_ab.json").open(
+            "r", encoding="utf-8"
+        ) as handle:
+            config = json.load(handle)
+        config["model"].update(
+            config_source="custom",
+            model_source="random_initialized",
+            dtype="float16",
+        )
+
+        errors, _kind, _status = validate_document(config, kind="config")
+
+        self.assertTrue(any("config_source" in error for error in errors))
+        self.assertTrue(any("model_source" in error for error in errors))
+        self.assertTrue(any("dtype" in error for error in errors))
+
+    def test_graph_configuration_rejects_unimplemented_workload_modes(self):
+        with (PROJECT_ROOT / "benchmarks/configs/graph_ab.json").open(
+            "r", encoding="utf-8"
+        ) as handle:
+            config = json.load(handle)
+        config["workload"]["name"] = "cold"
+        config["workload"]["arrival_pattern"] = "trace"
+        config["workload"]["cache_state"]["geometry"] = "cold"
+
+        errors, _kind, _status = validate_document(config, kind="config")
+
+        self.assertTrue(any("workload.name" in error for error in errors))
+        self.assertTrue(any("arrival_pattern" in error for error in errors))
+        self.assertTrue(any("cache_state.geometry" in error for error in errors))
+
     def test_valid_formal_result_is_accepted(self):
         errors, kind, _status = validate_document(make_valid_result())
 
@@ -183,21 +243,42 @@ class BenchmarkValidationTest(unittest.TestCase):
 
         self.assertTrue(any("p99_ms" in error for error in errors))
 
+    def test_environment_requires_dependency_identity(self):
+        result = deepcopy(make_valid_result())
+        result["environment"]["software"]["dependency_lock"]["sha256"] = "unknown"
+
+        errors, _kind, _status = validate_document(result)
+
+        self.assertTrue(any("dependency_lock.sha256" in error for error in errors))
+
     def test_passed_graph_result_rejects_fallback(self):
         result = deepcopy(make_valid_result())
         result["execution"]["graph_enabled"] = True
         result["execution"]["selected_graph_bucket"] = 1
         result["metrics"]["graph"].update(
+            requests=1021,
             captures=1,
             replays=1000,
             fallbacks=1,
             resident_graphs=1,
             static_buffer_bytes=1024,
+            measured_requests=1000,
+            measured_replays=1000,
+            measured_fallbacks=1,
+            measured_replay_rate=1.0,
         )
 
         errors, _kind, _status = validate_document(result)
 
         self.assertTrue(any("fallback" in error for error in errors))
+
+    def test_measured_graph_rate_must_match_counters(self):
+        result = deepcopy(make_valid_result())
+        result["metrics"]["graph"]["measured_replay_rate"] = 0.5
+
+        errors, _kind, _status = validate_document(result)
+
+        self.assertTrue(any("measured_replay_rate" in error for error in errors))
 
 
 if __name__ == "__main__":

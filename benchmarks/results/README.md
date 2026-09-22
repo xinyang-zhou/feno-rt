@@ -9,9 +9,11 @@ Diagnostic profiler 产物和 Historical 结果不能混入当前版本的 Forma
 results/
 └── <benchmark>/
     └── <YYYYMMDD>_<gpu-slug>_<commit12>/
-        ├── run_<mode>_batch<batch>_<repeat>.json
-        ├── workload.json
-        └── summary.json
+        ├── graph_<mode>_batch<batch>_run<repeat>.json
+        ├── logs/
+        ├── session.json
+        ├── summary.json
+        └── summary.md
 ```
 
 每个 run 文件必须自包含关键环境、模型、workload、计时、显存和正确性信息。机器绝对
@@ -31,4 +33,5 @@ python benchmarks/validate_result.py benchmarks/results/.../run_....json
 - failed correctness run 保留，但不进入 summary；
 - 不手工修改生成的 percentile、throughput 或 speedup；
 - summary 必须列出输入 run 路径和 SHA256；
+- summary 的 percentile 必须来自独立 run-level 指标，不能合并三轮 raw samples；
 - `.nsys-rep`、`.sqlite`、checkpoint 和模型权重不放入本目录。

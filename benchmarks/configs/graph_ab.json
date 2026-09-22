@@ -16,7 +16,26 @@
     "request_count": 1000,
     "batch_sizes": [1, 2, 4, 8],
     "arrival_pattern": "closed_loop",
-    "source_pattern": "deterministic_cycle",
+    "request_sequence": "repeat_fixed_batch",
+    "velocity": {
+      "generator": "physical_sine_cosine_v1",
+      "z_sine_amplitude": 0.45,
+      "z_cycles": 1.0,
+      "x_cosine_amplitude": 0.2,
+      "x_cycles": 2.0
+    },
+    "source_positions": [
+      [23.0, 40.0],
+      [23.0, 120.0],
+      [23.0, 200.0],
+      [23.0, 280.0],
+      [23.0, 360.0],
+      [23.0, 440.0],
+      [23.0, 520.0],
+      [23.0, 600.0]
+    ],
+    "positions_are_normalized": false,
+    "receiver_positions": "model_default",
     "frequency_hz": [10.0, 15.0, 20.0, 25.0],
     "cache_state": {
       "medium": "warm",
@@ -32,6 +51,11 @@
     "profiler_enabled": false,
     "save_raw_batch_latency_samples": true,
     "record_peak_memory": true
+  },
+  "execution": {
+    "tf32_enabled": false,
+    "cudnn_benchmark": false,
+    "deterministic_algorithms": false
   },
   "cuda_graph": {
     "modes": ["off", "on"],
