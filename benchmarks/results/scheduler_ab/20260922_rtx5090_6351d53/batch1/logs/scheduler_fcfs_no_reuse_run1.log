@@ -1,0 +1,9 @@
+command: python benchmarks/benchmark_scheduler_ab.py --config benchmarks/configs/scheduler_batch1_ab.json --policy fcfs --scenario no_reuse --repeat-index 1 --output /tmp/feno-public-run/validation/scheduler_batch1/scheduler_fcfs_no_reuse_run1.json
+return_code: 0
+
+[stdout]
+saved: /tmp/feno-public-run/validation/scheduler_batch1/scheduler_fcfs_no_reuse_run1.json
+validated against scheduler_result.schema.json
+status: passed
+
+[stderr]

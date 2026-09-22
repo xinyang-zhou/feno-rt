@@ -1,0 +1,2171 @@
+{
+  "schema_version": "1.0.0",
+  "result_class": "diagnostic",
+  "source_sqlite_sha256": "165f95d8c28621364bf88cd4ad6fda79622da916c99301ddecbfd3251cf728bd",
+  "window_ms": 196.644826,
+  "first_gpu_activity_ms": 151.180076,
+  "last_gpu_activity_ms": 194.78837,
+  "recorded_gpu_coverage_ms": 3.382918,
+  "recorded_gpu_coverage_percent": 1.7203188453074274,
+  "record_counts": {
+    "KERNEL": 357,
+    "MEMCPY": 51,
+    "MEMSET": 8
+  },
+  "cuda_api": [
+    {
+      "name": "cuKernelGetFunction",
+      "count": 40,
+      "total_ms": 0.050313,
+      "max_ms": 0.004403
+    },
+    {
+      "name": "cuLaunchKernel",
+      "count": 40,
+      "total_ms": 0.424701,
+      "max_ms": 0.016773
+    },
+    {
+      "name": "cudaDeviceSynchronize_v3020",
+      "count": 8,
+      "total_ms": 0.100687,
+      "max_ms": 0.021184
+    },
+    {
+      "name": "cudaEventCreateWithFlags_v3020",
+      "count": 18,
+      "total_ms": 0.024702,
+      "max_ms": 0.005132
+    },
+    {
+      "name": "cudaFree_v3020",
+      "count": 1,
+      "total_ms": 0.003951,
+      "max_ms": 0.003951
+    },
+    {
+      "name": "cudaLaunchKernel_v7000",
+      "count": 317,
+      "total_ms": 3.640156,
+      "max_ms": 0.069556
+    },
+    {
+      "name": "cudaMalloc_v3020",
+      "count": 3,
+      "total_ms": 0.406769,
+      "max_ms": 0.354781
+    },
+    {
+      "name": "cudaMemcpyAsync_v3020",
+      "count": 51,
+      "total_ms": 1.143622,
+      "max_ms": 0.095826
+    },
+    {
+      "name": "cudaMemsetAsync_v3020",
+      "count": 40,
+      "total_ms": 0.117951,
+      "max_ms": 0.016383
+    },
+    {
+      "name": "cudaStreamIsCapturing_v10000",
+      "count": 8,
+      "total_ms": 0.020385,
+      "max_ms": 0.003434
+    },
+    {
+      "name": "cudaStreamSynchronize_v3020",
+      "count": 40,
+      "total_ms": 0.26133,
+      "max_ms": 0.017645
+    }
+  ],
+  "gpu_intervals": [
+    {
+      "kind": "MEMCPY",
+      "start_ns": 151180076,
+      "end_ns": 151181740
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 151259051,
+      "end_ns": 151260619
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 151289643,
+      "end_ns": 151289931
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 151982150,
+      "end_ns": 151983974
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 152067461,
+      "end_ns": 152067717
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 152143332,
+      "end_ns": 152146436
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 152486562,
+      "end_ns": 152486850
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 152546593,
+      "end_ns": 152547713
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 152588353,
+      "end_ns": 152591969
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 152642880,
+      "end_ns": 152645216
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 152675232,
+      "end_ns": 152678848
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 152702848,
+      "end_ns": 152705184
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 152728384,
+      "end_ns": 152732000
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 152862975,
+      "end_ns": 152863871
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 152910622,
+      "end_ns": 152911294
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153000861,
+      "end_ns": 153001565
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153033117,
+      "end_ns": 153034653
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153075997,
+      "end_ns": 153076925
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153117405,
+      "end_ns": 153118237
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153153532,
+      "end_ns": 153154748
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153197948,
+      "end_ns": 153199196
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153233244,
+      "end_ns": 153234140
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153292507,
+      "end_ns": 153293531
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153332283,
+      "end_ns": 153333179
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153355003,
+      "end_ns": 153355867
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153420538,
+      "end_ns": 153421434
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153454170,
+      "end_ns": 153455194
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153478746,
+      "end_ns": 153479738
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153514873,
+      "end_ns": 153515801
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153542105,
+      "end_ns": 153543161
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 153573689,
+      "end_ns": 153574521
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 154474514,
+      "end_ns": 154476882
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 154576785,
+      "end_ns": 154577713
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 154678864,
+      "end_ns": 154680848
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 154810703,
+      "end_ns": 154817135
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 154925678,
+      "end_ns": 154935630
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155046093,
+      "end_ns": 155249484
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155249740,
+      "end_ns": 155259980
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155260268,
+      "end_ns": 155262219
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155272619,
+      "end_ns": 155279051
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155346347,
+      "end_ns": 155369931
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155404458,
+      "end_ns": 155409610
+    },
+    {
+      "kind": "MEMSET",
+      "start_ns": 155477802,
+      "end_ns": 155478058
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155487402,
+      "end_ns": 155527753
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155530313,
+      "end_ns": 155532297
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155604489,
+      "end_ns": 155606633
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155636105,
+      "end_ns": 155637001
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155684232,
+      "end_ns": 155686792
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155754312,
+      "end_ns": 155756808
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155781639,
+      "end_ns": 155784135
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 155850343,
+      "end_ns": 155890567
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 156041893,
+      "end_ns": 156051237
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 158618449,
+      "end_ns": 158620081
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 158663248,
+      "end_ns": 158665168
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 158692688,
+      "end_ns": 158692944
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 159269388,
+      "end_ns": 159271756
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 159336267,
+      "end_ns": 159336555
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 159414123,
+      "end_ns": 159417290
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 159729000,
+      "end_ns": 159729256
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 159785608,
+      "end_ns": 159787656
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 159826119,
+      "end_ns": 159829639
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 159861351,
+      "end_ns": 159864167
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 159890759,
+      "end_ns": 159894343
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 159916487,
+      "end_ns": 159919367
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 159941158,
+      "end_ns": 159944742
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160053285,
+      "end_ns": 160054213
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160097605,
+      "end_ns": 160098309
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160172932,
+      "end_ns": 160173668
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160201220,
+      "end_ns": 160202724
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160239204,
+      "end_ns": 160240132
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160277956,
+      "end_ns": 160278788
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160310243,
+      "end_ns": 160311459
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160341443,
+      "end_ns": 160342659
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160389859,
+      "end_ns": 160390787
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160449666,
+      "end_ns": 160450882
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160488866,
+      "end_ns": 160489730
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160511650,
+      "end_ns": 160512546
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160553761,
+      "end_ns": 160554689
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160584481,
+      "end_ns": 160585473
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160608065,
+      "end_ns": 160609057
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160639617,
+      "end_ns": 160640545
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160667073,
+      "end_ns": 160668129
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160697728,
+      "end_ns": 160698560
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 160970366,
+      "end_ns": 160973310
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161020414,
+      "end_ns": 161021342
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161078845,
+      "end_ns": 161081405
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161184348,
+      "end_ns": 161190876
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161265596,
+      "end_ns": 161275644
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161368987,
+      "end_ns": 161570841
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161571129,
+      "end_ns": 161581241
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161581497,
+      "end_ns": 161583481
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161584985,
+      "end_ns": 161591641
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161652537,
+      "end_ns": 161676057
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161691096,
+      "end_ns": 161696344
+    },
+    {
+      "kind": "MEMSET",
+      "start_ns": 161751192,
+      "end_ns": 161751480
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161761336,
+      "end_ns": 161801240
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161801528,
+      "end_ns": 161803512
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161867223,
+      "end_ns": 161869655
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161897975,
+      "end_ns": 161898903
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 161943542,
+      "end_ns": 161947254
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 162008854,
+      "end_ns": 162011350
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 162035094,
+      "end_ns": 162037590
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 162102197,
+      "end_ns": 162142421
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 162262452,
+      "end_ns": 162271444
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 164546978,
+      "end_ns": 164548514
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 164590625,
+      "end_ns": 164592225
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 164618881,
+      "end_ns": 164619137
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 165198525,
+      "end_ns": 165201213
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 165266812,
+      "end_ns": 165267100
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 165322716,
+      "end_ns": 165325916
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 165640825,
+      "end_ns": 165641081
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 165718584,
+      "end_ns": 165720024
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 165761624,
+      "end_ns": 165765208
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 165809592,
+      "end_ns": 165811448
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 165842839,
+      "end_ns": 165846423
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 165874839,
+      "end_ns": 165877143
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 165902679,
+      "end_ns": 165906231
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166013174,
+      "end_ns": 166014102
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166054646,
+      "end_ns": 166055350
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166120405,
+      "end_ns": 166121109
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166145589,
+      "end_ns": 166147125
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166181333,
+      "end_ns": 166182261
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166218420,
+      "end_ns": 166219252
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166246196,
+      "end_ns": 166247412
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166272980,
+      "end_ns": 166274196
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166304852,
+      "end_ns": 166305748
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166359475,
+      "end_ns": 166360499
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166411059,
+      "end_ns": 166411955
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166433811,
+      "end_ns": 166434707
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166471922,
+      "end_ns": 166472818
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166500146,
+      "end_ns": 166501138
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166523698,
+      "end_ns": 166524690
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166554162,
+      "end_ns": 166555026
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166579922,
+      "end_ns": 166580978
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166609489,
+      "end_ns": 166610289
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166718801,
+      "end_ns": 166721264
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166758384,
+      "end_ns": 166759312
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166810640,
+      "end_ns": 166812976
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166907183,
+      "end_ns": 166913615
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 166989774,
+      "end_ns": 166999950
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167079406,
+      "end_ns": 167281388
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167281676,
+      "end_ns": 167291852
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167292108,
+      "end_ns": 167294092
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167294380,
+      "end_ns": 167300780
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167329356,
+      "end_ns": 167353003
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167366091,
+      "end_ns": 167371243
+    },
+    {
+      "kind": "MEMSET",
+      "start_ns": 167443147,
+      "end_ns": 167443435
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167453739,
+      "end_ns": 167495178
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167495466,
+      "end_ns": 167497482
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167557866,
+      "end_ns": 167560202
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167588554,
+      "end_ns": 167589482
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167634313,
+      "end_ns": 167637673
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167700041,
+      "end_ns": 167702473
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167725353,
+      "end_ns": 167727848
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 167788200,
+      "end_ns": 167827432
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 167940231,
+      "end_ns": 167949223
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 170120341,
+      "end_ns": 170121909
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 170162581,
+      "end_ns": 170164117
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 170190261,
+      "end_ns": 170190549
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 170779344,
+      "end_ns": 170780784
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 170840912,
+      "end_ns": 170841200
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 170898447,
+      "end_ns": 170901487
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 171211917,
+      "end_ns": 171212173
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171269644,
+      "end_ns": 171272364
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171307564,
+      "end_ns": 171311244
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171346380,
+      "end_ns": 171350732
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171387211,
+      "end_ns": 171390859
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171417291,
+      "end_ns": 171421739
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171443275,
+      "end_ns": 171446923
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171551338,
+      "end_ns": 171552234
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171591178,
+      "end_ns": 171591850
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171656329,
+      "end_ns": 171657033
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171678793,
+      "end_ns": 171680329
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171712873,
+      "end_ns": 171713769
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171749097,
+      "end_ns": 171749929
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171776008,
+      "end_ns": 171777224
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171799432,
+      "end_ns": 171800648
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171829864,
+      "end_ns": 171830760
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171882823,
+      "end_ns": 171883815
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171914247,
+      "end_ns": 171915143
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171936199,
+      "end_ns": 171937063
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171971495,
+      "end_ns": 171972423
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 171997191,
+      "end_ns": 171998215
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172020454,
+      "end_ns": 172021446
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172049958,
+      "end_ns": 172050886
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172073510,
+      "end_ns": 172074566
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172102982,
+      "end_ns": 172103782
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172206917,
+      "end_ns": 172209381
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172247397,
+      "end_ns": 172248357
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172299684,
+      "end_ns": 172301700
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172413219,
+      "end_ns": 172419651
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172491971,
+      "end_ns": 172502115
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172582594,
+      "end_ns": 172785248
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172785504,
+      "end_ns": 172795552
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172795840,
+      "end_ns": 172797824
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172798080,
+      "end_ns": 172804544
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172832800,
+      "end_ns": 172856512
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172869408,
+      "end_ns": 172874528
+    },
+    {
+      "kind": "MEMSET",
+      "start_ns": 172924959,
+      "end_ns": 172925247
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172934495,
+      "end_ns": 172975007
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 172975263,
+      "end_ns": 172977215
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 173035102,
+      "end_ns": 173037214
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 173065534,
+      "end_ns": 173066430
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 173110238,
+      "end_ns": 173113118
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 173175485,
+      "end_ns": 173177917
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 173199261,
+      "end_ns": 173201725
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 173262525,
+      "end_ns": 173304380
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 173432859,
+      "end_ns": 173441787
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 175509643,
+      "end_ns": 175511211
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 175551594,
+      "end_ns": 175553162
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 175579146,
+      "end_ns": 175579434
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176142278,
+      "end_ns": 176144710
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 176207621,
+      "end_ns": 176207909
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176262917,
+      "end_ns": 176266117
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 176585730,
+      "end_ns": 176585986
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176641474,
+      "end_ns": 176643650
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176680513,
+      "end_ns": 176684161
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176714337,
+      "end_ns": 176717153
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176742657,
+      "end_ns": 176746337
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176768289,
+      "end_ns": 176771169
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176793984,
+      "end_ns": 176797600
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176916000,
+      "end_ns": 176916928
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 176955903,
+      "end_ns": 176956575
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177020287,
+      "end_ns": 177020991
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177042623,
+      "end_ns": 177044159
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177077630,
+      "end_ns": 177078558
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177115262,
+      "end_ns": 177116094
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177142174,
+      "end_ns": 177143390
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177166430,
+      "end_ns": 177167646
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177195933,
+      "end_ns": 177196829
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177248669,
+      "end_ns": 177249693
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177280573,
+      "end_ns": 177281469
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177302364,
+      "end_ns": 177303228
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177336668,
+      "end_ns": 177337596
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177361532,
+      "end_ns": 177362524
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177398108,
+      "end_ns": 177399100
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177428315,
+      "end_ns": 177429243
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177450331,
+      "end_ns": 177451387
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177480955,
+      "end_ns": 177481787
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177592826,
+      "end_ns": 177595194
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177632538,
+      "end_ns": 177633466
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177684569,
+      "end_ns": 177686937
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177780505,
+      "end_ns": 177786905
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177856984,
+      "end_ns": 177867096
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 177947479,
+      "end_ns": 178150038
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178150294,
+      "end_ns": 178160342
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178160630,
+      "end_ns": 178162646
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178162934,
+      "end_ns": 178169398
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178196981,
+      "end_ns": 178220725
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178234261,
+      "end_ns": 178239349
+    },
+    {
+      "kind": "MEMSET",
+      "start_ns": 178289397,
+      "end_ns": 178289653
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178299573,
+      "end_ns": 178339892
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178340180,
+      "end_ns": 178342100
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178441651,
+      "end_ns": 178443763
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178476403,
+      "end_ns": 178477331
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178524947,
+      "end_ns": 178528467
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178589810,
+      "end_ns": 178592242
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178614194,
+      "end_ns": 178616658
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 178680018,
+      "end_ns": 178722161
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 178840720,
+      "end_ns": 178849808
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 180910592,
+      "end_ns": 180912128
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 180953311,
+      "end_ns": 180954847
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 180980863,
+      "end_ns": 180981119
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 181580730,
+      "end_ns": 181583610
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 181649562,
+      "end_ns": 181649850
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 181704761,
+      "end_ns": 181708057
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 182025079,
+      "end_ns": 182025335
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182082998,
+      "end_ns": 182085846
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182120246,
+      "end_ns": 182123926
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182157654,
+      "end_ns": 182162742
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182186326,
+      "end_ns": 182190038
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182215349,
+      "end_ns": 182220149
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182240949,
+      "end_ns": 182244661
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182347732,
+      "end_ns": 182348660
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182402516,
+      "end_ns": 182403188
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182470291,
+      "end_ns": 182470963
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182493811,
+      "end_ns": 182495315
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182529811,
+      "end_ns": 182530739
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182567059,
+      "end_ns": 182567891
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182594322,
+      "end_ns": 182595538
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182617394,
+      "end_ns": 182618642
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182649042,
+      "end_ns": 182649938
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182701138,
+      "end_ns": 182702162
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182733553,
+      "end_ns": 182734417
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182754929,
+      "end_ns": 182755793
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182789969,
+      "end_ns": 182790865
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182815729,
+      "end_ns": 182816721
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182837552,
+      "end_ns": 182838544
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182866352,
+      "end_ns": 182867280
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182888336,
+      "end_ns": 182889392
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 182918224,
+      "end_ns": 182919056
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183032879,
+      "end_ns": 183035727
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183073391,
+      "end_ns": 183074319
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183126126,
+      "end_ns": 183128462
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183223181,
+      "end_ns": 183229613
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183298989,
+      "end_ns": 183308941
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183407724,
+      "end_ns": 183609962
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183610218,
+      "end_ns": 183620298
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183620586,
+      "end_ns": 183622634
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183622890,
+      "end_ns": 183629258
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183670634,
+      "end_ns": 183694218
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183708266,
+      "end_ns": 183713386
+    },
+    {
+      "kind": "MEMSET",
+      "start_ns": 183763369,
+      "end_ns": 183763657
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183773001,
+      "end_ns": 183812777
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183813065,
+      "end_ns": 183815017
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183876392,
+      "end_ns": 183878952
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183907656,
+      "end_ns": 183908584
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 183953512,
+      "end_ns": 183957192
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 184019015,
+      "end_ns": 184021447
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 184043175,
+      "end_ns": 184045639
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 184107622,
+      "end_ns": 184150022
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 184269029,
+      "end_ns": 184278117
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 186312693,
+      "end_ns": 186314261
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 186355349,
+      "end_ns": 186356885
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 186399348,
+      "end_ns": 186399604
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 186998991,
+      "end_ns": 187000399
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 187060815,
+      "end_ns": 187061071
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187119854,
+      "end_ns": 187122926
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 187452716,
+      "end_ns": 187452972
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187511019,
+      "end_ns": 187513707
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187548683,
+      "end_ns": 187552459
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187584235,
+      "end_ns": 187587691
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187611563,
+      "end_ns": 187615307
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187638090,
+      "end_ns": 187641162
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187663562,
+      "end_ns": 187667338
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187786153,
+      "end_ns": 187787081
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187826377,
+      "end_ns": 187827081
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187889224,
+      "end_ns": 187889928
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187912904,
+      "end_ns": 187914440
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187946984,
+      "end_ns": 187947912
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 187990056,
+      "end_ns": 187990856
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188017191,
+      "end_ns": 188018407
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188039719,
+      "end_ns": 188040935
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188071559,
+      "end_ns": 188072487
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188124678,
+      "end_ns": 188125734
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188155910,
+      "end_ns": 188156774
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188178470,
+      "end_ns": 188179334
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188212742,
+      "end_ns": 188213638
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188237830,
+      "end_ns": 188238822
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188260613,
+      "end_ns": 188261605
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188288677,
+      "end_ns": 188289541
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188310725,
+      "end_ns": 188311781
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188340389,
+      "end_ns": 188341221
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188460548,
+      "end_ns": 188462980
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188501252,
+      "end_ns": 188502212
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188553699,
+      "end_ns": 188555683
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188648866,
+      "end_ns": 188655298
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188724994,
+      "end_ns": 188735202
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 188814209,
+      "end_ns": 189016735
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189016991,
+      "end_ns": 189027135
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189027391,
+      "end_ns": 189029407
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189029663,
+      "end_ns": 189036159
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189064319,
+      "end_ns": 189088127
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189101183,
+      "end_ns": 189106271
+    },
+    {
+      "kind": "MEMSET",
+      "start_ns": 189157630,
+      "end_ns": 189157918
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189167294,
+      "end_ns": 189207102
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189207358,
+      "end_ns": 189209374
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189268381,
+      "end_ns": 189270941
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189299645,
+      "end_ns": 189300605
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189343965,
+      "end_ns": 189347581
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189424828,
+      "end_ns": 189427260
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189448572,
+      "end_ns": 189451068
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 189516315,
+      "end_ns": 189558491
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 189671194,
+      "end_ns": 189680762
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 191520908,
+      "end_ns": 191522476
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 191563147,
+      "end_ns": 191564683
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 191590827,
+      "end_ns": 191591115
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192160038,
+      "end_ns": 192162534
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 192225926,
+      "end_ns": 192226214
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192280421,
+      "end_ns": 192283589
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 192599715,
+      "end_ns": 192599971
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192656291,
+      "end_ns": 192658562
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192693858,
+      "end_ns": 192697570
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192727746,
+      "end_ns": 192730722
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192756642,
+      "end_ns": 192760354
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192782754,
+      "end_ns": 192785729
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192807841,
+      "end_ns": 192811521
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192912704,
+      "end_ns": 192913600
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 192951552,
+      "end_ns": 192952224
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193013632,
+      "end_ns": 193014368
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193036799,
+      "end_ns": 193038335
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193070047,
+      "end_ns": 193070975
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193106719,
+      "end_ns": 193107519
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193134431,
+      "end_ns": 193135615
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193156703,
+      "end_ns": 193157887
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193186910,
+      "end_ns": 193187806
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193240286,
+      "end_ns": 193241278
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193270526,
+      "end_ns": 193271390
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193293309,
+      "end_ns": 193294173
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193329117,
+      "end_ns": 193330013
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193354493,
+      "end_ns": 193355517
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193389629,
+      "end_ns": 193390621
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193419260,
+      "end_ns": 193420156
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193441340,
+      "end_ns": 193442396
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193471644,
+      "end_ns": 193472444
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193576347,
+      "end_ns": 193578715
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193615515,
+      "end_ns": 193616443
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193667482,
+      "end_ns": 193670010
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193762906,
+      "end_ns": 193769338
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193836441,
+      "end_ns": 193846745
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 193925336,
+      "end_ns": 194127703
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194127959,
+      "end_ns": 194138167
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194138423,
+      "end_ns": 194140407
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194140695,
+      "end_ns": 194147095
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194174998,
+      "end_ns": 194198710
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194210326,
+      "end_ns": 194215382
+    },
+    {
+      "kind": "MEMSET",
+      "start_ns": 194265782,
+      "end_ns": 194266070
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194276374,
+      "end_ns": 194316085
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194316373,
+      "end_ns": 194318325
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194391605,
+      "end_ns": 194393941
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194424020,
+      "end_ns": 194424948
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194469492,
+      "end_ns": 194472884
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194534964,
+      "end_ns": 194537428
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194558419,
+      "end_ns": 194560883
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 194623411,
+      "end_ns": 194665747
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 194779250,
+      "end_ns": 194788370
+    }
+  ],
+  "notes": [
+    "Intervals are clipped to feno.engine_window and expressed relative to its start.",
+    "Coverage merges overlapping kernel/copy/memset intervals and Graph trace envelopes.",
+    "Graph envelopes may include internal gaps; coverage is not GPU Active or SM utilization.",
+    "No process/thread identifiers, paths, kernel argument values, or binary report are exported."
+  ]
+}

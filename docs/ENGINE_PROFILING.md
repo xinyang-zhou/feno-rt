@@ -4,6 +4,10 @@
 `requests.json` 和可用 Perfetto/Chrome trace viewer 打开的 `trace.json`。默认使用真实
 checkpoint；`--toy` 是固定种子小模型，仅验证执行路径。所有结果标为 diagnostic。
 
+真实模型的四组配对采集、匿名时间线与解释见
+[RTX 5090 Engine 诊断](../benchmarks/results/engine_profile/20260922_rtx5090_6351d53/README.md)。
+该案例区分 admission 延迟、host 提交和 GPU 区间，说明为何不能仅凭总窗口缩短归因于双缓冲。
+
 ## 请求生命周期
 
 ```mermaid

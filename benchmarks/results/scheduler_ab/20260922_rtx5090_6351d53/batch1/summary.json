@@ -1,0 +1,2364 @@
+{
+  "schema_version": "1.0.0",
+  "summary_class": "formal",
+  "status": "passed",
+  "benchmark": "scheduler_ab",
+  "created_at_utc": "2026-09-22T15:27:22.142346+00:00",
+  "identity": {
+    "git_commit": "6351d53dec23e72c27c88b4c6650f7c4a9a572f3",
+    "config_sha256": "6f2707daffae534948f1c3828756535ccf4c0868879653f925c48a0f46f6d9c9",
+    "checkpoint_sha256": "4807ff56b2cb6968547083df8c715a0ad868ae8f4b8de1c51576374e57f94cf2",
+    "normalization_sha256": "b9f754ea9ff8e39b779c64740c71da1581025e0f86e1e950b986848775a3cc4a",
+    "velocity_sha256": {
+      "medium-0": "6f1d9d9c453168d7092555d371155c62924a418441ac1aa45cd6407133aa2d3c",
+      "medium-1": "713416ec7b71ad79613c03f95096656e1abbd26bf653b0c9b14a242db2ab85d4",
+      "medium-2": "e7f8f5e1d9c8be97f86c393625b5e3a4f9ae83578dee32bf82b8b489e2d168cc",
+      "medium-3": "99f12e20f2a6b9a412a16496d9afc908685a93f71cc8f73b88305f7882bcf861"
+    },
+    "gpu_uuid": "GPU-ANON-0",
+    "gpu_name": "NVIDIA GeForce RTX 5090",
+    "gpu_logical_index": 0,
+    "gpu_physical_index": 0,
+    "gpu_total_memory_bytes": 33670758400,
+    "gpu_persistence_mode": "Disabled",
+    "gpu_power_limit_watts": 575.0,
+    "gpu_application_clocks": "graphics=[Requested functionality has been deprecated] MHz,memory=[Requested functionality has been deprecated] MHz",
+    "system_gpu_count": 4,
+    "visible_cuda_device_count": 1,
+    "cpu_model": "Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz",
+    "logical_cpu_count": 112,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111
+    ],
+    "system_memory_bytes": 134763077632,
+    "python": "3.9.25",
+    "pytorch": "2.8.0+cu128",
+    "cuda_runtime": "12.8",
+    "cudnn": "91002",
+    "driver": "595.84",
+    "operating_system": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "kernel": "6.8.0-139-generic",
+    "torch_num_threads": 56,
+    "torch_num_interop_threads": 56,
+    "dependency_lock_sha256": "9bf9bde6f05fda97132b8dddb5228b953f7c58561138d3d9d727e6c4bebe7346",
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "CUDA_DEVICE_ORDER": null,
+      "CUBLAS_WORKSPACE_CONFIG": null,
+      "PYTORCH_CUDA_ALLOC_CONF": null,
+      "CUDA_LAUNCH_BLOCKING": null,
+      "CUDA_MODULE_LOADING": "LAZY",
+      "NVIDIA_TF32_OVERRIDE": null,
+      "OMP_NUM_THREADS": null,
+      "MKL_NUM_THREADS": null
+    },
+    "model_config_sha256": "150196b1d19fa34da3736ff004654b3220ed02422caf8ca4184a0ae92dd98fd5",
+    "parameter_count": 95659456,
+    "parameter_dtype": "torch.float32"
+  },
+  "protocol": {
+    "expected_run_count": 24,
+    "observed_run_count": 24,
+    "passed_run_count": 24,
+    "independent_runs_per_configuration": 3,
+    "request_count_per_run": 1000,
+    "raw_samples_pooled": false,
+    "profiler_enabled": false,
+    "cuda_graph_enabled": false,
+    "slo_timeout_us": 30000000,
+    "shared_gpu_observed": false
+  },
+  "missing_matrix_entries": [],
+  "failed_run_ids": [],
+  "run_health": [
+    {
+      "run_id": "scheduler_cache_aware_hotspot_reuse_run1",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_hotspot_reuse_run2",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_hotspot_reuse_run3",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_long_tail_reuse_run1",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_long_tail_reuse_run2",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_long_tail_reuse_run3",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_no_reuse_run1",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_no_reuse_run2",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_no_reuse_run3",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_uniform_reuse_run1",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_uniform_reuse_run2",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_cache_aware_uniform_reuse_run3",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_hotspot_reuse_run1",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_hotspot_reuse_run2",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_hotspot_reuse_run3",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_long_tail_reuse_run1",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_long_tail_reuse_run2",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_long_tail_reuse_run3",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_no_reuse_run1",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_no_reuse_run2",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_no_reuse_run3",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_uniform_reuse_run1",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_uniform_reuse_run2",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    },
+    {
+      "run_id": "scheduler_fcfs_uniform_reuse_run3",
+      "status": "passed",
+      "requests": {
+        "submitted": 1000,
+        "succeeded": 1000,
+        "failed": 0,
+        "cancelled": 0,
+        "timed_out": 0,
+        "pending": 0
+      },
+      "mean_batch_size": 1.0,
+      "correctness_passed": true,
+      "missing_probe_indices": [],
+      "notes": []
+    }
+  ],
+  "inputs": [
+    {
+      "run_id": "scheduler_cache_aware_no_reuse_run1",
+      "path": "scheduler_cache_aware_no_reuse_run1.json",
+      "sha256": "1c6ca9e64f8da7f1be641b3bed80c53427888833a87581820973d834e22c77ea",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "no_reuse",
+      "repeat_index": 1
+    },
+    {
+      "run_id": "scheduler_fcfs_no_reuse_run1",
+      "path": "scheduler_fcfs_no_reuse_run1.json",
+      "sha256": "ff31bdb62ed1801048b6063c5e6d98927cd81d311cc5efccee88eb96d7eb2f9c",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "no_reuse",
+      "repeat_index": 1
+    },
+    {
+      "run_id": "scheduler_cache_aware_no_reuse_run2",
+      "path": "scheduler_cache_aware_no_reuse_run2.json",
+      "sha256": "81bef2e979e4fc58d4e7953ce746c461f4ce04876f671682e8838d798983f9b3",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "no_reuse",
+      "repeat_index": 2
+    },
+    {
+      "run_id": "scheduler_fcfs_no_reuse_run2",
+      "path": "scheduler_fcfs_no_reuse_run2.json",
+      "sha256": "f5562b576419ae78f6ce22389c568327e53918134223dbe05ceb2d0eeeec91cd",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "no_reuse",
+      "repeat_index": 2
+    },
+    {
+      "run_id": "scheduler_cache_aware_no_reuse_run3",
+      "path": "scheduler_cache_aware_no_reuse_run3.json",
+      "sha256": "7c3d6af74186100d955c9f855d33cad523debcbd0508ffbfbafbcf4d9ede5a60",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "no_reuse",
+      "repeat_index": 3
+    },
+    {
+      "run_id": "scheduler_fcfs_no_reuse_run3",
+      "path": "scheduler_fcfs_no_reuse_run3.json",
+      "sha256": "4a10dba6a65b8697601247a5bee8f1042e6b26379040a36fca96b7d87dfa4aa5",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "no_reuse",
+      "repeat_index": 3
+    },
+    {
+      "run_id": "scheduler_cache_aware_uniform_reuse_run1",
+      "path": "scheduler_cache_aware_uniform_reuse_run1.json",
+      "sha256": "86ac210e0c6ca747f8ba24b2d2a29a37bd8b53db328dba44a9955360349bca9e",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "uniform_reuse",
+      "repeat_index": 1
+    },
+    {
+      "run_id": "scheduler_fcfs_uniform_reuse_run1",
+      "path": "scheduler_fcfs_uniform_reuse_run1.json",
+      "sha256": "fcf5b3ad6f8cf859ac7473edf924531581059725220276f58706185604035a18",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "uniform_reuse",
+      "repeat_index": 1
+    },
+    {
+      "run_id": "scheduler_cache_aware_uniform_reuse_run2",
+      "path": "scheduler_cache_aware_uniform_reuse_run2.json",
+      "sha256": "52d815a6683cdc762fc48017059cea0c123b7b3f6c35ef2c5b9957bc3bbde094",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "uniform_reuse",
+      "repeat_index": 2
+    },
+    {
+      "run_id": "scheduler_fcfs_uniform_reuse_run2",
+      "path": "scheduler_fcfs_uniform_reuse_run2.json",
+      "sha256": "5490f13b66856c6231ea76484e0d630571cbd6d071cf0b2bd458ce1d16754ce1",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "uniform_reuse",
+      "repeat_index": 2
+    },
+    {
+      "run_id": "scheduler_cache_aware_uniform_reuse_run3",
+      "path": "scheduler_cache_aware_uniform_reuse_run3.json",
+      "sha256": "3eab59521dc38d9693e6afdf0638fc57f491cea4297d9048ebd94c9932173c34",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "uniform_reuse",
+      "repeat_index": 3
+    },
+    {
+      "run_id": "scheduler_fcfs_uniform_reuse_run3",
+      "path": "scheduler_fcfs_uniform_reuse_run3.json",
+      "sha256": "ee9cf9442cb0f512a2c36a935a9de39b3cb12c5ae37be5b2eafe17e095af922b",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "uniform_reuse",
+      "repeat_index": 3
+    },
+    {
+      "run_id": "scheduler_cache_aware_long_tail_reuse_run1",
+      "path": "scheduler_cache_aware_long_tail_reuse_run1.json",
+      "sha256": "e42c6d1603904c6aad1479615a8f769009f947a539996c8f404eff04e755aab1",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 1
+    },
+    {
+      "run_id": "scheduler_fcfs_long_tail_reuse_run1",
+      "path": "scheduler_fcfs_long_tail_reuse_run1.json",
+      "sha256": "ad9157de63baa163540f9526a05bf194c0f2ffaa8871ca31aeb11ba63a0caf00",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 1
+    },
+    {
+      "run_id": "scheduler_cache_aware_long_tail_reuse_run2",
+      "path": "scheduler_cache_aware_long_tail_reuse_run2.json",
+      "sha256": "88fa750a398b35f3a6f7c811747d0b288bf158f977c400b5bdd29271c50cac1d",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 2
+    },
+    {
+      "run_id": "scheduler_fcfs_long_tail_reuse_run2",
+      "path": "scheduler_fcfs_long_tail_reuse_run2.json",
+      "sha256": "bcb4e16121bc64faa172c6be1d69b1b5eeecd8d4a493028a06314522b8cbdfc6",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 2
+    },
+    {
+      "run_id": "scheduler_cache_aware_long_tail_reuse_run3",
+      "path": "scheduler_cache_aware_long_tail_reuse_run3.json",
+      "sha256": "50612dd990d0f7835c4177058320a9e67f920389f12e319694427775a55cd5a7",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 3
+    },
+    {
+      "run_id": "scheduler_fcfs_long_tail_reuse_run3",
+      "path": "scheduler_fcfs_long_tail_reuse_run3.json",
+      "sha256": "84be966af81ac1af5c6e037f5d7c28b4f6cb1a9cdafbceb4dba5c588ff54a786",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 3
+    },
+    {
+      "run_id": "scheduler_cache_aware_hotspot_reuse_run1",
+      "path": "scheduler_cache_aware_hotspot_reuse_run1.json",
+      "sha256": "aacce369bddb9bfb13b31f9e9b6162f7e4b14ab1cd0c2f4fb95a2dda882b31a2",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 1
+    },
+    {
+      "run_id": "scheduler_fcfs_hotspot_reuse_run1",
+      "path": "scheduler_fcfs_hotspot_reuse_run1.json",
+      "sha256": "e30b4ef937dee69a1eecd38143951b709f6ea16de326104a52342b2fc1a07ace",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 1
+    },
+    {
+      "run_id": "scheduler_cache_aware_hotspot_reuse_run2",
+      "path": "scheduler_cache_aware_hotspot_reuse_run2.json",
+      "sha256": "030737c3c6c536f6995933cf382a8d775735ec7cb982ebaa35c4d4730a8629ba",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 2
+    },
+    {
+      "run_id": "scheduler_fcfs_hotspot_reuse_run2",
+      "path": "scheduler_fcfs_hotspot_reuse_run2.json",
+      "sha256": "091c968fddf1254cadd70029d4e7c18325350c053d7c813e324ebac1caa748be",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 2
+    },
+    {
+      "run_id": "scheduler_cache_aware_hotspot_reuse_run3",
+      "path": "scheduler_cache_aware_hotspot_reuse_run3.json",
+      "sha256": "16b2068cfb3ae145e1cf8efa97e21d3d38d260a6af46cf461cfd32d6b2c0fffc",
+      "status": "passed",
+      "policy": "cache_aware",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 3
+    },
+    {
+      "run_id": "scheduler_fcfs_hotspot_reuse_run3",
+      "path": "scheduler_fcfs_hotspot_reuse_run3.json",
+      "sha256": "b8acd21190cfce4473adad4e55ea51f03b9824d31bd07e02513d3e79ff067a93",
+      "status": "passed",
+      "policy": "fcfs",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 3
+    }
+  ],
+  "groups": [
+    {
+      "scenario": "no_reuse",
+      "policy": "fcfs",
+      "run_count": 3,
+      "reuse": {
+        "geometry_reuse_ratio": 0.0,
+        "medium_reuse_ratio": 0.996,
+        "unique_geometries": 1000,
+        "unique_mediums": 4,
+        "unique_wavelets": 1000,
+        "wavelet_reuse_ratio": 0.0
+      },
+      "metrics": {
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 106.8747695699812,
+          "min": 106.52473616475052,
+          "max": 121.23381380619817,
+          "cv_percent": 6.143660878249113
+        },
+        "queue_p50_ms": {
+          "count": 3,
+          "median": 5051.3371019999995,
+          "min": 5024.540398,
+          "max": 5108.072040999999,
+          "cv_percent": 0.6880440069668159
+        },
+        "queue_p95_ms": {
+          "count": 3,
+          "median": 8588.96115785,
+          "min": 7689.7226984,
+          "max": 8801.001175,
+          "cv_percent": 5.762332922148751
+        },
+        "queue_p99_ms": {
+          "count": 3,
+          "median": 8872.70664174,
+          "min": 7871.37578625,
+          "max": 9009.6979436,
+          "cv_percent": 5.910734727521515
+        },
+        "end_to_end_p50_ms": {
+          "count": 3,
+          "median": 5060.6679540000005,
+          "min": 5033.700866499999,
+          "max": 5117.486851,
+          "cv_percent": 0.688706145865838
+        },
+        "end_to_end_p95_ms": {
+          "count": 3,
+          "median": 8596.655670749999,
+          "min": 7694.885964599999,
+          "max": 8809.206956999999,
+          "cv_percent": 5.773391802130874
+        },
+        "end_to_end_p99_ms": {
+          "count": 3,
+          "median": 8880.26236607,
+          "min": 7876.41691087,
+          "max": 9014.856955629999,
+          "cv_percent": 5.912598309595641
+        },
+        "mean_batch_size": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "effective_batch_fill_ratio": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "geometry_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_cache_hit_rate": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "scheduler_us_per_request": {
+          "count": 3,
+          "median": 186.600996,
+          "min": 183.096625,
+          "max": 190.072338,
+          "cv_percent": 1.5262520801817656
+        },
+        "starvation_guard_requests": {
+          "count": 3,
+          "median": 1000.0,
+          "min": 1000.0,
+          "max": 1000.0,
+          "cv_percent": 0.0
+        },
+        "deadline_violations": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 1759471616.0,
+          "min": 1759471616.0,
+          "max": 1759471616.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "scenario": "no_reuse",
+      "policy": "cache_aware",
+      "run_count": 3,
+      "reuse": {
+        "geometry_reuse_ratio": 0.0,
+        "medium_reuse_ratio": 0.996,
+        "unique_geometries": 1000,
+        "unique_mediums": 4,
+        "unique_wavelets": 1000,
+        "wavelet_reuse_ratio": 0.0
+      },
+      "metrics": {
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 68.75904292116472,
+          "min": 65.80851975220378,
+          "max": 69.64886948214118,
+          "cv_percent": 2.4111618288471566
+        },
+        "queue_p50_ms": {
+          "count": 3,
+          "median": 9295.593163,
+          "min": 9161.6510595,
+          "max": 9645.669871999999,
+          "cv_percent": 2.1783623717015232
+        },
+        "queue_p95_ms": {
+          "count": 3,
+          "median": 13824.816766599999,
+          "min": 13677.44862065,
+          "max": 14279.3985735,
+          "cv_percent": 1.8395002956106992
+        },
+        "queue_p99_ms": {
+          "count": 3,
+          "median": 14132.29205212,
+          "min": 13940.88480689,
+          "max": 14569.6049185,
+          "cv_percent": 1.8512161614185878
+        },
+        "end_to_end_p50_ms": {
+          "count": 3,
+          "median": 9309.775614499998,
+          "min": 9176.1815705,
+          "max": 9660.652909,
+          "cv_percent": 2.1776089356662527
+        },
+        "end_to_end_p95_ms": {
+          "count": 3,
+          "median": 13833.268849349999,
+          "min": 13684.8931593,
+          "max": 14288.191750049999,
+          "cv_percent": 1.8418864649739404
+        },
+        "end_to_end_p99_ms": {
+          "count": 3,
+          "median": 14140.05883169,
+          "min": 13947.76338494,
+          "max": 14577.81667874,
+          "cv_percent": 1.8537962651265087
+        },
+        "mean_batch_size": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "effective_batch_fill_ratio": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "geometry_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_cache_hit_rate": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "scheduler_us_per_request": {
+          "count": 3,
+          "median": 2578.557391,
+          "min": 2562.2277769999996,
+          "max": 2677.469915,
+          "cv_percent": 1.95369928011085
+        },
+        "starvation_guard_requests": {
+          "count": 3,
+          "median": 1000.0,
+          "min": 1000.0,
+          "max": 1000.0,
+          "cv_percent": 0.0
+        },
+        "deadline_violations": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 1759471616.0,
+          "min": 1759471616.0,
+          "max": 1759471616.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "scenario": "uniform_reuse",
+      "policy": "fcfs",
+      "run_count": 3,
+      "reuse": {
+        "geometry_reuse_ratio": 0.5609999999999999,
+        "medium_reuse_ratio": 0.996,
+        "unique_geometries": 439,
+        "unique_mediums": 4,
+        "unique_wavelets": 64,
+        "wavelet_reuse_ratio": 0.9359999999999999
+      },
+      "metrics": {
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 131.3866833913646,
+          "min": 129.74621805304997,
+          "max": 131.41713958301625,
+          "cv_percent": 0.5965611912551805
+        },
+        "queue_p50_ms": {
+          "count": 3,
+          "median": 4643.7599064999995,
+          "min": 4614.100496,
+          "max": 4679.0482835,
+          "cv_percent": 0.5714609507503101
+        },
+        "queue_p95_ms": {
+          "count": 3,
+          "median": 7102.3339139,
+          "min": 7097.973769300001,
+          "max": 7162.1394718,
+          "cv_percent": 0.4111112306392762
+        },
+        "queue_p99_ms": {
+          "count": 3,
+          "median": 7242.072959509999,
+          "min": 7240.74987718,
+          "max": 7315.61912087,
+          "cv_percent": 0.48149335258480686
+        },
+        "end_to_end_p50_ms": {
+          "count": 3,
+          "median": 4650.272179,
+          "min": 4620.5405365,
+          "max": 4685.801049,
+          "cv_percent": 0.5734380138217114
+        },
+        "end_to_end_p95_ms": {
+          "count": 3,
+          "median": 7106.07861415,
+          "min": 7101.9351325,
+          "max": 7166.3271883,
+          "cv_percent": 0.41301957847223164
+        },
+        "end_to_end_p99_ms": {
+          "count": 3,
+          "median": 7245.77002897,
+          "min": 7244.35237472,
+          "max": 7319.64073109,
+          "cv_percent": 0.4836626205748618
+        },
+        "mean_batch_size": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "effective_batch_fill_ratio": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "geometry_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate": {
+          "count": 3,
+          "median": 0.561,
+          "min": 0.561,
+          "max": 0.561,
+          "cv_percent": 0.0
+        },
+        "wavelet_cache_hit_rate": {
+          "count": 3,
+          "median": 0.936,
+          "min": 0.936,
+          "max": 0.936,
+          "cv_percent": 0.0
+        },
+        "scheduler_us_per_request": {
+          "count": 3,
+          "median": 191.45649799999998,
+          "min": 187.390175,
+          "max": 192.517395,
+          "cv_percent": 1.160274993035627
+        },
+        "starvation_guard_requests": {
+          "count": 3,
+          "median": 1000.0,
+          "min": 1000.0,
+          "max": 1000.0,
+          "cv_percent": 0.0
+        },
+        "deadline_violations": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 1122725888.0,
+          "min": 1122725888.0,
+          "max": 1122725888.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "scenario": "uniform_reuse",
+      "policy": "cache_aware",
+      "run_count": 3,
+      "reuse": {
+        "geometry_reuse_ratio": 0.5609999999999999,
+        "medium_reuse_ratio": 0.996,
+        "unique_geometries": 439,
+        "unique_mediums": 4,
+        "unique_wavelets": 64,
+        "wavelet_reuse_ratio": 0.9359999999999999
+      },
+      "metrics": {
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 81.43041711051336,
+          "min": 79.62073520142876,
+          "max": 82.08244370561351,
+          "cv_percent": 1.2849377026879958
+        },
+        "queue_p50_ms": {
+          "count": 3,
+          "median": 7827.778069,
+          "min": 7726.799852,
+          "max": 8008.467413,
+          "cv_percent": 1.4834466668442325
+        },
+        "queue_p95_ms": {
+          "count": 3,
+          "median": 11744.998710200001,
+          "min": 11651.1001906,
+          "max": 12008.37438585,
+          "cv_percent": 1.2814292927074131
+        },
+        "queue_p99_ms": {
+          "count": 3,
+          "median": 11908.89366427,
+          "min": 11811.97170172,
+          "max": 12168.281244,
+          "cv_percent": 1.2573615432380363
+        },
+        "end_to_end_p50_ms": {
+          "count": 3,
+          "median": 7837.9988905,
+          "min": 7737.3154655,
+          "max": 8019.1691395,
+          "cv_percent": 1.4827999028995567
+        },
+        "end_to_end_p95_ms": {
+          "count": 3,
+          "median": 11749.7479037,
+          "min": 11655.8226946,
+          "max": 12012.8253435,
+          "cv_percent": 1.2798486412227417
+        },
+        "end_to_end_p99_ms": {
+          "count": 3,
+          "median": 11913.166464909998,
+          "min": 11815.868139769998,
+          "max": 12172.1491143,
+          "cv_percent": 1.2564548217589167
+        },
+        "mean_batch_size": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "effective_batch_fill_ratio": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "geometry_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate": {
+          "count": 3,
+          "median": 0.561,
+          "min": 0.561,
+          "max": 0.561,
+          "cv_percent": 0.0
+        },
+        "wavelet_cache_hit_rate": {
+          "count": 3,
+          "median": 0.936,
+          "min": 0.936,
+          "max": 0.936,
+          "cv_percent": 0.0
+        },
+        "scheduler_us_per_request": {
+          "count": 3,
+          "median": 2551.174855,
+          "min": 2549.857552,
+          "max": 2607.070327,
+          "cv_percent": 1.0378154266045605
+        },
+        "starvation_guard_requests": {
+          "count": 3,
+          "median": 1000.0,
+          "min": 1000.0,
+          "max": 1000.0,
+          "cv_percent": 0.0
+        },
+        "deadline_violations": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 1122725888.0,
+          "min": 1122725888.0,
+          "max": 1122725888.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "scenario": "long_tail_reuse",
+      "policy": "fcfs",
+      "run_count": 3,
+      "reuse": {
+        "geometry_reuse_ratio": 0.8180000000000001,
+        "medium_reuse_ratio": 0.996,
+        "unique_geometries": 182,
+        "unique_mediums": 4,
+        "unique_wavelets": 32,
+        "wavelet_reuse_ratio": 0.968
+      },
+      "metrics": {
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 136.58316694728686,
+          "min": 134.9376440280642,
+          "max": 137.90052898367117,
+          "cv_percent": 0.8881290162820228
+        },
+        "queue_p50_ms": {
+          "count": 3,
+          "median": 4416.046802,
+          "min": 4393.7340834999995,
+          "max": 4487.2428275,
+          "cv_percent": 0.8996523752636746
+        },
+        "queue_p95_ms": {
+          "count": 3,
+          "median": 6820.59428765,
+          "min": 6762.2663796,
+          "max": 6917.940710149999,
+          "cv_percent": 0.9397060127843322
+        },
+        "queue_p99_ms": {
+          "count": 3,
+          "median": 6957.21902517,
+          "min": 6889.36377879,
+          "max": 7050.06124582,
+          "cv_percent": 0.945629732634425
+        },
+        "end_to_end_p50_ms": {
+          "count": 3,
+          "median": 4422.9824825,
+          "min": 4400.4324235,
+          "max": 4494.19924,
+          "cv_percent": 0.9002029872619208
+        },
+        "end_to_end_p95_ms": {
+          "count": 3,
+          "median": 6824.43454865,
+          "min": 6766.02474995,
+          "max": 6921.923433699999,
+          "cv_percent": 0.9405311060536315
+        },
+        "end_to_end_p99_ms": {
+          "count": 3,
+          "median": 6960.998737579999,
+          "min": 6892.9427971800005,
+          "max": 7053.61528979,
+          "cv_percent": 0.9448625854260589
+        },
+        "mean_batch_size": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "effective_batch_fill_ratio": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "geometry_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate": {
+          "count": 3,
+          "median": 0.818,
+          "min": 0.818,
+          "max": 0.818,
+          "cv_percent": 0.0
+        },
+        "wavelet_cache_hit_rate": {
+          "count": 3,
+          "median": 0.968,
+          "min": 0.968,
+          "max": 0.968,
+          "cv_percent": 0.0
+        },
+        "scheduler_us_per_request": {
+          "count": 3,
+          "median": 184.006701,
+          "min": 182.53055300000003,
+          "max": 190.219074,
+          "cv_percent": 1.795093327051888
+        },
+        "starvation_guard_requests": {
+          "count": 3,
+          "median": 1000.0,
+          "min": 1000.0,
+          "max": 1000.0,
+          "cv_percent": 0.0
+        },
+        "deadline_violations": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 980285440.0,
+          "min": 980285440.0,
+          "max": 980285440.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "scenario": "long_tail_reuse",
+      "policy": "cache_aware",
+      "run_count": 3,
+      "reuse": {
+        "geometry_reuse_ratio": 0.8180000000000001,
+        "medium_reuse_ratio": 0.996,
+        "unique_geometries": 182,
+        "unique_mediums": 4,
+        "unique_wavelets": 32,
+        "wavelet_reuse_ratio": 0.968
+      },
+      "metrics": {
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 90.870677659704,
+          "min": 89.52298086260738,
+          "max": 90.92757344283119,
+          "cv_percent": 0.7177505327917976
+        },
+        "queue_p50_ms": {
+          "count": 3,
+          "median": 6669.582707,
+          "min": 6658.698442999999,
+          "max": 6778.4786755000005,
+          "cv_percent": 0.8069278457283103
+        },
+        "queue_p95_ms": {
+          "count": 3,
+          "median": 10467.3932869,
+          "min": 10447.266548149999,
+          "max": 10613.604049900001,
+          "cv_percent": 0.7053209243193594
+        },
+        "queue_p99_ms": {
+          "count": 3,
+          "median": 10637.08335464,
+          "min": 10609.82040698,
+          "max": 10781.519590999998,
+          "cv_percent": 0.7056902757434225
+        },
+        "end_to_end_p50_ms": {
+          "count": 3,
+          "median": 6680.1975615,
+          "min": 6669.188225,
+          "max": 6789.172720500001,
+          "cv_percent": 0.8067083888809642
+        },
+        "end_to_end_p95_ms": {
+          "count": 3,
+          "median": 10472.34535165,
+          "min": 10452.2358353,
+          "max": 10618.68317385,
+          "cv_percent": 0.7055058839696815
+        },
+        "end_to_end_p99_ms": {
+          "count": 3,
+          "median": 10641.32496964,
+          "min": 10614.103691699998,
+          "max": 10785.80213739,
+          "cv_percent": 0.7054724167172111
+        },
+        "mean_batch_size": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "effective_batch_fill_ratio": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "geometry_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate": {
+          "count": 3,
+          "median": 0.818,
+          "min": 0.818,
+          "max": 0.818,
+          "cv_percent": 0.0
+        },
+        "wavelet_cache_hit_rate": {
+          "count": 3,
+          "median": 0.968,
+          "min": 0.968,
+          "max": 0.968,
+          "cv_percent": 0.0
+        },
+        "scheduler_us_per_request": {
+          "count": 3,
+          "median": 2531.5287710000002,
+          "min": 2520.129694,
+          "max": 2569.539464,
+          "cv_percent": 0.8315297286978208
+        },
+        "starvation_guard_requests": {
+          "count": 3,
+          "median": 1000.0,
+          "min": 1000.0,
+          "max": 1000.0,
+          "cv_percent": 0.0
+        },
+        "deadline_violations": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 980285440.0,
+          "min": 980285440.0,
+          "max": 980285440.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "scenario": "hotspot_reuse",
+      "policy": "fcfs",
+      "run_count": 3,
+      "reuse": {
+        "geometry_reuse_ratio": 0.9390000000000001,
+        "medium_reuse_ratio": 0.996,
+        "unique_geometries": 61,
+        "unique_mediums": 4,
+        "unique_wavelets": 8,
+        "wavelet_reuse_ratio": 0.992
+      },
+      "metrics": {
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 139.09582450960946,
+          "min": 134.5022879837193,
+          "max": 141.97673800593117,
+          "cv_percent": 2.221993955143769
+        },
+        "queue_p50_ms": {
+          "count": 3,
+          "median": 4300.130465,
+          "min": 4222.434665000001,
+          "max": 4464.0599845,
+          "cv_percent": 2.326595144332734
+        },
+        "queue_p95_ms": {
+          "count": 3,
+          "median": 6688.88979745,
+          "min": 6554.69172995,
+          "max": 6740.629293249999,
+          "cv_percent": 1.1762889403568573
+        },
+        "queue_p99_ms": {
+          "count": 3,
+          "median": 6822.07642695,
+          "min": 6683.17734859,
+          "max": 6863.01311229,
+          "cv_percent": 1.1335714839611644
+        },
+        "end_to_end_p50_ms": {
+          "count": 3,
+          "median": 4307.233990000001,
+          "min": 4229.568176500001,
+          "max": 4471.298342,
+          "cv_percent": 2.323901860292684
+        },
+        "end_to_end_p95_ms": {
+          "count": 3,
+          "median": 6692.9306084,
+          "min": 6558.5700418999995,
+          "max": 6745.051891,
+          "cv_percent": 1.1786011177515254
+        },
+        "end_to_end_p99_ms": {
+          "count": 3,
+          "median": 6825.87985597,
+          "min": 6687.04317819,
+          "max": 6867.05811467,
+          "cv_percent": 1.1336314252780375
+        },
+        "mean_batch_size": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "effective_batch_fill_ratio": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "geometry_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate": {
+          "count": 3,
+          "median": 0.939,
+          "min": 0.939,
+          "max": 0.939,
+          "cv_percent": 0.0
+        },
+        "wavelet_cache_hit_rate": {
+          "count": 3,
+          "median": 0.992,
+          "min": 0.992,
+          "max": 0.992,
+          "cv_percent": 0.0
+        },
+        "scheduler_us_per_request": {
+          "count": 3,
+          "median": 182.695022,
+          "min": 182.256117,
+          "max": 183.38603099999997,
+          "cv_percent": 0.25445856534125844
+        },
+        "starvation_guard_requests": {
+          "count": 3,
+          "median": 1000.0,
+          "min": 1000.0,
+          "max": 1000.0,
+          "cv_percent": 0.0
+        },
+        "deadline_violations": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 899170304.0,
+          "min": 899170304.0,
+          "max": 899170304.0,
+          "cv_percent": 0.0
+        }
+      }
+    },
+    {
+      "scenario": "hotspot_reuse",
+      "policy": "cache_aware",
+      "run_count": 3,
+      "reuse": {
+        "geometry_reuse_ratio": 0.9390000000000001,
+        "medium_reuse_ratio": 0.996,
+        "unique_geometries": 61,
+        "unique_mediums": 4,
+        "unique_wavelets": 8,
+        "wavelet_reuse_ratio": 0.992
+      },
+      "metrics": {
+        "throughput_requests_per_second": {
+          "count": 3,
+          "median": 95.888187653352,
+          "min": 95.55261104366532,
+          "max": 97.19480404722488,
+          "cv_percent": 0.7363064486796392
+        },
+        "queue_p50_ms": {
+          "count": 3,
+          "median": 6250.8125235,
+          "min": 6128.624954999999,
+          "max": 6282.220883,
+          "cv_percent": 1.065104614490881
+        },
+        "queue_p95_ms": {
+          "count": 3,
+          "median": 9888.62734375,
+          "min": 9750.87895165,
+          "max": 9907.235314749998,
+          "cv_percent": 0.7080593977184975
+        },
+        "queue_p99_ms": {
+          "count": 3,
+          "median": 10058.70833164,
+          "min": 9917.77793103,
+          "max": 10073.95490819,
+          "cv_percent": 0.7018694763214716
+        },
+        "end_to_end_p50_ms": {
+          "count": 3,
+          "median": 6261.1327455,
+          "min": 6138.732548,
+          "max": 6292.7237375,
+          "cv_percent": 1.0658300789367665
+        },
+        "end_to_end_p95_ms": {
+          "count": 3,
+          "median": 9893.942460799999,
+          "min": 9755.83104175,
+          "max": 9912.309689,
+          "cv_percent": 0.7087380999451265
+        },
+        "end_to_end_p99_ms": {
+          "count": 3,
+          "median": 10063.19106497,
+          "min": 9921.97319017,
+          "max": 10078.353826760002,
+          "cv_percent": 0.7026847202852318
+        },
+        "mean_batch_size": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "effective_batch_fill_ratio": {
+          "count": 3,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0,
+          "cv_percent": 0.0
+        },
+        "geometry_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate": {
+          "count": 3,
+          "median": 0.939,
+          "min": 0.939,
+          "max": 0.939,
+          "cv_percent": 0.0
+        },
+        "wavelet_cache_hit_rate": {
+          "count": 3,
+          "median": 0.992,
+          "min": 0.992,
+          "max": 0.992,
+          "cv_percent": 0.0
+        },
+        "scheduler_us_per_request": {
+          "count": 3,
+          "median": 2570.343839,
+          "min": 2521.940055,
+          "max": 2582.1803059999997,
+          "cv_percent": 1.0186866795889586
+        },
+        "starvation_guard_requests": {
+          "count": 3,
+          "median": 1000.0,
+          "min": 1000.0,
+          "max": 1000.0,
+          "cv_percent": 0.0
+        },
+        "deadline_violations": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "peak_allocated_bytes": {
+          "count": 3,
+          "median": 899170304.0,
+          "min": 899170304.0,
+          "max": 899170304.0,
+          "cv_percent": 0.0
+        }
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "scenario": "no_reuse",
+      "paired_run_count": 3,
+      "metrics": {
+        "throughput_speedup": {
+          "count": 3,
+          "median": 0.6157535592075603,
+          "min": 0.5745003584023216,
+          "max": 0.6454748952846256,
+          "cv_percent": 4.756003501228701
+        },
+        "end_to_end_p99_reduction_percent": {
+          "count": 3,
+          "median": -64.15975201858231,
+          "min": -77.08259406242352,
+          "max": -56.85283639314084,
+          "cv_percent": 12.66689461505397
+        },
+        "queue_p99_reduction_percent": {
+          "count": 3,
+          "median": -64.20699462732149,
+          "min": -77.10861716502515,
+          "max": -56.856446693185895,
+          "cv_percent": 12.672020493956158
+        },
+        "batch_fill_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_shared_request_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_cache_hit_rate_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "scheduler_us_per_request_delta": {
+          "count": 3,
+          "median": 2395.4607659999997,
+          "min": 2375.6267809999995,
+          "max": 2487.397577,
+          "cv_percent": 2.0124991160074766
+        },
+        "peak_allocated_delta_bytes": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        }
+      },
+      "pairs": [
+        {
+          "repeat_index": 1,
+          "fcfs_run_id": "scheduler_fcfs_no_reuse_run1",
+          "cache_aware_run_id": "scheduler_cache_aware_no_reuse_run1",
+          "throughput_speedup": 0.6157535592075603,
+          "end_to_end_p99_reduction_percent": -64.15975201858231,
+          "queue_p99_reduction_percent": -64.20699462732149,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2487.397577,
+          "peak_allocated_delta_bytes": 0
+        },
+        {
+          "repeat_index": 2,
+          "fcfs_run_id": "scheduler_fcfs_no_reuse_run2",
+          "cache_aware_run_id": "scheduler_cache_aware_no_reuse_run2",
+          "throughput_speedup": 0.5745003584023216,
+          "end_to_end_p99_reduction_percent": -77.08259406242352,
+          "queue_p99_reduction_percent": -77.10861716502515,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2395.4607659999997,
+          "peak_allocated_delta_bytes": 0
+        },
+        {
+          "repeat_index": 3,
+          "fcfs_run_id": "scheduler_fcfs_no_reuse_run3",
+          "cache_aware_run_id": "scheduler_cache_aware_no_reuse_run3",
+          "throughput_speedup": 0.6454748952846256,
+          "end_to_end_p99_reduction_percent": -56.85283639314084,
+          "queue_p99_reduction_percent": -56.856446693185895,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2375.6267809999995,
+          "peak_allocated_delta_bytes": 0
+        }
+      ]
+    },
+    {
+      "scenario": "uniform_reuse",
+      "paired_run_count": 3,
+      "metrics": {
+        "throughput_speedup": {
+          "count": 3,
+          "median": 0.6197767917465019,
+          "min": 0.6136651718732475,
+          "max": 0.624594660681699,
+          "cv_percent": 0.7221095251884156
+        },
+        "end_to_end_p99_reduction_percent": {
+          "count": 3,
+          "median": -64.41546470946274,
+          "min": -66.29435188805218,
+          "max": -63.10454721947028,
+          "cv_percent": 2.0263131933422036
+        },
+        "queue_p99_reduction_percent": {
+          "count": 3,
+          "median": -64.44039891412193,
+          "min": -66.33289736594301,
+          "max": -63.13188415673211,
+          "cv_percent": 2.0330101374517753
+        },
+        "batch_fill_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_shared_request_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_cache_hit_rate_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "scheduler_us_per_request_delta": {
+          "count": 3,
+          "median": 2363.78468,
+          "min": 2358.401054,
+          "max": 2414.552932,
+          "cv_percent": 1.063383807025991
+        },
+        "peak_allocated_delta_bytes": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        }
+      },
+      "pairs": [
+        {
+          "repeat_index": 1,
+          "fcfs_run_id": "scheduler_fcfs_uniform_reuse_run1",
+          "cache_aware_run_id": "scheduler_cache_aware_uniform_reuse_run1",
+          "throughput_speedup": 0.6197767917465019,
+          "end_to_end_p99_reduction_percent": -64.41546470946274,
+          "queue_p99_reduction_percent": -64.44039891412193,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2363.78468,
+          "peak_allocated_delta_bytes": 0
+        },
+        {
+          "repeat_index": 2,
+          "fcfs_run_id": "scheduler_fcfs_uniform_reuse_run2",
+          "cache_aware_run_id": "scheduler_cache_aware_uniform_reuse_run2",
+          "throughput_speedup": 0.6136651718732475,
+          "end_to_end_p99_reduction_percent": -66.29435188805218,
+          "queue_p99_reduction_percent": -66.33289736594301,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2414.552932,
+          "peak_allocated_delta_bytes": 0
+        },
+        {
+          "repeat_index": 3,
+          "fcfs_run_id": "scheduler_fcfs_uniform_reuse_run3",
+          "cache_aware_run_id": "scheduler_cache_aware_uniform_reuse_run3",
+          "throughput_speedup": 0.624594660681699,
+          "end_to_end_p99_reduction_percent": -63.10454721947028,
+          "queue_p99_reduction_percent": -63.13188415673211,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2358.401054,
+          "peak_allocated_delta_bytes": 0
+        }
+      ]
+    },
+    {
+      "scenario": "long_tail_reuse",
+      "paired_run_count": 3,
+      "metrics": {
+        "throughput_speedup": {
+          "count": 3,
+          "median": 0.6593707371028138,
+          "min": 0.6554466620118571,
+          "max": 0.673427184194833,
+          "cv_percent": 1.1647333149129653
+        },
+        "end_to_end_p99_reduction_percent": {
+          "count": 3,
+          "median": -53.98508306267066,
+          "min": -54.94618723547848,
+          "max": -50.863415886079785,
+          "cv_percent": 3.2720313397664924
+        },
+        "queue_p99_reduction_percent": {
+          "count": 3,
+          "median": -54.00290574935259,
+          "min": -54.968810842297025,
+          "max": -50.87930421805563,
+          "cv_percent": 3.2754440477429627
+        },
+        "batch_fill_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_shared_request_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_cache_hit_rate_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "scheduler_us_per_request_delta": {
+          "count": 3,
+          "median": 2341.309697,
+          "min": 2336.1229930000004,
+          "max": 2387.008911,
+          "cv_percent": 0.9709301258026816
+        },
+        "peak_allocated_delta_bytes": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        }
+      },
+      "pairs": [
+        {
+          "repeat_index": 1,
+          "fcfs_run_id": "scheduler_fcfs_long_tail_reuse_run1",
+          "cache_aware_run_id": "scheduler_cache_aware_long_tail_reuse_run1",
+          "throughput_speedup": 0.6554466620118571,
+          "end_to_end_p99_reduction_percent": -54.94618723547848,
+          "queue_p99_reduction_percent": -54.968810842297025,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2387.008911,
+          "peak_allocated_delta_bytes": 0
+        },
+        {
+          "repeat_index": 2,
+          "fcfs_run_id": "scheduler_fcfs_long_tail_reuse_run2",
+          "cache_aware_run_id": "scheduler_cache_aware_long_tail_reuse_run2",
+          "throughput_speedup": 0.6593707371028138,
+          "end_to_end_p99_reduction_percent": -53.98508306267066,
+          "queue_p99_reduction_percent": -54.00290574935259,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2336.1229930000004,
+          "peak_allocated_delta_bytes": 0
+        },
+        {
+          "repeat_index": 3,
+          "fcfs_run_id": "scheduler_fcfs_long_tail_reuse_run3",
+          "cache_aware_run_id": "scheduler_cache_aware_long_tail_reuse_run3",
+          "throughput_speedup": 0.673427184194833,
+          "end_to_end_p99_reduction_percent": -50.863415886079785,
+          "queue_p99_reduction_percent": -50.87930421805563,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2341.309697,
+          "peak_allocated_delta_bytes": 0
+        }
+      ]
+    },
+    {
+      "scenario": "hotspot_reuse",
+      "paired_run_count": 3,
+      "metrics": {
+        "throughput_speedup": {
+          "count": 3,
+          "median": 0.6869552797903294,
+          "min": 0.6753795656957988,
+          "max": 0.7226256556988067,
+          "cv_percent": 2.8931256146062903
+        },
+        "end_to_end_p99_reduction_percent": {
+          "count": 3,
+          "median": -47.64915350722658,
+          "min": -50.48790320049693,
+          "max": -44.48651845502557,
+          "cv_percent": 5.156042624790485
+        },
+        "queue_p99_reduction_percent": {
+          "count": 3,
+          "median": -47.66698989758818,
+          "min": -50.5078768224243,
+          "max": -44.51054906582726,
+          "cv_percent": 5.150200309384524
+        },
+        "batch_fill_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_shared_request_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_shared_request_ratio_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "geometry_cache_hit_rate_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "wavelet_cache_hit_rate_delta": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        },
+        "scheduler_us_per_request_delta": {
+          "count": 3,
+          "median": 2386.957808,
+          "min": 2339.683938,
+          "max": 2399.485284,
+          "cv_percent": 1.0840749227340782
+        },
+        "peak_allocated_delta_bytes": {
+          "count": 3,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "cv_percent": null
+        }
+      },
+      "pairs": [
+        {
+          "repeat_index": 1,
+          "fcfs_run_id": "scheduler_fcfs_hotspot_reuse_run1",
+          "cache_aware_run_id": "scheduler_cache_aware_hotspot_reuse_run1",
+          "throughput_speedup": 0.6753795656957988,
+          "end_to_end_p99_reduction_percent": -50.48790320049693,
+          "queue_p99_reduction_percent": -50.5078768224243,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2399.485284,
+          "peak_allocated_delta_bytes": 0
+        },
+        {
+          "repeat_index": 2,
+          "fcfs_run_id": "scheduler_fcfs_hotspot_reuse_run2",
+          "cache_aware_run_id": "scheduler_cache_aware_hotspot_reuse_run2",
+          "throughput_speedup": 0.7226256556988067,
+          "end_to_end_p99_reduction_percent": -44.48651845502557,
+          "queue_p99_reduction_percent": -44.51054906582726,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2339.683938,
+          "peak_allocated_delta_bytes": 0
+        },
+        {
+          "repeat_index": 3,
+          "fcfs_run_id": "scheduler_fcfs_hotspot_reuse_run3",
+          "cache_aware_run_id": "scheduler_cache_aware_hotspot_reuse_run3",
+          "throughput_speedup": 0.6869552797903294,
+          "end_to_end_p99_reduction_percent": -47.64915350722658,
+          "queue_p99_reduction_percent": -47.66698989758818,
+          "batch_fill_ratio_delta": 0.0,
+          "geometry_shared_request_ratio_delta": 0.0,
+          "wavelet_shared_request_ratio_delta": 0.0,
+          "geometry_cache_hit_rate_delta": 0.0,
+          "wavelet_cache_hit_rate_delta": 0.0,
+          "scheduler_us_per_request_delta": 2386.957808,
+          "peak_allocated_delta_bytes": 0
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "All percentiles are summarized from run-level metrics; raw samples are not pooled.",
+    "Each FCFS/cache-aware pair reads the same checked-in request trace.",
+    "Throughput speedup is cache-aware / FCFS.",
+    "Latency reduction is (FCFS - cache-aware) / FCFS * 100%.",
+    "CUDA Graph is disabled for every run so the comparison isolates scheduling.",
+    "The interleaved-medium trace forces strict FCFS into singleton batches; a speedup alone cannot be attributed to cache hits."
+  ]
+}

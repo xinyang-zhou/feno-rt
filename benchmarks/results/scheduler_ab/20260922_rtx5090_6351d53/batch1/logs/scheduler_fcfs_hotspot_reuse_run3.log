@@ -1,0 +1,9 @@
+command: python benchmarks/benchmark_scheduler_ab.py --config benchmarks/configs/scheduler_batch1_ab.json --policy fcfs --scenario hotspot_reuse --repeat-index 3 --output /tmp/feno-public-run/validation/scheduler_batch1/scheduler_fcfs_hotspot_reuse_run3.json
+return_code: 0
+
+[stdout]
+saved: /tmp/feno-public-run/validation/scheduler_batch1/scheduler_fcfs_hotspot_reuse_run3.json
+validated against scheduler_result.schema.json
+status: passed
+
+[stderr]

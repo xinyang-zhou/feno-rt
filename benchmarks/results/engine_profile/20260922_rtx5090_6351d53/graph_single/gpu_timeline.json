@@ -1,0 +1,907 @@
+{
+  "schema_version": "1.0.0",
+  "result_class": "diagnostic",
+  "source_sqlite_sha256": "6423b04bcb120907c7a5cb213b6fa0d9d93747371387cb0ab9cd4325a1e9a6e5",
+  "window_ms": 58.522607,
+  "first_gpu_activity_ms": 29.939351,
+  "last_gpu_activity_ms": 57.795144,
+  "recorded_gpu_coverage_ms": 3.551814,
+  "recorded_gpu_coverage_percent": 6.069131540910336,
+  "record_counts": {
+    "KERNEL": 56,
+    "MEMCPY": 104,
+    "GRAPH_TRACE": 8
+  },
+  "cuda_api": [
+    {
+      "name": "cudaDeviceSynchronize_v3020",
+      "count": 8,
+      "total_ms": 0.427861,
+      "max_ms": 0.181972
+    },
+    {
+      "name": "cudaGraphLaunch_v10000",
+      "count": 8,
+      "total_ms": 0.234208,
+      "max_ms": 0.030352
+    },
+    {
+      "name": "cudaLaunchKernel_v7000",
+      "count": 56,
+      "total_ms": 0.604445,
+      "max_ms": 0.029684
+    },
+    {
+      "name": "cudaMalloc_v3020",
+      "count": 6,
+      "total_ms": 0.889132,
+      "max_ms": 0.163379
+    },
+    {
+      "name": "cudaMemcpyAsync_v3020",
+      "count": 104,
+      "total_ms": 1.409946,
+      "max_ms": 0.039757
+    },
+    {
+      "name": "cudaStreamIsCapturing_v10000",
+      "count": 14,
+      "total_ms": 0.0202,
+      "max_ms": 0.001659
+    },
+    {
+      "name": "cudaStreamSynchronize_v3020",
+      "count": 40,
+      "total_ms": 0.199888,
+      "max_ms": 0.012256
+    }
+  ],
+  "gpu_intervals": [
+    {
+      "kind": "MEMCPY",
+      "start_ns": 29939351,
+      "end_ns": 29940919
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 29986774,
+      "end_ns": 29988310
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 30012662,
+      "end_ns": 30012918
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 30573490,
+      "end_ns": 30574802
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 30629010,
+      "end_ns": 30629298
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 30680273,
+      "end_ns": 30683345
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 30954127,
+      "end_ns": 30954383
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 31008047,
+      "end_ns": 31009615
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 31044366,
+      "end_ns": 31047950
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 31084526,
+      "end_ns": 31086510
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 31113838,
+      "end_ns": 31117390
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 31142734,
+      "end_ns": 31144814
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 31169134,
+      "end_ns": 31172686
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 31276429,
+      "end_ns": 31277997
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 31305229,
+      "end_ns": 31306061
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 31328140,
+      "end_ns": 31330220
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 31351660,
+      "end_ns": 31353836
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 31373228,
+      "end_ns": 31375276
+    },
+    {
+      "kind": "GRAPH_TRACE",
+      "start_ns": 31413708,
+      "end_ns": 31800617
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 31803881,
+      "end_ns": 31812905
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 31813193,
+      "end_ns": 31822601
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 34348502,
+      "end_ns": 34350038
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 34383734,
+      "end_ns": 34385270
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 34409013,
+      "end_ns": 34409269
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 34961297,
+      "end_ns": 34962769
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 35011409,
+      "end_ns": 35011697
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 35060401,
+      "end_ns": 35063441
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 35330223,
+      "end_ns": 35330479
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 35382734,
+      "end_ns": 35384270
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 35418542,
+      "end_ns": 35422158
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 35458062,
+      "end_ns": 35460110
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 35486765,
+      "end_ns": 35490349
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 35528621,
+      "end_ns": 35530893
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 35554829,
+      "end_ns": 35558445
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 35659980,
+      "end_ns": 35661548
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 35687980,
+      "end_ns": 35688780
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 35711020,
+      "end_ns": 35713100
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 35733676,
+      "end_ns": 35735724
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 35755339,
+      "end_ns": 35757419
+    },
+    {
+      "kind": "GRAPH_TRACE",
+      "start_ns": 35795627,
+      "end_ns": 36183816
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 36185544,
+      "end_ns": 36194472
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 36194760,
+      "end_ns": 36204488
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 38498807,
+      "end_ns": 38500343
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 38538007,
+      "end_ns": 38539575
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 38563255,
+      "end_ns": 38563511
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 39068563,
+      "end_ns": 39069971
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 39115123,
+      "end_ns": 39115411
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 39160562,
+      "end_ns": 39163570
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 39421328,
+      "end_ns": 39421616
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 39471792,
+      "end_ns": 39473360
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 39518032,
+      "end_ns": 39521648
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 39557775,
+      "end_ns": 39559759
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 39586479,
+      "end_ns": 39590095
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 39616751,
+      "end_ns": 39618863
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 39642959,
+      "end_ns": 39646575
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 39744398,
+      "end_ns": 39745966
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 39771918,
+      "end_ns": 39772686
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 39794413,
+      "end_ns": 39796461
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 39816749,
+      "end_ns": 39818829
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 39838029,
+      "end_ns": 39840109
+    },
+    {
+      "kind": "GRAPH_TRACE",
+      "start_ns": 39876557,
+      "end_ns": 40264458
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 40266154,
+      "end_ns": 40275210
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 40275498,
+      "end_ns": 40284778
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 42715768,
+      "end_ns": 42717336
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 42752536,
+      "end_ns": 42754103
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 42777431,
+      "end_ns": 42777687
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 43308467,
+      "end_ns": 43309875
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 43359091,
+      "end_ns": 43359379
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 43409779,
+      "end_ns": 43412787
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 43696976,
+      "end_ns": 43697264
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 43751024,
+      "end_ns": 43752592
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 43787824,
+      "end_ns": 43791408
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 43827888,
+      "end_ns": 43829968
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 43856719,
+      "end_ns": 43860367
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 43886543,
+      "end_ns": 43888879
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 43911535,
+      "end_ns": 43915151
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 44016238,
+      "end_ns": 44017806
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 44043630,
+      "end_ns": 44044430
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 44067310,
+      "end_ns": 44069390
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 44088910,
+      "end_ns": 44091022
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 44110605,
+      "end_ns": 44112717
+    },
+    {
+      "kind": "GRAPH_TRACE",
+      "start_ns": 44150637,
+      "end_ns": 44538346
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 44540298,
+      "end_ns": 44549258
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 44549514,
+      "end_ns": 44559370
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 46693722,
+      "end_ns": 46695258
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 46733242,
+      "end_ns": 46734938
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 46758170,
+      "end_ns": 46758426
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 47281878,
+      "end_ns": 47284054
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 47336693,
+      "end_ns": 47336949
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 47383413,
+      "end_ns": 47386549
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 47674035,
+      "end_ns": 47674323
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 47720851,
+      "end_ns": 47724115
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 47753554,
+      "end_ns": 47757234
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 47796466,
+      "end_ns": 47801362
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 47822930,
+      "end_ns": 47826674
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 47848306,
+      "end_ns": 47853010
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 47871217,
+      "end_ns": 47874897
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 47983249,
+      "end_ns": 47984817
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 48012496,
+      "end_ns": 48013296
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 48035440,
+      "end_ns": 48037520
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 48057936,
+      "end_ns": 48059984
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 48080016,
+      "end_ns": 48082096
+    },
+    {
+      "kind": "GRAPH_TRACE",
+      "start_ns": 48120240,
+      "end_ns": 48508173
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 48511341,
+      "end_ns": 48520461
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 48520717,
+      "end_ns": 48530445
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 50327487,
+      "end_ns": 50329023
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 50362335,
+      "end_ns": 50363903
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 50386495,
+      "end_ns": 50386783
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 50922075,
+      "end_ns": 50925083
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 50976410,
+      "end_ns": 50976698
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 51021754,
+      "end_ns": 51025082
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 51302648,
+      "end_ns": 51302936
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 51348728,
+      "end_ns": 51351288
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 51381143,
+      "end_ns": 51384791
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 51411031,
+      "end_ns": 51414935
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 51437431,
+      "end_ns": 51441079
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 51462423,
+      "end_ns": 51466263
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 51485719,
+      "end_ns": 51489367
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 51606038,
+      "end_ns": 51607606
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 51636150,
+      "end_ns": 51636950
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 51660725,
+      "end_ns": 51662805
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 51684469,
+      "end_ns": 51686517
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 51707701,
+      "end_ns": 51709781
+    },
+    {
+      "kind": "GRAPH_TRACE",
+      "start_ns": 51747285,
+      "end_ns": 52134802
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 52136370,
+      "end_ns": 52145266
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 52145554,
+      "end_ns": 52155314
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 53180298,
+      "end_ns": 53181834
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 53215018,
+      "end_ns": 53216554
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 53240362,
+      "end_ns": 53240618
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 53784102,
+      "end_ns": 53787686
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 53835237,
+      "end_ns": 53835525
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 53878725,
+      "end_ns": 53882117
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 54150915,
+      "end_ns": 54151171
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 54195107,
+      "end_ns": 54197378
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 54228930,
+      "end_ns": 54232482
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 54258690,
+      "end_ns": 54261730
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 54284642,
+      "end_ns": 54288226
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 54309602,
+      "end_ns": 54312546
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 54334177,
+      "end_ns": 54337793
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 54439169,
+      "end_ns": 54440737
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 54468320,
+      "end_ns": 54469120
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 54492640,
+      "end_ns": 54494752
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 54527136,
+      "end_ns": 54529184
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 54549984,
+      "end_ns": 54552032
+    },
+    {
+      "kind": "GRAPH_TRACE",
+      "start_ns": 54589728,
+      "end_ns": 54977629
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 54980925,
+      "end_ns": 54990013
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 54990269,
+      "end_ns": 54999837
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 55968661,
+      "end_ns": 55970229
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 56002293,
+      "end_ns": 56003861
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 56027509,
+      "end_ns": 56027765
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 56568081,
+      "end_ns": 56571089
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 56620432,
+      "end_ns": 56620720
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 56665232,
+      "end_ns": 56668560
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 56952942,
+      "end_ns": 56953230
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 56999662,
+      "end_ns": 57003310
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 57032429,
+      "end_ns": 57036205
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 57063661,
+      "end_ns": 57069837
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 57089389,
+      "end_ns": 57093069
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 57116973,
+      "end_ns": 57123085
+    },
+    {
+      "kind": "KERNEL",
+      "start_ns": 57141485,
+      "end_ns": 57145197
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 57247308,
+      "end_ns": 57248876
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 57276460,
+      "end_ns": 57277260
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 57301035,
+      "end_ns": 57303115
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 57324843,
+      "end_ns": 57326923
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 57348171,
+      "end_ns": 57350283
+    },
+    {
+      "kind": "GRAPH_TRACE",
+      "start_ns": 57386667,
+      "end_ns": 57773928
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 57775496,
+      "end_ns": 57785032
+    },
+    {
+      "kind": "MEMCPY",
+      "start_ns": 57785320,
+      "end_ns": 57795144
+    }
+  ],
+  "notes": [
+    "Intervals are clipped to feno.engine_window and expressed relative to its start.",
+    "Coverage merges overlapping kernel/copy/memset intervals and Graph trace envelopes.",
+    "Graph envelopes may include internal gaps; coverage is not GPU Active or SM utilization.",
+    "No process/thread identifiers, paths, kernel argument values, or binary report are exported."
+  ]
+}

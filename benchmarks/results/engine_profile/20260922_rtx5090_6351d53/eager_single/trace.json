@@ -1,0 +1,3728 @@
+{
+  "traceEvents": [
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 4028.858,
+      "dur": 743.189,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 5070.459,
+      "dur": 575.927,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 5847.678,
+      "dur": 512.118,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 6560.139,
+      "dur": 518.307,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 7234.006,
+      "dur": 511.69,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 7897.32,
+      "dur": 481.873,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 8574.155,
+      "dur": 514.519,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 9237.769,
+      "dur": 513.177,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 9925.052,
+      "dur": 499.37,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 10612.561,
+      "dur": 495.769,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 11289.592,
+      "dur": 518.409,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 11968.878,
+      "dur": 489.235,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 12652.572,
+      "dur": 509.36,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 13318.75,
+      "dur": 508.22,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 14003.066,
+      "dur": 516.219,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 14668.229,
+      "dur": 487.529,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 15292.467,
+      "dur": 504.157,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 15968.064,
+      "dur": 514.626,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 16649.291,
+      "dur": 498.223,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 17326.725,
+      "dur": 533.172,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 18006.931,
+      "dur": 536.789,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 18720.084,
+      "dur": 513.119,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 19391.44,
+      "dur": 527.417,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 20086.881,
+      "dur": 518.834,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 20766.043,
+      "dur": 494.264,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 21414.385,
+      "dur": 511.401,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 119738.467,
+      "dur": 982.816,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 120991.658,
+      "dur": 560.387,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 121785.31,
+      "dur": 530.472,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 122489.885,
+      "dur": 518.118,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 123183.638,
+      "dur": 509.391,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 123846.262,
+      "dur": 498.136,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 124525.471,
+      "dur": 514.349,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 125186.676,
+      "dur": 498.226,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 125856.341,
+      "dur": 498.045,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 126525.313,
+      "dur": 493.365,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 127178.609,
+      "dur": 529.692,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 127889.959,
+      "dur": 504.023,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 128560.595,
+      "dur": 509.139,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 129243.165,
+      "dur": 532.864,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 129923.493,
+      "dur": 484.572,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 130600.575,
+      "dur": 509.977,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 131259.778,
+      "dur": 510.957,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 131949.383,
+      "dur": 497.977,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 132616.461,
+      "dur": 519.761,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 133300.614,
+      "dur": 534.859,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 133995.272,
+      "dur": 497.103,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 134659.57,
+      "dur": 504.072,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 135333.982,
+      "dur": 521.194,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 136000.86,
+      "dur": 483.279,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 136786.554,
+      "dur": 539.2,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 137513.28,
+      "dur": 513.018,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 138200.211,
+      "dur": 525.088,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 138872.963,
+      "dur": 484.665,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 139544.25,
+      "dur": 514.901,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 140213.012,
+      "dur": 515.836,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 140884.199,
+      "dur": 488.673,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 141569.312,
+      "dur": 536.958,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 142260.059,
+      "dur": 512.557,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 142949.92,
+      "dur": 513.914,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 143631.222,
+      "dur": 503.008,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 144309.684,
+      "dur": 527.034,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 144983.391,
+      "dur": 504.954,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_identity",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 145719.284,
+      "dur": 524.54,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 146801.217,
+      "dur": 33.467,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 146882.736,
+      "dur": 11.371,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 146911.902,
+      "dur": 8.678,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 146934.946,
+      "dur": 7.596,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 146955.476,
+      "dur": 7.824,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 146976.08,
+      "dur": 8.953,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 147005.716,
+      "dur": 8.211,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 147026.134,
+      "dur": 8.161,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 147046.496,
+      "dur": 7.466,
+      "args": {}
+    },
+    {
+      "name": "feno.scheduler_select",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 146471.203,
+      "dur": 625.988,
+      "args": {
+        "pending": 64
+      }
+    },
+    {
+      "name": "feno.batch_build",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 147202.578,
+      "dur": 192.371,
+      "args": {}
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -1,
+      "ts": 4839.123,
+      "dur": 142579.811,
+      "args": {
+        "request_id": "hotspot_reuse-0000"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -5,
+      "ts": 7778.715,
+      "dur": 139640.219,
+      "args": {
+        "request_id": "hotspot_reuse-0004"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -9,
+      "ts": 10454.541,
+      "dur": 136964.393,
+      "args": {
+        "request_id": "hotspot_reuse-0008"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -13,
+      "ts": 13193.001,
+      "dur": 134225.933,
+      "args": {
+        "request_id": "hotspot_reuse-0012"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -17,
+      "ts": 15826.936,
+      "dur": 131591.998,
+      "args": {
+        "request_id": "hotspot_reuse-0016"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -21,
+      "ts": 18577.763,
+      "dur": 128841.171,
+      "args": {
+        "request_id": "hotspot_reuse-0020"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -25,
+      "ts": 21290.917,
+      "dur": 126128.017,
+      "args": {
+        "request_id": "hotspot_reuse-0024"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -29,
+      "ts": 122349.456,
+      "dur": 25069.478,
+      "args": {
+        "request_id": "hotspot_reuse-0028"
+      }
+    },
+    {
+      "name": "feno.input_prepare",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 150079.684,
+      "dur": 1348.665,
+      "args": {}
+    },
+    {
+      "name": "feno.geometry_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 151474.121,
+      "dur": 814.256,
+      "args": {}
+    },
+    {
+      "name": "feno.wavelet_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 152321.482,
+      "dur": 546.939,
+      "args": {}
+    },
+    {
+      "name": "feno.decoder_tail",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 152896.401,
+      "dur": 3101.325,
+      "args": {}
+    },
+    {
+      "name": "feno.output",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 156044.273,
+      "dur": 3.335,
+      "args": {}
+    },
+    {
+      "name": "feno.output_ownership",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 156098.254,
+      "dur": 132.972,
+      "args": {}
+    },
+    {
+      "name": "feno.device_synchronize",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 156272.775,
+      "dur": 65.378,
+      "args": {}
+    },
+    {
+      "name": "feno.runner_execute",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 149970.335,
+      "dur": 6378.043,
+      "args": {}
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -1,
+      "ts": 3836.2,
+      "dur": 152939.599,
+      "args": {
+        "request_id": "hotspot_reuse-0000",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -5,
+      "ts": 7180.376,
+      "dur": 149595.423,
+      "args": {
+        "request_id": "hotspot_reuse-0004",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -9,
+      "ts": 9870.902,
+      "dur": 146904.897,
+      "args": {
+        "request_id": "hotspot_reuse-0008",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -13,
+      "ts": 12576.454,
+      "dur": 144199.345,
+      "args": {
+        "request_id": "hotspot_reuse-0012",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -17,
+      "ts": 15243.481,
+      "dur": 141532.318,
+      "args": {
+        "request_id": "hotspot_reuse-0016",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -21,
+      "ts": 17954.673,
+      "dur": 138821.126,
+      "args": {
+        "request_id": "hotspot_reuse-0020",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -25,
+      "ts": 20709.406,
+      "dur": 136066.393,
+      "args": {
+        "request_id": "hotspot_reuse-0024",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -29,
+      "ts": 121720.731,
+      "dur": 35055.068,
+      "args": {
+        "request_id": "hotspot_reuse-0028",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.completion",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 156771.817,
+      "dur": 172.906,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157257.623,
+      "dur": 24.703,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157310.002,
+      "dur": 10.694,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157336.214,
+      "dur": 8.449,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157358.384,
+      "dur": 8.06,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157390.358,
+      "dur": 9.074,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157415.267,
+      "dur": 8.17,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157436.587,
+      "dur": 7.806,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157456.689,
+      "dur": 8.37,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157479.961,
+      "dur": 8.701,
+      "args": {}
+    },
+    {
+      "name": "feno.scheduler_select",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157056.065,
+      "dur": 491.808,
+      "args": {
+        "pending": 56
+      }
+    },
+    {
+      "name": "feno.batch_build",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 157657.644,
+      "dur": 199.047,
+      "args": {}
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -2,
+      "ts": 5698.45,
+      "dur": 152181.842,
+      "args": {
+        "request_id": "hotspot_reuse-0001"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -6,
+      "ts": 8434.456,
+      "dur": 149445.836,
+      "args": {
+        "request_id": "hotspot_reuse-0005"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -10,
+      "ts": 11147.26,
+      "dur": 146733.032,
+      "args": {
+        "request_id": "hotspot_reuse-0009"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -14,
+      "ts": 13857.085,
+      "dur": 144023.207,
+      "args": {
+        "request_id": "hotspot_reuse-0013"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -18,
+      "ts": 16530.182,
+      "dur": 141350.11,
+      "args": {
+        "request_id": "hotspot_reuse-0017"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -22,
+      "ts": 19263.194,
+      "dur": 138617.098,
+      "args": {
+        "request_id": "hotspot_reuse-0021"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -26,
+      "ts": 21978.942,
+      "dur": 135901.35,
+      "args": {
+        "request_id": "hotspot_reuse-0025"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -34,
+      "ts": 125715.2,
+      "dur": 32165.092,
+      "args": {
+        "request_id": "hotspot_reuse-0033"
+      }
+    },
+    {
+      "name": "feno.input_prepare",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 158269.066,
+      "dur": 560.615,
+      "args": {}
+    },
+    {
+      "name": "feno.geometry_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 158866.319,
+      "dur": 690.814,
+      "args": {}
+    },
+    {
+      "name": "feno.wavelet_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 159588.296,
+      "dur": 491.916,
+      "args": {}
+    },
+    {
+      "name": "feno.decoder_tail",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 160105.312,
+      "dur": 2142.484,
+      "args": {}
+    },
+    {
+      "name": "feno.output",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 162282.984,
+      "dur": 3.131,
+      "args": {}
+    },
+    {
+      "name": "feno.output_ownership",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 162328.164,
+      "dur": 116.771,
+      "args": {}
+    },
+    {
+      "name": "feno.device_synchronize",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 162478.349,
+      "dur": 59.423,
+      "args": {}
+    },
+    {
+      "name": "feno.runner_execute",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 158188.873,
+      "dur": 4366.948,
+      "args": {}
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -2,
+      "ts": 5001.953,
+      "dur": 157968.248,
+      "args": {
+        "request_id": "hotspot_reuse-0001",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -6,
+      "ts": 7845.259,
+      "dur": 155124.942,
+      "args": {
+        "request_id": "hotspot_reuse-0005",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -10,
+      "ts": 10556.495,
+      "dur": 152413.706,
+      "args": {
+        "request_id": "hotspot_reuse-0009",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -14,
+      "ts": 13265.994,
+      "dur": 149704.207,
+      "args": {
+        "request_id": "hotspot_reuse-0013",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -18,
+      "ts": 15913.055,
+      "dur": 147057.146,
+      "args": {
+        "request_id": "hotspot_reuse-0017",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -22,
+      "ts": 18663.87,
+      "dur": 144306.331,
+      "args": {
+        "request_id": "hotspot_reuse-0021",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -26,
+      "ts": 21353.231,
+      "dur": 141616.97,
+      "args": {
+        "request_id": "hotspot_reuse-0025",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -34,
+      "ts": 125134.917,
+      "dur": 37835.284,
+      "args": {
+        "request_id": "hotspot_reuse-0033",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.completion",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 162966.535,
+      "dur": 126.423,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163337.032,
+      "dur": 21.783,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163394.831,
+      "dur": 9.762,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163420.405,
+      "dur": 7.954,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163441.894,
+      "dur": 8.699,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163469.805,
+      "dur": 7.817,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163489.956,
+      "dur": 23.871,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163534.834,
+      "dur": 8.577,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163555.799,
+      "dur": 7.43,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163574.969,
+      "dur": 7.85,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163594.622,
+      "dur": 7.966,
+      "args": {}
+    },
+    {
+      "name": "feno.scheduler_select",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163173.774,
+      "dur": 467.512,
+      "args": {
+        "pending": 48
+      }
+    },
+    {
+      "name": "feno.batch_build",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 163729.474,
+      "dur": 176.876,
+      "args": {}
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -3,
+      "ts": 6392.779,
+      "dur": 157535.915,
+      "args": {
+        "request_id": "hotspot_reuse-0002"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -7,
+      "ts": 9119.967,
+      "dur": 154808.727,
+      "args": {
+        "request_id": "hotspot_reuse-0006"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -11,
+      "ts": 11839.552,
+      "dur": 152089.142,
+      "args": {
+        "request_id": "hotspot_reuse-0010"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -15,
+      "ts": 14551.388,
+      "dur": 149377.306,
+      "args": {
+        "request_id": "hotspot_reuse-0014"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -19,
+      "ts": 17177.182,
+      "dur": 146751.512,
+      "args": {
+        "request_id": "hotspot_reuse-0018"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -23,
+      "ts": 19950.04,
+      "dur": 143978.654,
+      "args": {
+        "request_id": "hotspot_reuse-0022"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -27,
+      "ts": 120783.215,
+      "dur": 43145.479,
+      "args": {
+        "request_id": "hotspot_reuse-0026"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -31,
+      "ts": 123723.007,
+      "dur": 40205.687,
+      "args": {
+        "request_id": "hotspot_reuse-0030"
+      }
+    },
+    {
+      "name": "feno.input_prepare",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 164267.119,
+      "dur": 487.977,
+      "args": {}
+    },
+    {
+      "name": "feno.geometry_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 164791.061,
+      "dur": 673.285,
+      "args": {}
+    },
+    {
+      "name": "feno.wavelet_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 165508.428,
+      "dur": 534.015,
+      "args": {}
+    },
+    {
+      "name": "feno.decoder_tail",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 166069.33,
+      "dur": 1864.752,
+      "args": {}
+    },
+    {
+      "name": "feno.output",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 167968.552,
+      "dur": 3.28,
+      "args": {}
+    },
+    {
+      "name": "feno.output_ownership",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 168011.28,
+      "dur": 112.263,
+      "args": {}
+    },
+    {
+      "name": "feno.device_synchronize",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 168155.2,
+      "dur": 41.687,
+      "args": {}
+    },
+    {
+      "name": "feno.runner_execute",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 164206.458,
+      "dur": 3999.102,
+      "args": {}
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -3,
+      "ts": 5786.449,
+      "dur": 162806.158,
+      "args": {
+        "request_id": "hotspot_reuse-0002",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -7,
+      "ts": 8515.551,
+      "dur": 160077.056,
+      "args": {
+        "request_id": "hotspot_reuse-0006",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -11,
+      "ts": 11233.946,
+      "dur": 157358.661,
+      "args": {
+        "request_id": "hotspot_reuse-0010",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -15,
+      "ts": 13920.805,
+      "dur": 154671.802,
+      "args": {
+        "request_id": "hotspot_reuse-0014",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -19,
+      "ts": 16596.999,
+      "dur": 151995.608,
+      "args": {
+        "request_id": "hotspot_reuse-0018",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -23,
+      "ts": 19328.083,
+      "dur": 149264.524,
+      "args": {
+        "request_id": "hotspot_reuse-0022",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -27,
+      "ts": 22046.359,
+      "dur": 146546.248,
+      "args": {
+        "request_id": "hotspot_reuse-0026",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -31,
+      "ts": 123127.682,
+      "dur": 45464.925,
+      "args": {
+        "request_id": "hotspot_reuse-0030",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.completion",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 168588.909,
+      "dur": 160.84,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 168959.818,
+      "dur": 21.237,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169003.99,
+      "dur": 11.495,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169031.566,
+      "dur": 9.877,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169054.845,
+      "dur": 8.206,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169076.898,
+      "dur": 7.748,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169097.652,
+      "dur": 7.61,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169120.969,
+      "dur": 8.532,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169141.747,
+      "dur": 8.777,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169162.443,
+      "dur": 8.099,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169182.9,
+      "dur": 7.449,
+      "args": {}
+    },
+    {
+      "name": "feno.scheduler_select",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 168821.123,
+      "dur": 406.438,
+      "args": {
+        "pending": 40
+      }
+    },
+    {
+      "name": "feno.batch_build",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 169312.267,
+      "dur": 173.058,
+      "args": {}
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -4,
+      "ts": 7111.276,
+      "dur": 162407.374,
+      "args": {
+        "request_id": "hotspot_reuse-0003"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -8,
+      "ts": 9781.925,
+      "dur": 159736.725,
+      "args": {
+        "request_id": "hotspot_reuse-0007"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -12,
+      "ts": 12487.458,
+      "dur": 157031.192,
+      "args": {
+        "request_id": "hotspot_reuse-0011"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -16,
+      "ts": 15184.305,
+      "dur": 154334.345,
+      "args": {
+        "request_id": "hotspot_reuse-0015"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -20,
+      "ts": 17890.627,
+      "dur": 151628.023,
+      "args": {
+        "request_id": "hotspot_reuse-0019"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -24,
+      "ts": 20644.738,
+      "dur": 148873.912,
+      "args": {
+        "request_id": "hotspot_reuse-0023"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -28,
+      "ts": 121589.951,
+      "dur": 47928.699,
+      "args": {
+        "request_id": "hotspot_reuse-0027"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -40,
+      "ts": 129806.68,
+      "dur": 39711.97,
+      "args": {
+        "request_id": "hotspot_reuse-0039"
+      }
+    },
+    {
+      "name": "feno.input_prepare",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 169853.571,
+      "dur": 472.942,
+      "args": {}
+    },
+    {
+      "name": "feno.geometry_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 170362.693,
+      "dur": 679.732,
+      "args": {}
+    },
+    {
+      "name": "feno.wavelet_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 171074.186,
+      "dur": 507.874,
+      "args": {}
+    },
+    {
+      "name": "feno.decoder_tail",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 171608.748,
+      "dur": 1799.517,
+      "args": {}
+    },
+    {
+      "name": "feno.output",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 173442.81,
+      "dur": 3.326,
+      "args": {}
+    },
+    {
+      "name": "feno.output_ownership",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 173485.967,
+      "dur": 131.477,
+      "args": {}
+    },
+    {
+      "name": "feno.device_synchronize",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 173649.343,
+      "dur": 41.019,
+      "args": {}
+    },
+    {
+      "name": "feno.runner_execute",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 169794.913,
+      "dur": 3904.986,
+      "args": {}
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -4,
+      "ts": 6463.422,
+      "dur": 167635.404,
+      "args": {
+        "request_id": "hotspot_reuse-0003",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -8,
+      "ts": 9184.971,
+      "dur": 164913.855,
+      "args": {
+        "request_id": "hotspot_reuse-0007",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -12,
+      "ts": 11915.038,
+      "dur": 162183.788,
+      "args": {
+        "request_id": "hotspot_reuse-0011",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -16,
+      "ts": 14616.008,
+      "dur": 159482.818,
+      "args": {
+        "request_id": "hotspot_reuse-0015",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -20,
+      "ts": 17271.43,
+      "dur": 156827.396,
+      "args": {
+        "request_id": "hotspot_reuse-0019",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -24,
+      "ts": 20014.626,
+      "dur": 154084.2,
+      "args": {
+        "request_id": "hotspot_reuse-0023",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -28,
+      "ts": 120915.047,
+      "dur": 53183.779,
+      "args": {
+        "request_id": "hotspot_reuse-0027",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -40,
+      "ts": 129188.902,
+      "dur": 44909.924,
+      "args": {
+        "request_id": "hotspot_reuse-0039",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.completion",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174095.497,
+      "dur": 126.378,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174401.054,
+      "dur": 20.422,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174445.059,
+      "dur": 9.957,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174472.028,
+      "dur": 8.273,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174511.171,
+      "dur": 9.172,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174535.359,
+      "dur": 7.653,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174569.689,
+      "dur": 8.585,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174591.318,
+      "dur": 8.089,
+      "args": {}
+    },
+    {
+      "name": "feno.scheduler_select",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174284.129,
+      "dur": 359.202,
+      "args": {
+        "pending": 32
+      }
+    },
+    {
+      "name": "feno.batch_build",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 174729.297,
+      "dur": 177.973,
+      "args": {}
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -30,
+      "ts": 123038.208,
+      "dur": 51890.467,
+      "args": {
+        "request_id": "hotspot_reuse-0029"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -38,
+      "ts": 128423.483,
+      "dur": 46505.192,
+      "args": {
+        "request_id": "hotspot_reuse-0037"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -42,
+      "ts": 131141.717,
+      "dur": 43786.958,
+      "args": {
+        "request_id": "hotspot_reuse-0041"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -50,
+      "ts": 136538.086,
+      "dur": 38390.589,
+      "args": {
+        "request_id": "hotspot_reuse-0049"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -54,
+      "ts": 139386.236,
+      "dur": 35542.439,
+      "args": {
+        "request_id": "hotspot_reuse-0053"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -62,
+      "ts": 144867.832,
+      "dur": 30060.843,
+      "args": {
+        "request_id": "hotspot_reuse-0061"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -46,
+      "ts": 133867.922,
+      "dur": 41060.753,
+      "args": {
+        "request_id": "hotspot_reuse-0045"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -58,
+      "ts": 142137.219,
+      "dur": 32791.456,
+      "args": {
+        "request_id": "hotspot_reuse-0057"
+      }
+    },
+    {
+      "name": "feno.input_prepare",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 175274.782,
+      "dur": 440.899,
+      "args": {}
+    },
+    {
+      "name": "feno.geometry_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 175751.188,
+      "dur": 653.125,
+      "args": {}
+    },
+    {
+      "name": "feno.wavelet_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 176435.979,
+      "dur": 496.673,
+      "args": {}
+    },
+    {
+      "name": "feno.decoder_tail",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 176971.132,
+      "dur": 1855.048,
+      "args": {}
+    },
+    {
+      "name": "feno.output",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 178861.388,
+      "dur": 3.182,
+      "args": {}
+    },
+    {
+      "name": "feno.output_ownership",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 178905.547,
+      "dur": 118.481,
+      "args": {}
+    },
+    {
+      "name": "feno.device_synchronize",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 179070.969,
+      "dur": 49.818,
+      "args": {}
+    },
+    {
+      "name": "feno.runner_execute",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 175205.653,
+      "dur": 3924.93,
+      "args": {}
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -30,
+      "ts": 122419.046,
+      "dur": 57137.492,
+      "args": {
+        "request_id": "hotspot_reuse-0029",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -38,
+      "ts": 127831.929,
+      "dur": 51724.609,
+      "args": {
+        "request_id": "hotspot_reuse-0037",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -42,
+      "ts": 130541.756,
+      "dur": 49014.782,
+      "args": {
+        "request_id": "hotspot_reuse-0041",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -50,
+      "ts": 135949.374,
+      "dur": 43607.164,
+      "args": {
+        "request_id": "hotspot_reuse-0049",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -54,
+      "ts": 138821.319,
+      "dur": 40735.219,
+      "args": {
+        "request_id": "hotspot_reuse-0053",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -62,
+      "ts": 144252.198,
+      "dur": 35304.34,
+      "args": {
+        "request_id": "hotspot_reuse-0061",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -46,
+      "ts": 133228.725,
+      "dur": 46327.813,
+      "args": {
+        "request_id": "hotspot_reuse-0045",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -58,
+      "ts": 141511.51,
+      "dur": 38045.028,
+      "args": {
+        "request_id": "hotspot_reuse-0057",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.completion",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 179552.935,
+      "dur": 140.147,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 179860.561,
+      "dur": 21.258,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 179905.368,
+      "dur": 10.076,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 179931.873,
+      "dur": 10.561,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 179955.558,
+      "dur": 8.477,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 179977.315,
+      "dur": 8.069,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 179997.603,
+      "dur": 7.892,
+      "args": {}
+    },
+    {
+      "name": "feno.scheduler_select",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 179750.686,
+      "dur": 293.268,
+      "args": {
+        "pending": 24
+      }
+    },
+    {
+      "name": "feno.batch_build",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 180124.611,
+      "dur": 179.009,
+      "args": {}
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -32,
+      "ts": 124374.802,
+      "dur": 55950.205,
+      "args": {
+        "request_id": "hotspot_reuse-0031"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -36,
+      "ts": 127048.996,
+      "dur": 53276.011,
+      "args": {
+        "request_id": "hotspot_reuse-0035"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -44,
+      "ts": 132477.364,
+      "dur": 47847.643,
+      "args": {
+        "request_id": "hotspot_reuse-0043"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -48,
+      "ts": 135193.694,
+      "dur": 45131.313,
+      "args": {
+        "request_id": "hotspot_reuse-0047"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -64,
+      "ts": 146274.214,
+      "dur": 34050.793,
+      "args": {
+        "request_id": "hotspot_reuse-0063"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -56,
+      "ts": 140759.181,
+      "dur": 39565.826,
+      "args": {
+        "request_id": "hotspot_reuse-0055"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -60,
+      "ts": 143511.938,
+      "dur": 36813.069,
+      "args": {
+        "request_id": "hotspot_reuse-0059"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -52,
+      "ts": 138056.635,
+      "dur": 42268.372,
+      "args": {
+        "request_id": "hotspot_reuse-0051"
+      }
+    },
+    {
+      "name": "feno.input_prepare",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 180684.099,
+      "dur": 432.839,
+      "args": {}
+    },
+    {
+      "name": "feno.geometry_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 181152.263,
+      "dur": 695.152,
+      "args": {}
+    },
+    {
+      "name": "feno.wavelet_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 181878.728,
+      "dur": 501.367,
+      "args": {}
+    },
+    {
+      "name": "feno.decoder_tail",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 182406.236,
+      "dur": 1847.359,
+      "args": {}
+    },
+    {
+      "name": "feno.output",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 184288.324,
+      "dur": 3.161,
+      "args": {}
+    },
+    {
+      "name": "feno.output_ownership",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 184334.514,
+      "dur": 119.181,
+      "args": {}
+    },
+    {
+      "name": "feno.device_synchronize",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 184491.223,
+      "dur": 66.684,
+      "args": {}
+    },
+    {
+      "name": "feno.runner_execute",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 180614.957,
+      "dur": 3952.536,
+      "args": {}
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -32,
+      "ts": 123793.639,
+      "dur": 61188.361,
+      "args": {
+        "request_id": "hotspot_reuse-0031",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -36,
+      "ts": 126453.345,
+      "dur": 58528.655,
+      "args": {
+        "request_id": "hotspot_reuse-0035",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -44,
+      "ts": 131876.701,
+      "dur": 53105.299,
+      "args": {
+        "request_id": "hotspot_reuse-0043",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -48,
+      "ts": 134606.12,
+      "dur": 50375.88,
+      "args": {
+        "request_id": "hotspot_reuse-0047",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -64,
+      "ts": 145661.049,
+      "dur": 39320.951,
+      "args": {
+        "request_id": "hotspot_reuse-0063",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -56,
+      "ts": 140160.797,
+      "dur": 44821.203,
+      "args": {
+        "request_id": "hotspot_reuse-0055",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -60,
+      "ts": 142895.149,
+      "dur": 42086.851,
+      "args": {
+        "request_id": "hotspot_reuse-0059",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -52,
+      "ts": 137441.177,
+      "dur": 47540.823,
+      "args": {
+        "request_id": "hotspot_reuse-0051",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.completion",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 184978.438,
+      "dur": 140.82,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 185263.489,
+      "dur": 21.835,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 185309.441,
+      "dur": 24.159,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 185350.858,
+      "dur": 8.694,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 185373.771,
+      "dur": 8.204,
+      "args": {}
+    },
+    {
+      "name": "feno.scheduler_select",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 185168.725,
+      "dur": 253.133,
+      "args": {
+        "pending": 16
+      }
+    },
+    {
+      "name": "feno.batch_build",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 185525.423,
+      "dur": 187.316,
+      "args": {}
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -33,
+      "ts": 125070.755,
+      "dur": 60671.191,
+      "args": {
+        "request_id": "hotspot_reuse-0032"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -37,
+      "ts": 127760.488,
+      "dur": 57981.458,
+      "args": {
+        "request_id": "hotspot_reuse-0036"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -41,
+      "ts": 130437.375,
+      "dur": 55304.571,
+      "args": {
+        "request_id": "hotspot_reuse-0040"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -45,
+      "ts": 133165.973,
+      "dur": 52575.973,
+      "args": {
+        "request_id": "hotspot_reuse-0044"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -53,
+      "ts": 138757.078,
+      "dur": 46984.868,
+      "args": {
+        "request_id": "hotspot_reuse-0052"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -61,
+      "ts": 144163.907,
+      "dur": 41578.039,
+      "args": {
+        "request_id": "hotspot_reuse-0060"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -49,
+      "ts": 135885.791,
+      "dur": 49856.155,
+      "args": {
+        "request_id": "hotspot_reuse-0048"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -57,
+      "ts": 141424.783,
+      "dur": 44317.163,
+      "args": {
+        "request_id": "hotspot_reuse-0056"
+      }
+    },
+    {
+      "name": "feno.input_prepare",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 186079.778,
+      "dur": 456.86,
+      "args": {}
+    },
+    {
+      "name": "feno.geometry_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 186583.866,
+      "dur": 679.069,
+      "args": {}
+    },
+    {
+      "name": "feno.wavelet_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 187295.765,
+      "dur": 506.15,
+      "args": {}
+    },
+    {
+      "name": "feno.decoder_tail",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 187842.598,
+      "dur": 1819.691,
+      "args": {}
+    },
+    {
+      "name": "feno.output",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 189696.128,
+      "dur": 3.061,
+      "args": {}
+    },
+    {
+      "name": "feno.output_ownership",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 189741.393,
+      "dur": 113.947,
+      "args": {}
+    },
+    {
+      "name": "feno.device_synchronize",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 189885.061,
+      "dur": 43.103,
+      "args": {}
+    },
+    {
+      "name": "feno.runner_execute",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 186019.808,
+      "dur": 3917.52,
+      "args": {}
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -33,
+      "ts": 124455.942,
+      "dur": 65860.051,
+      "args": {
+        "request_id": "hotspot_reuse-0032",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -37,
+      "ts": 127121.134,
+      "dur": 63194.859,
+      "args": {
+        "request_id": "hotspot_reuse-0036",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -41,
+      "ts": 129872.571,
+      "dur": 60443.422,
+      "args": {
+        "request_id": "hotspot_reuse-0040",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -45,
+      "ts": 132561.175,
+      "dur": 57754.818,
+      "args": {
+        "request_id": "hotspot_reuse-0044",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -53,
+      "ts": 138146.126,
+      "dur": 52169.867,
+      "args": {
+        "request_id": "hotspot_reuse-0052",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -61,
+      "ts": 143578.709,
+      "dur": 46737.284,
+      "args": {
+        "request_id": "hotspot_reuse-0060",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -49,
+      "ts": 135279.56,
+      "dur": 55036.433,
+      "args": {
+        "request_id": "hotspot_reuse-0048",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -57,
+      "ts": 140823.147,
+      "dur": 49492.846,
+      "args": {
+        "request_id": "hotspot_reuse-0056",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.completion",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 190312.481,
+      "dur": 128.937,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 190570.043,
+      "dur": 21.709,
+      "args": {}
+    },
+    {
+      "name": "feno.cache_lookup",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 190621.364,
+      "dur": 10.446,
+      "args": {}
+    },
+    {
+      "name": "feno.scheduler_select",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 190491.311,
+      "dur": 182.079,
+      "args": {
+        "pending": 8
+      }
+    },
+    {
+      "name": "feno.batch_build",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 190755.892,
+      "dur": 173.523,
+      "args": {}
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -35,
+      "ts": 126384.295,
+      "dur": 64566.416,
+      "args": {
+        "request_id": "hotspot_reuse-0034"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -39,
+      "ts": 129100.236,
+      "dur": 61850.475,
+      "args": {
+        "request_id": "hotspot_reuse-0038"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -43,
+      "ts": 131800.865,
+      "dur": 59149.846,
+      "args": {
+        "request_id": "hotspot_reuse-0042"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -47,
+      "ts": 134540.035,
+      "dur": 56410.676,
+      "args": {
+        "request_id": "hotspot_reuse-0046"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -51,
+      "ts": 137358.147,
+      "dur": 53592.564,
+      "args": {
+        "request_id": "hotspot_reuse-0050"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -55,
+      "ts": 140090.439,
+      "dur": 50860.272,
+      "args": {
+        "request_id": "hotspot_reuse-0054"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -59,
+      "ts": 142803.253,
+      "dur": 48147.458,
+      "args": {
+        "request_id": "hotspot_reuse-0058"
+      }
+    },
+    {
+      "name": "feno.queue_wait",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -63,
+      "ts": 145572.876,
+      "dur": 45377.835,
+      "args": {
+        "request_id": "hotspot_reuse-0062"
+      }
+    },
+    {
+      "name": "feno.input_prepare",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 191282.12,
+      "dur": 445.025,
+      "args": {}
+    },
+    {
+      "name": "feno.geometry_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 191762.559,
+      "dur": 658.474,
+      "args": {}
+    },
+    {
+      "name": "feno.wavelet_resolve",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 192451.406,
+      "dur": 494.362,
+      "args": {}
+    },
+    {
+      "name": "feno.decoder_tail",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 192972.605,
+      "dur": 1795.709,
+      "args": {}
+    },
+    {
+      "name": "feno.output",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 194802.446,
+      "dur": 3.041,
+      "args": {}
+    },
+    {
+      "name": "feno.output_ownership",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 194847.703,
+      "dur": 114.543,
+      "args": {}
+    },
+    {
+      "name": "feno.device_synchronize",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 194994.254,
+      "dur": 41.262,
+      "args": {}
+    },
+    {
+      "name": "feno.runner_execute",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 2,
+      "ts": 191213.401,
+      "dur": 3831.703,
+      "args": {}
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -35,
+      "ts": 125786.5,
+      "dur": 69631.732,
+      "args": {
+        "request_id": "hotspot_reuse-0034",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -39,
+      "ts": 128487.552,
+      "dur": 66930.68,
+      "args": {
+        "request_id": "hotspot_reuse-0038",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -43,
+      "ts": 131207.521,
+      "dur": 64210.711,
+      "args": {
+        "request_id": "hotspot_reuse-0042",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -47,
+      "ts": 133938.965,
+      "dur": 61479.267,
+      "args": {
+        "request_id": "hotspot_reuse-0046",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -51,
+      "ts": 136623.377,
+      "dur": 58794.855,
+      "args": {
+        "request_id": "hotspot_reuse-0050",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -55,
+      "ts": 139458.381,
+      "dur": 55959.851,
+      "args": {
+        "request_id": "hotspot_reuse-0054",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -59,
+      "ts": 142208.032,
+      "dur": 53210.2,
+      "args": {
+        "request_id": "hotspot_reuse-0058",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.request_e2e",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": -63,
+      "ts": 144932.057,
+      "dur": 50486.175,
+      "args": {
+        "request_id": "hotspot_reuse-0062",
+        "status": "succeeded"
+      }
+    },
+    {
+      "name": "feno.completion",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 195414.602,
+      "dur": 151.132,
+      "args": {}
+    },
+    {
+      "name": "feno.engine_window",
+      "cat": "feno.host",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 128.603,
+      "dur": 196633.976,
+      "args": {}
+    }
+  ],
+  "displayTimeUnit": "ms",
+  "metadata": {
+    "result_class": "diagnostic",
+    "clock": "perf_counter_ns",
+    "nvtx_enabled": true,
+    "dropped_events": 0,
+    "active_requests": 0
+  }
+}

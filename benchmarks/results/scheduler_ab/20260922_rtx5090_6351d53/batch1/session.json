@@ -1,0 +1,610 @@
+{
+  "schema_version": "1.0.0",
+  "benchmark": "scheduler_ab",
+  "status": "passed",
+  "created_at_utc": "2026-09-22T14:58:50.804344+00:00",
+  "completed_at_utc": "2026-09-22T15:06:12.209844+00:00",
+  "source": {
+    "git_commit": "6351d53dec23e72c27c88b4c6650f7c4a9a572f3",
+    "git_dirty": false,
+    "command": [
+      "python",
+      "benchmarks/run_scheduler_ab_matrix.py",
+      "--config",
+      "benchmarks/configs/scheduler_batch1_ab.json",
+      "--output-dir",
+      "/tmp/feno-public-run/validation/scheduler_batch1"
+    ],
+    "resume_commands": [],
+    "config_path": "benchmarks/configs/scheduler_batch1_ab.json",
+    "config_sha256": "6f2707daffae534948f1c3828756535ccf4c0868879653f925c48a0f46f6d9c9"
+  },
+  "model_artifacts": {
+    "checkpoint": {
+      "identifier": "feno_test.pth",
+      "sha256": "4807ff56b2cb6968547083df8c715a0ad868ae8f4b8de1c51576374e57f94cf2"
+    },
+    "normalization": {
+      "identifier": "norm_params_freq.npz",
+      "sha256": "b9f754ea9ff8e39b779c64740c71da1581025e0f86e1e950b986848775a3cc4a"
+    }
+  },
+  "matrix": {
+    "policies": [
+      "fcfs",
+      "cache_aware"
+    ],
+    "scenarios": [
+      "no_reuse",
+      "uniform_reuse",
+      "long_tail_reuse",
+      "hotspot_reuse"
+    ],
+    "independent_runs": 3,
+    "requests_per_run": 1000,
+    "total_processes": 24,
+    "process_isolation": "one_configuration_per_fresh_process",
+    "pairing": "adjacent_counterbalanced_fcfs_cache_aware"
+  },
+  "output_directory": "/tmp/feno-public-run/validation/scheduler_batch1",
+  "execution_order": [
+    {
+      "sequence": 1,
+      "pair_id": "no_reuse_run1",
+      "pair_position": 1,
+      "policy": "fcfs",
+      "scenario": "no_reuse",
+      "repeat_index": 1,
+      "result_file": "scheduler_fcfs_no_reuse_run1.json",
+      "log_file": "logs/scheduler_fcfs_no_reuse_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T14:58:50.805117+00:00",
+      "completed_at_utc": "2026-09-22T14:59:08.962120+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_no_reuse_run1.log",
+          "started_at_utc": "2026-09-22T14:58:50.805117+00:00",
+          "completed_at_utc": "2026-09-22T14:59:08.962120+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "pair_id": "no_reuse_run1",
+      "pair_position": 2,
+      "policy": "cache_aware",
+      "scenario": "no_reuse",
+      "repeat_index": 1,
+      "result_file": "scheduler_cache_aware_no_reuse_run1.json",
+      "log_file": "logs/scheduler_cache_aware_no_reuse_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T14:59:09.114899+00:00",
+      "completed_at_utc": "2026-09-22T14:59:32.966525+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_no_reuse_run1.log",
+          "started_at_utc": "2026-09-22T14:59:09.114899+00:00",
+          "completed_at_utc": "2026-09-22T14:59:32.966525+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "pair_id": "uniform_reuse_run1",
+      "pair_position": 1,
+      "policy": "fcfs",
+      "scenario": "uniform_reuse",
+      "repeat_index": 1,
+      "result_file": "scheduler_fcfs_uniform_reuse_run1.json",
+      "log_file": "logs/scheduler_fcfs_uniform_reuse_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T14:59:33.154743+00:00",
+      "completed_at_utc": "2026-09-22T14:59:48.762970+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_uniform_reuse_run1.log",
+          "started_at_utc": "2026-09-22T14:59:33.154743+00:00",
+          "completed_at_utc": "2026-09-22T14:59:48.762970+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "pair_id": "uniform_reuse_run1",
+      "pair_position": 2,
+      "policy": "cache_aware",
+      "scenario": "uniform_reuse",
+      "repeat_index": 1,
+      "result_file": "scheduler_cache_aware_uniform_reuse_run1.json",
+      "log_file": "logs/scheduler_cache_aware_uniform_reuse_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T14:59:48.945040+00:00",
+      "completed_at_utc": "2026-09-22T15:00:08.656816+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_uniform_reuse_run1.log",
+          "started_at_utc": "2026-09-22T14:59:48.945040+00:00",
+          "completed_at_utc": "2026-09-22T15:00:08.656816+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 5,
+      "pair_id": "long_tail_reuse_run1",
+      "pair_position": 1,
+      "policy": "fcfs",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 1,
+      "result_file": "scheduler_fcfs_long_tail_reuse_run1.json",
+      "log_file": "logs/scheduler_fcfs_long_tail_reuse_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:00:08.846085+00:00",
+      "completed_at_utc": "2026-09-22T15:00:23.990884+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_long_tail_reuse_run1.log",
+          "started_at_utc": "2026-09-22T15:00:08.846085+00:00",
+          "completed_at_utc": "2026-09-22T15:00:23.990884+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 6,
+      "pair_id": "long_tail_reuse_run1",
+      "pair_position": 2,
+      "policy": "cache_aware",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 1,
+      "result_file": "scheduler_cache_aware_long_tail_reuse_run1.json",
+      "log_file": "logs/scheduler_cache_aware_long_tail_reuse_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:00:24.183991+00:00",
+      "completed_at_utc": "2026-09-22T15:00:44.069176+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_long_tail_reuse_run1.log",
+          "started_at_utc": "2026-09-22T15:00:24.183991+00:00",
+          "completed_at_utc": "2026-09-22T15:00:44.069176+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 7,
+      "pair_id": "hotspot_reuse_run1",
+      "pair_position": 1,
+      "policy": "fcfs",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 1,
+      "result_file": "scheduler_fcfs_hotspot_reuse_run1.json",
+      "log_file": "logs/scheduler_fcfs_hotspot_reuse_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:00:44.261568+00:00",
+      "completed_at_utc": "2026-09-22T15:00:58.877062+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_hotspot_reuse_run1.log",
+          "started_at_utc": "2026-09-22T15:00:44.261568+00:00",
+          "completed_at_utc": "2026-09-22T15:00:58.877062+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 8,
+      "pair_id": "hotspot_reuse_run1",
+      "pair_position": 2,
+      "policy": "cache_aware",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 1,
+      "result_file": "scheduler_cache_aware_hotspot_reuse_run1.json",
+      "log_file": "logs/scheduler_cache_aware_hotspot_reuse_run1.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:00:59.073072+00:00",
+      "completed_at_utc": "2026-09-22T15:01:16.785205+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_hotspot_reuse_run1.log",
+          "started_at_utc": "2026-09-22T15:00:59.073072+00:00",
+          "completed_at_utc": "2026-09-22T15:01:16.785205+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 9,
+      "pair_id": "hotspot_reuse_run2",
+      "pair_position": 1,
+      "policy": "cache_aware",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 2,
+      "result_file": "scheduler_cache_aware_hotspot_reuse_run2.json",
+      "log_file": "logs/scheduler_cache_aware_hotspot_reuse_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:01:16.980670+00:00",
+      "completed_at_utc": "2026-09-22T15:01:35.822251+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_hotspot_reuse_run2.log",
+          "started_at_utc": "2026-09-22T15:01:16.980670+00:00",
+          "completed_at_utc": "2026-09-22T15:01:35.822251+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 10,
+      "pair_id": "hotspot_reuse_run2",
+      "pair_position": 2,
+      "policy": "fcfs",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 2,
+      "result_file": "scheduler_fcfs_hotspot_reuse_run2.json",
+      "log_file": "logs/scheduler_fcfs_hotspot_reuse_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:01:36.018183+00:00",
+      "completed_at_utc": "2026-09-22T15:01:52.482032+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_hotspot_reuse_run2.log",
+          "started_at_utc": "2026-09-22T15:01:36.018183+00:00",
+          "completed_at_utc": "2026-09-22T15:01:52.482032+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 11,
+      "pair_id": "long_tail_reuse_run2",
+      "pair_position": 1,
+      "policy": "cache_aware",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 2,
+      "result_file": "scheduler_cache_aware_long_tail_reuse_run2.json",
+      "log_file": "logs/scheduler_cache_aware_long_tail_reuse_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:01:52.667586+00:00",
+      "completed_at_utc": "2026-09-22T15:02:11.114752+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_long_tail_reuse_run2.log",
+          "started_at_utc": "2026-09-22T15:01:52.667586+00:00",
+          "completed_at_utc": "2026-09-22T15:02:11.114752+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 12,
+      "pair_id": "long_tail_reuse_run2",
+      "pair_position": 2,
+      "policy": "fcfs",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 2,
+      "result_file": "scheduler_fcfs_long_tail_reuse_run2.json",
+      "log_file": "logs/scheduler_fcfs_long_tail_reuse_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:02:11.307744+00:00",
+      "completed_at_utc": "2026-09-22T15:02:27.135365+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_long_tail_reuse_run2.log",
+          "started_at_utc": "2026-09-22T15:02:11.307744+00:00",
+          "completed_at_utc": "2026-09-22T15:02:27.135365+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 13,
+      "pair_id": "uniform_reuse_run2",
+      "pair_position": 1,
+      "policy": "cache_aware",
+      "scenario": "uniform_reuse",
+      "repeat_index": 2,
+      "result_file": "scheduler_cache_aware_uniform_reuse_run2.json",
+      "log_file": "logs/scheduler_cache_aware_uniform_reuse_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:02:27.292675+00:00",
+      "completed_at_utc": "2026-09-22T15:02:47.196333+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_uniform_reuse_run2.log",
+          "started_at_utc": "2026-09-22T15:02:27.292675+00:00",
+          "completed_at_utc": "2026-09-22T15:02:47.196333+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 14,
+      "pair_id": "uniform_reuse_run2",
+      "pair_position": 2,
+      "policy": "fcfs",
+      "scenario": "uniform_reuse",
+      "repeat_index": 2,
+      "result_file": "scheduler_fcfs_uniform_reuse_run2.json",
+      "log_file": "logs/scheduler_fcfs_uniform_reuse_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:02:47.402331+00:00",
+      "completed_at_utc": "2026-09-22T15:03:03.438181+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_uniform_reuse_run2.log",
+          "started_at_utc": "2026-09-22T15:02:47.402331+00:00",
+          "completed_at_utc": "2026-09-22T15:03:03.438181+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 15,
+      "pair_id": "no_reuse_run2",
+      "pair_position": 1,
+      "policy": "cache_aware",
+      "scenario": "no_reuse",
+      "repeat_index": 2,
+      "result_file": "scheduler_cache_aware_no_reuse_run2.json",
+      "log_file": "logs/scheduler_cache_aware_no_reuse_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:03:03.631810+00:00",
+      "completed_at_utc": "2026-09-22T15:03:26.397674+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_no_reuse_run2.log",
+          "started_at_utc": "2026-09-22T15:03:03.631810+00:00",
+          "completed_at_utc": "2026-09-22T15:03:26.397674+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 16,
+      "pair_id": "no_reuse_run2",
+      "pair_position": 2,
+      "policy": "fcfs",
+      "scenario": "no_reuse",
+      "repeat_index": 2,
+      "result_file": "scheduler_fcfs_no_reuse_run2.json",
+      "log_file": "logs/scheduler_fcfs_no_reuse_run2.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:03:26.576757+00:00",
+      "completed_at_utc": "2026-09-22T15:03:42.523831+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_no_reuse_run2.log",
+          "started_at_utc": "2026-09-22T15:03:26.576757+00:00",
+          "completed_at_utc": "2026-09-22T15:03:42.523831+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 17,
+      "pair_id": "no_reuse_run3",
+      "pair_position": 1,
+      "policy": "fcfs",
+      "scenario": "no_reuse",
+      "repeat_index": 3,
+      "result_file": "scheduler_fcfs_no_reuse_run3.json",
+      "log_file": "logs/scheduler_fcfs_no_reuse_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:03:42.716702+00:00",
+      "completed_at_utc": "2026-09-22T15:04:00.649710+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_no_reuse_run3.log",
+          "started_at_utc": "2026-09-22T15:03:42.716702+00:00",
+          "completed_at_utc": "2026-09-22T15:04:00.649710+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 18,
+      "pair_id": "no_reuse_run3",
+      "pair_position": 2,
+      "policy": "cache_aware",
+      "scenario": "no_reuse",
+      "repeat_index": 3,
+      "result_file": "scheduler_cache_aware_no_reuse_run3.json",
+      "log_file": "logs/scheduler_cache_aware_no_reuse_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:04:00.829288+00:00",
+      "completed_at_utc": "2026-09-22T15:04:22.767070+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_no_reuse_run3.log",
+          "started_at_utc": "2026-09-22T15:04:00.829288+00:00",
+          "completed_at_utc": "2026-09-22T15:04:22.767070+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 19,
+      "pair_id": "uniform_reuse_run3",
+      "pair_position": 1,
+      "policy": "fcfs",
+      "scenario": "uniform_reuse",
+      "repeat_index": 3,
+      "result_file": "scheduler_fcfs_uniform_reuse_run3.json",
+      "log_file": "logs/scheduler_fcfs_uniform_reuse_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:04:22.957345+00:00",
+      "completed_at_utc": "2026-09-22T15:04:37.935143+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_uniform_reuse_run3.log",
+          "started_at_utc": "2026-09-22T15:04:22.957345+00:00",
+          "completed_at_utc": "2026-09-22T15:04:37.935143+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 20,
+      "pair_id": "uniform_reuse_run3",
+      "pair_position": 2,
+      "policy": "cache_aware",
+      "scenario": "uniform_reuse",
+      "repeat_index": 3,
+      "result_file": "scheduler_cache_aware_uniform_reuse_run3.json",
+      "log_file": "logs/scheduler_cache_aware_uniform_reuse_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:04:38.130734+00:00",
+      "completed_at_utc": "2026-09-22T15:04:58.918787+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_uniform_reuse_run3.log",
+          "started_at_utc": "2026-09-22T15:04:38.130734+00:00",
+          "completed_at_utc": "2026-09-22T15:04:58.918787+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 21,
+      "pair_id": "long_tail_reuse_run3",
+      "pair_position": 1,
+      "policy": "fcfs",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 3,
+      "result_file": "scheduler_fcfs_long_tail_reuse_run3.json",
+      "log_file": "logs/scheduler_fcfs_long_tail_reuse_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:04:59.114730+00:00",
+      "completed_at_utc": "2026-09-22T15:05:15.262735+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_long_tail_reuse_run3.log",
+          "started_at_utc": "2026-09-22T15:04:59.114730+00:00",
+          "completed_at_utc": "2026-09-22T15:05:15.262735+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 22,
+      "pair_id": "long_tail_reuse_run3",
+      "pair_position": 2,
+      "policy": "cache_aware",
+      "scenario": "long_tail_reuse",
+      "repeat_index": 3,
+      "result_file": "scheduler_cache_aware_long_tail_reuse_run3.json",
+      "log_file": "logs/scheduler_cache_aware_long_tail_reuse_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:05:15.455101+00:00",
+      "completed_at_utc": "2026-09-22T15:05:35.072021+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_long_tail_reuse_run3.log",
+          "started_at_utc": "2026-09-22T15:05:15.455101+00:00",
+          "completed_at_utc": "2026-09-22T15:05:35.072021+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 23,
+      "pair_id": "hotspot_reuse_run3",
+      "pair_position": 1,
+      "policy": "fcfs",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 3,
+      "result_file": "scheduler_fcfs_hotspot_reuse_run3.json",
+      "log_file": "logs/scheduler_fcfs_hotspot_reuse_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:05:35.264294+00:00",
+      "completed_at_utc": "2026-09-22T15:05:50.576364+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_fcfs_hotspot_reuse_run3.log",
+          "started_at_utc": "2026-09-22T15:05:35.264294+00:00",
+          "completed_at_utc": "2026-09-22T15:05:50.576364+00:00",
+          "return_code": 0
+        }
+      ]
+    },
+    {
+      "sequence": 24,
+      "pair_id": "hotspot_reuse_run3",
+      "pair_position": 2,
+      "policy": "cache_aware",
+      "scenario": "hotspot_reuse",
+      "repeat_index": 3,
+      "result_file": "scheduler_cache_aware_hotspot_reuse_run3.json",
+      "log_file": "logs/scheduler_cache_aware_hotspot_reuse_run3.log",
+      "status": "passed",
+      "return_code": 0,
+      "started_at_utc": "2026-09-22T15:05:50.769870+00:00",
+      "completed_at_utc": "2026-09-22T15:06:08.554781+00:00",
+      "attempts": [
+        {
+          "attempt_index": 1,
+          "log_file": "logs/scheduler_cache_aware_hotspot_reuse_run3.log",
+          "started_at_utc": "2026-09-22T15:05:50.769870+00:00",
+          "completed_at_utc": "2026-09-22T15:06:08.554781+00:00",
+          "return_code": 0
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "json": "summary.json",
+    "markdown": "summary.md",
+    "svg": "reuse_throughput.svg"
+  },
+  "errors": []
+}

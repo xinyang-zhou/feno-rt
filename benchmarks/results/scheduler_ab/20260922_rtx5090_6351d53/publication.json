@@ -1,0 +1,206 @@
+{
+  "source_commit": "6351d53dec23e72c27c88b4c6650f7c4a9a572f3",
+  "result_class": "sanitized_formal_results",
+  "transformations": [
+    "Interpreter replaced by python; checkout paths made relative; output paths replaced by /tmp/feno-public-run.",
+    "GPU UUID replaced consistently by GPU-ANON-0.",
+    "Measurement values, samples, status, model/config/trace hashes and environment versions preserved.",
+    "Summaries and their input file hashes regenerated from sanitized JSON.",
+    "Trailing whitespace and terminal blank lines in text logs normalized; no diagnostic messages removed."
+  ],
+  "original_binary_reports_published": false,
+  "files": {
+    "main/scheduler_cache_aware_hotspot_reuse_run1.json": {
+      "source_sha256": "e883e7ff113d3987dd5f7386ae43e999d4943952dea0fbcac01f12b0b1e19ecd",
+      "published_sha256": "b8c7dfb58c653b2324810c491536204740dc124894d63f4adbedcbe7862faff4"
+    },
+    "main/scheduler_cache_aware_hotspot_reuse_run2.json": {
+      "source_sha256": "8baa0c3438212c68c75b483399463fb0c2ddca5e37656f6696e02d5b4971e273",
+      "published_sha256": "3dfdffed92900057e8bad8a9e7109b958dcc99403073331191a384e3a062d949"
+    },
+    "main/scheduler_cache_aware_hotspot_reuse_run3.json": {
+      "source_sha256": "70f6f6ba3dea29c848f34f3542734ebaf2b8d6463585ff742ff4abb1dffae1a0",
+      "published_sha256": "06dc8b71fd4917bfe9df62845c22786e5ee80c8894e008a0f8aa04e29251ce27"
+    },
+    "main/scheduler_cache_aware_long_tail_reuse_run1.json": {
+      "source_sha256": "4e8ae318902e2843b56c46e3abf96f8f4c7568c290ab3d844d39fb62da136b06",
+      "published_sha256": "681d64eae0bc0705e0303ecce6d9008257f641253373c382875a9e3ba2b83471"
+    },
+    "main/scheduler_cache_aware_long_tail_reuse_run2.json": {
+      "source_sha256": "4a560a9199807245f74173aca3a69c8ea030ea62320cb6d0d031eef2540de791",
+      "published_sha256": "aaecde25ced2554eb9784fd83c7779ed10d3860dad4b07f2a67fa16ab857a50d"
+    },
+    "main/scheduler_cache_aware_long_tail_reuse_run3.json": {
+      "source_sha256": "c89ef8f0ee14f595aac82a12fd31453d1ec376d2922a384a853a8bc8d6765f71",
+      "published_sha256": "d064d3fc4af4ba2c327d673b433a666ac04cc52770e95497b26f1f624caae99f"
+    },
+    "main/scheduler_cache_aware_no_reuse_run1.json": {
+      "source_sha256": "76aded96e36d9923d6306d3921632f01c77fe42b53784c3e0f9a87fd071c37c8",
+      "published_sha256": "3f6af0fae4811741bc19ec6af8d1dd04c18153144cb7a9cedac080409babe3a9"
+    },
+    "main/scheduler_cache_aware_no_reuse_run2.json": {
+      "source_sha256": "b36ee9627855f9deed0d893acf0eecfb27683e379c5a61abeafe047d6ceba029",
+      "published_sha256": "5ea61cd613681a91ac7de4303cee76511afc69144533b243ea2534190b39a825"
+    },
+    "main/scheduler_cache_aware_no_reuse_run3.json": {
+      "source_sha256": "418cd37592e2f9ddec4f868a29bf18b4a9ee39c414ba2a857237c274dac55b19",
+      "published_sha256": "89eb41fd05bdecaab4464240e1da81ed1bc77b5f6570574d4cc0b927366ebff2"
+    },
+    "main/scheduler_cache_aware_uniform_reuse_run1.json": {
+      "source_sha256": "afed94a0b0c01ff4bc7ffc9a2fb4f3f5d36c79bf2247446ac2891aa77e11a109",
+      "published_sha256": "9362c00d58c684bf0a70ea07fe8c4b016f8b1c80b6258371b6faa0fdfb8569de"
+    },
+    "main/scheduler_cache_aware_uniform_reuse_run2.json": {
+      "source_sha256": "040baf5174173fecbfd317d1afb031e92a314f7f0dc696f6040e2dab38c5853c",
+      "published_sha256": "70d182a83dd94030d620f5b32d89171b58392219a5d9718796f65a633cba9ed2"
+    },
+    "main/scheduler_cache_aware_uniform_reuse_run3.json": {
+      "source_sha256": "3b0f2158251733c2cfabf25f8470c4ec09301134bdf6a1e7e36a4fdda86be73f",
+      "published_sha256": "f687bc20fa95e4b64ac4adbb6bf98cc1930531ab840dc8c2eb78c7c198a1ba88"
+    },
+    "main/scheduler_fcfs_hotspot_reuse_run1.json": {
+      "source_sha256": "b49883c91e65b029dada2e629d375d9fd38b6180e19387f4cfca49efaef367c2",
+      "published_sha256": "8903b646b9599b5106f33c831fdbc529804c1a4dd694090fdd61c621ac8f3d6f"
+    },
+    "main/scheduler_fcfs_hotspot_reuse_run2.json": {
+      "source_sha256": "a67c67fc887ded6fe59f093b672e87b9032ce5663e0c16c01a6838a784191fa6",
+      "published_sha256": "c857c93c4b0b304cbe928d5d94b4f52347a6b7f48d553619ec7a1fbfabacfeec"
+    },
+    "main/scheduler_fcfs_hotspot_reuse_run3.json": {
+      "source_sha256": "a2dd409cc198141466dc2c0c2e51b934b8c124add455e1b6075db222cd41c211",
+      "published_sha256": "1c7a9c88ffabaaf2fc68a01e6f0befe852667b633fb8e84da873c5728ea732ce"
+    },
+    "main/scheduler_fcfs_long_tail_reuse_run1.json": {
+      "source_sha256": "49df5a54c2f0645fe1a896bf30834842989f000e84578d9d606a8c6c7d6a643a",
+      "published_sha256": "daae8c6a7dc9d907b10745459d3670dfefacaf136d8f0f63312cb33cf00ff898"
+    },
+    "main/scheduler_fcfs_long_tail_reuse_run2.json": {
+      "source_sha256": "0912c19f20569b2b801b337bc41dfd7e5298d72fd61e994bcb2bf86f8300e59d",
+      "published_sha256": "3cd432a0a34a6c4e6b25922fd15e327678c34db4d774acb2c938149c45456215"
+    },
+    "main/scheduler_fcfs_long_tail_reuse_run3.json": {
+      "source_sha256": "0b1cfb57a4abf8ff2aed05b0c35bbd543d7130b0568848c911219852abe336de",
+      "published_sha256": "fbfa4b1947b92f7551d7bd693cb758cb0f61ef3a20a2723b0652bf7cdafedffe"
+    },
+    "main/scheduler_fcfs_no_reuse_run1.json": {
+      "source_sha256": "4d8264ccafe021c5b364e7a96b8de7ee3a8609bc9a738488117e408041785867",
+      "published_sha256": "e3711c1bab12f20c2d8afb04125b9002793048ec224b4c3d205db73b1e17b75c"
+    },
+    "main/scheduler_fcfs_no_reuse_run2.json": {
+      "source_sha256": "932ed04358a39300f3e58bc3ab256925733bde705ebf4be065096308d5c5d022",
+      "published_sha256": "7f1d1cc53af935111cc90eaaeb7f126e777df5822d5543b829a9729e13ccce81"
+    },
+    "main/scheduler_fcfs_no_reuse_run3.json": {
+      "source_sha256": "e871b1c0b75478a901909d170454c5a42f77b3ff0c85d980371c082076ef7515",
+      "published_sha256": "179a803c5b05a8bc2e99a48cefe0e17f4a22bd9bb76a12013ff72a61f2e22dc1"
+    },
+    "main/scheduler_fcfs_uniform_reuse_run1.json": {
+      "source_sha256": "123957851e9d5941e8b9a7566a855d1f9d0d4541b3ee8114c93cbb1c823af892",
+      "published_sha256": "4a2f0939818fb8042a0afa4afa5cd25f1bbcfe4e8a82aab6313191fe40f8060e"
+    },
+    "main/scheduler_fcfs_uniform_reuse_run2.json": {
+      "source_sha256": "2330816a192f181075f12423da4ac525b5ebce8ec7b592168fef2c7f3b559528",
+      "published_sha256": "c358aa8d0ef2e26fbae0a56b6833027469da40fbf7aefb9b0a78c11db7558257"
+    },
+    "main/scheduler_fcfs_uniform_reuse_run3.json": {
+      "source_sha256": "45dd09182c294c7c89e6dadf76f2f66dade69a0140a076c3108a9cb43014b972",
+      "published_sha256": "1a41badd2aa53be6553b0c778d98f5d26a9bc85733a30b4367580d741de8291d"
+    },
+    "batch1/scheduler_cache_aware_hotspot_reuse_run1.json": {
+      "source_sha256": "4255cff110d588cb50bd66adb7dca76c8ecb0dd820d027869f5069291ed1c7ff",
+      "published_sha256": "aacce369bddb9bfb13b31f9e9b6162f7e4b14ab1cd0c2f4fb95a2dda882b31a2"
+    },
+    "batch1/scheduler_cache_aware_hotspot_reuse_run2.json": {
+      "source_sha256": "5150bb5bf9d53684132b22e73be66ca4815582249c7479fd16d0d01f86bd8925",
+      "published_sha256": "030737c3c6c536f6995933cf382a8d775735ec7cb982ebaa35c4d4730a8629ba"
+    },
+    "batch1/scheduler_cache_aware_hotspot_reuse_run3.json": {
+      "source_sha256": "b055f6b10733170f9502b553712750b9bfdb5f14c8a2ad6c484e6d6a8788eaf1",
+      "published_sha256": "16b2068cfb3ae145e1cf8efa97e21d3d38d260a6af46cf461cfd32d6b2c0fffc"
+    },
+    "batch1/scheduler_cache_aware_long_tail_reuse_run1.json": {
+      "source_sha256": "66005a1ea66dde198f448bcabad87d723eb9636ebc8909b1a9f0312f144795a2",
+      "published_sha256": "e42c6d1603904c6aad1479615a8f769009f947a539996c8f404eff04e755aab1"
+    },
+    "batch1/scheduler_cache_aware_long_tail_reuse_run2.json": {
+      "source_sha256": "8738b75915949e4c88e60588ee8ccccb07ab7deba39f4b797f6f6b728f886cc8",
+      "published_sha256": "88fa750a398b35f3a6f7c811747d0b288bf158f977c400b5bdd29271c50cac1d"
+    },
+    "batch1/scheduler_cache_aware_long_tail_reuse_run3.json": {
+      "source_sha256": "986d009cc63f8a480d3feb32a287cecf39c21471ae1c12256cef6b513a4a1b60",
+      "published_sha256": "50612dd990d0f7835c4177058320a9e67f920389f12e319694427775a55cd5a7"
+    },
+    "batch1/scheduler_cache_aware_no_reuse_run1.json": {
+      "source_sha256": "82759c72e5e43ce8e1462025947dafd7f71a37a02510dcd08b05b0c76d2c5a5c",
+      "published_sha256": "1c6ca9e64f8da7f1be641b3bed80c53427888833a87581820973d834e22c77ea"
+    },
+    "batch1/scheduler_cache_aware_no_reuse_run2.json": {
+      "source_sha256": "020b52c30c56a96cba2b17b99a3099d4e0c24fb03b4c29911a092d2cbbdc366d",
+      "published_sha256": "81bef2e979e4fc58d4e7953ce746c461f4ce04876f671682e8838d798983f9b3"
+    },
+    "batch1/scheduler_cache_aware_no_reuse_run3.json": {
+      "source_sha256": "adb0525fd672c3acae3c4f3398d5bda95eb69b449411d4b1619083a86a31964d",
+      "published_sha256": "7c3d6af74186100d955c9f855d33cad523debcbd0508ffbfbafbcf4d9ede5a60"
+    },
+    "batch1/scheduler_cache_aware_uniform_reuse_run1.json": {
+      "source_sha256": "34307ae02d7df0b2ebb92ab1e1726ccafdedd04992d5baf8221eae1124f8e264",
+      "published_sha256": "86ac210e0c6ca747f8ba24b2d2a29a37bd8b53db328dba44a9955360349bca9e"
+    },
+    "batch1/scheduler_cache_aware_uniform_reuse_run2.json": {
+      "source_sha256": "1e1fa9b91e2b66b6c85b3afb51b25fd7f338d915c146b1c6ae50c411e6036d20",
+      "published_sha256": "52d815a6683cdc762fc48017059cea0c123b7b3f6c35ef2c5b9957bc3bbde094"
+    },
+    "batch1/scheduler_cache_aware_uniform_reuse_run3.json": {
+      "source_sha256": "eefe753ce1d5c7e4698cc0a43126f718c32ad3e486c0427353d06fc6a1d0546b",
+      "published_sha256": "3eab59521dc38d9693e6afdf0638fc57f491cea4297d9048ebd94c9932173c34"
+    },
+    "batch1/scheduler_fcfs_hotspot_reuse_run1.json": {
+      "source_sha256": "979528fb599d8ce04277599861314de071998472ba201a94d9b51d64c3ba2093",
+      "published_sha256": "e30b4ef937dee69a1eecd38143951b709f6ea16de326104a52342b2fc1a07ace"
+    },
+    "batch1/scheduler_fcfs_hotspot_reuse_run2.json": {
+      "source_sha256": "62083a1964895365e52a1b622c0ceee7b316537858c185096b6dbf8e7ccdd2da",
+      "published_sha256": "091c968fddf1254cadd70029d4e7c18325350c053d7c813e324ebac1caa748be"
+    },
+    "batch1/scheduler_fcfs_hotspot_reuse_run3.json": {
+      "source_sha256": "034b715f48c9852d79906ef89589634d66b66f0da28ce23e5b750d804f2de643",
+      "published_sha256": "b8acd21190cfce4473adad4e55ea51f03b9824d31bd07e02513d3e79ff067a93"
+    },
+    "batch1/scheduler_fcfs_long_tail_reuse_run1.json": {
+      "source_sha256": "b11ab947f20b6ba63ba2ad27285246abcc49c7c3c73256971f980aeca84df994",
+      "published_sha256": "ad9157de63baa163540f9526a05bf194c0f2ffaa8871ca31aeb11ba63a0caf00"
+    },
+    "batch1/scheduler_fcfs_long_tail_reuse_run2.json": {
+      "source_sha256": "42a3aeed6b9e6c10405579eee08fe073168bf001abdea627c5e253aaab0af9d7",
+      "published_sha256": "bcb4e16121bc64faa172c6be1d69b1b5eeecd8d4a493028a06314522b8cbdfc6"
+    },
+    "batch1/scheduler_fcfs_long_tail_reuse_run3.json": {
+      "source_sha256": "4bc2fe138dd96c86c3db599984c5f9007fb7292620d0924ccddefcdbb3a491b8",
+      "published_sha256": "84be966af81ac1af5c6e037f5d7c28b4f6cb1a9cdafbceb4dba5c588ff54a786"
+    },
+    "batch1/scheduler_fcfs_no_reuse_run1.json": {
+      "source_sha256": "280838bb6e5920dfcf8113c6d4a3be5c47303042082d9e8610b7f044c35a47d5",
+      "published_sha256": "ff31bdb62ed1801048b6063c5e6d98927cd81d311cc5efccee88eb96d7eb2f9c"
+    },
+    "batch1/scheduler_fcfs_no_reuse_run2.json": {
+      "source_sha256": "996d5d5f9b1085b8519b3fbeacf02b217c6d915f7458dbe99e1d12e825bca1a0",
+      "published_sha256": "f5562b576419ae78f6ce22389c568327e53918134223dbe05ceb2d0eeeec91cd"
+    },
+    "batch1/scheduler_fcfs_no_reuse_run3.json": {
+      "source_sha256": "570e8430e153c4165776e208eaa3f3e3243d5d8ff47cb5e2b59fc4cfc7c99965",
+      "published_sha256": "4a10dba6a65b8697601247a5bee8f1042e6b26379040a36fca96b7d87dfa4aa5"
+    },
+    "batch1/scheduler_fcfs_uniform_reuse_run1.json": {
+      "source_sha256": "4683e5287e39e610d84df0f862d37a6500d131c50b19a063f07ae29345502d07",
+      "published_sha256": "fcf5b3ad6f8cf859ac7473edf924531581059725220276f58706185604035a18"
+    },
+    "batch1/scheduler_fcfs_uniform_reuse_run2.json": {
+      "source_sha256": "c9ad57589d44aa2ef55a34cc4f520f4ee6248b6be3d0402f368e963d51dc7c3a",
+      "published_sha256": "5490f13b66856c6231ea76484e0d630571cbd6d071cf0b2bd458ce1d16754ce1"
+    },
+    "batch1/scheduler_fcfs_uniform_reuse_run3.json": {
+      "source_sha256": "064521470064325ba46b7375d5a97b7037a28e66d1d7e0251011b7873b9b560e",
+      "published_sha256": "ee9cf9442cb0f512a2c36a935a9de39b3cb12c5ae37be5b2eafe17e095af922b"
+    }
+  }
+}

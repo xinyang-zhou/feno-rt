@@ -41,3 +41,6 @@ geometry/wavelet 命中后仍有 `cat/index_select`，Graph replay 前后还有�
 再判断是否值得优化这些路径。
 
 新的采集入口、时间线语义及服务器命令见 [ENGINE_PROFILING.md](ENGINE_PROFILING.md)。
+真实模型的[完整 Engine 案例](../benchmarks/results/engine_profile/20260922_rtx5090_6351d53/README.md)
+进一步显示 admission、身份构造和调度的 host 开销；Graph 下仍有明显 GPU 提交空隙，
+不能仅因 single/double buffer 总耗时接近就判断设备计算成为瓶颈。

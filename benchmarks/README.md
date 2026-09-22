@@ -9,6 +9,11 @@
 `profile_engine.py` 与 `summarize_engine_profile.py` 只生成 diagnostic 材料，不进入正式
 性能汇总。`scheduler_batch1_ab.json` 是固定 batch=1 的独立对照配置。
 
+RTX 5090 的[调度结果及退化对照](results/scheduler_ab/20260922_rtx5090_6351d53/README.md)
+和[完整 Engine 诊断](results/engine_profile/20260922_rtx5090_6351d53/README.md)包含公开脱敏样本。
+`analyze_engine_sqlite.py` 提取测量窗口内的匿名 GPU 区间；`plot_performance_results.py`
+从公开 JSON 重建图表，额外依赖 `matplotlib==3.10.8`，不属于推理运行时依赖。
+
 - `benchmark_core.py`：使用小型随机模型检查主要运行路径和数值等价性；
 - `configs/`：版本化实验配置；
 - `schema/`：配置和结果的机器可读契约；

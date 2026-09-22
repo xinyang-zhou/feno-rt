@@ -1,0 +1,9 @@
+command: python benchmarks/benchmark_scheduler_ab.py --config benchmarks/configs/scheduler_ab.json --policy cache_aware --scenario hotspot_reuse --repeat-index 1 --output /tmp/feno-public-run/validation/scheduler_main/scheduler_cache_aware_hotspot_reuse_run1.json
+return_code: 0
+
+[stdout]
+saved: /tmp/feno-public-run/validation/scheduler_main/scheduler_cache_aware_hotspot_reuse_run1.json
+validated against scheduler_result.schema.json
+status: passed
+
+[stderr]

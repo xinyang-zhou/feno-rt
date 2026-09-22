@@ -26,6 +26,8 @@ Prometheus/HTTP 服务。正常推理默认不创建 EngineTrace，CUDA Graph �
 | 三级 cache、lease、多重预算、单设备 Engine | main / `0.9.0.dev0` | runtime、tests、architecture |
 | 多 GPU replica、router、pinned CPU medium tier、HTTP/metrics/replay | `v0.8.0` | 固定 tag 的源码 |
 | CUDA Graph 正式性能数字 | `a69f11e` | `benchmarks/results/cuda_graph_ab/20260922_rtx5090_a69f11e/` |
+| 调度主矩阵与 batch=1 对照 | `6351d53` | [48-run 结果](../benchmarks/results/scheduler_ab/20260922_rtx5090_6351d53/README.md) |
+| 完整 Engine 配对诊断 | `6351d53` | [四组时间线](../benchmarks/results/engine_profile/20260922_rtx5090_6351d53/README.md) |
 
 保持 main 为可安装的运行时核心，保留历史 tag，不重新合并外围服务。`0.9.0.dev0`
 仍是开发版本。性能报告以运行时记录的完整 commit 为准，不能用包版本代替源码身份。

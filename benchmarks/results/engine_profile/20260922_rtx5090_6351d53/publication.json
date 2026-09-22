@@ -1,0 +1,65 @@
+{
+  "source_commit": "6351d53dec23e72c27c88b4c6650f7c4a9a572f3",
+  "result_class": "sanitized_diagnostic_results",
+  "environment": {
+    "driver": "595.84",
+    "nsight_systems": "2024.6.2.225",
+    "torch_num_threads": 1
+  },
+  "transformations": [
+    "Interpreter and output paths anonymized as in the scheduler dataset.",
+    "JSON trace OS process/thread IDs replaced by local lane IDs; request lanes and measured timestamps/durations retained.",
+    "Only window-relative GPU intervals and aggregate CUDA API names/counts/durations exported from SQLite.",
+    "Binary Nsight/SQLite files, environment dumps and original server narrative remain private."
+  ],
+  "files": {
+    "eager_double/diagnostic.json": {
+      "source_sha256": "87b08950cd1a0ce550a1f6fcb2a22141c2d0fbec7d35e1ece08a520259a80630",
+      "published_sha256": "5b4ec98c11f24e95190b3d80fa51ee86b349d8ffcc797e2fe2a5ac09119c3cee"
+    },
+    "eager_double/requests.json": {
+      "source_sha256": "ca895b5b600c2802858363ad89abacd19925d506f238942800bb02d62d3c93e3",
+      "published_sha256": "ca895b5b600c2802858363ad89abacd19925d506f238942800bb02d62d3c93e3"
+    },
+    "eager_double/trace.json": {
+      "source_sha256": "2e56a97d600e0fcedbd9f03301110c2cb7d0eb5547b01ee8e9881e9e33176ba6",
+      "published_sha256": "1f9fa0fcb5381262ac40b15f65a92d0d23d81a6a1017cece5b345f6128b282ea"
+    },
+    "eager_single/diagnostic.json": {
+      "source_sha256": "7ecd8576c43ac5d6d249238287704ea6e3c8d163e07c662493dfe5a052d9444b",
+      "published_sha256": "087d98613f1dc2e0c9b0194e932db99d6cc751eaf926f7fb3279d50f64d39614"
+    },
+    "eager_single/requests.json": {
+      "source_sha256": "ca895b5b600c2802858363ad89abacd19925d506f238942800bb02d62d3c93e3",
+      "published_sha256": "ca895b5b600c2802858363ad89abacd19925d506f238942800bb02d62d3c93e3"
+    },
+    "eager_single/trace.json": {
+      "source_sha256": "879c672cdf26a453a2413d32c3e55f8c12aeecc60a074d528fef367bda4ea446",
+      "published_sha256": "31589e1d21a73b4b98daf585b5d1edc707e735a94bc7428ec1d1984aece1e1ec"
+    },
+    "graph_double/diagnostic.json": {
+      "source_sha256": "0764843bdda3025fa8c7b7c62c0e34b299f08a1377f69c0910780ddd12640fe7",
+      "published_sha256": "58c36a60eee4aedb901b211de95b0847d85667b18c0bf5164149771d6041a7c6"
+    },
+    "graph_double/requests.json": {
+      "source_sha256": "ca895b5b600c2802858363ad89abacd19925d506f238942800bb02d62d3c93e3",
+      "published_sha256": "ca895b5b600c2802858363ad89abacd19925d506f238942800bb02d62d3c93e3"
+    },
+    "graph_double/trace.json": {
+      "source_sha256": "4f470730790668d15c47cdf21e9af87589f68a8a2bf5011faaef60f1332df36d",
+      "published_sha256": "f3909b7cd6254402f957190cc7e7c08cc095a7932592ba44cda0b412f7af403b"
+    },
+    "graph_single/diagnostic.json": {
+      "source_sha256": "b847f28e1761739f0911adce0526d615c2455a908f2a328f4a02ccfb76186d97",
+      "published_sha256": "b26e92cadfd6929aa574a1225c715d2968fa8dff10c53084a827967f307e0bcb"
+    },
+    "graph_single/requests.json": {
+      "source_sha256": "ca895b5b600c2802858363ad89abacd19925d506f238942800bb02d62d3c93e3",
+      "published_sha256": "ca895b5b600c2802858363ad89abacd19925d506f238942800bb02d62d3c93e3"
+    },
+    "graph_single/trace.json": {
+      "source_sha256": "7fcea9529897c9a8d2c799d16073e7dffbab664e4324aefa19b08ffa9c13dfbc",
+      "published_sha256": "d164247db8fa93f4d09789ef60adf13fb348a8eeb3fa9e1cc9d6df7e46918bdb"
+    }
+  }
+}

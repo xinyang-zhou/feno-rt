@@ -159,6 +159,30 @@ CUDA Graph 对小 batch 收益最大，因为固定的 host/framework dispatch �
 [LLM Serving 对照](docs/LLM_SERVING_MAPPING.md)，分析步骤见
 [性能分析流程](docs/PERFORMANCE_WORKFLOW.md)。
 
+## Scheduler performance and limits
+
+RTX 5090、同一模型与 1000 请求 burst、统一 30 秒 deadline、Graph/profiler 关闭。
+两种策略各运行 3 次独立进程；下表是逐次配对比值的中位数。
+
+| Workload | 吞吐比：batch 上限 8 | E2E p99 降幅 | 吞吐比：双方 batch=1 |
+|:---|---:|---:|---:|
+| no_reuse | 3.481x | 75.85% | 0.616x |
+| uniform_reuse | 3.711x | 76.39% | 0.620x |
+| long_tail_reuse | 3.816x | 77.23% | 0.659x |
+| hotspot_reuse | 4.228x | 80.05% | 0.687x |
+
+吞吐比为 Cache-Aware / FCFS。交错 medium 使严格 FCFS 只能形成 batch=1，而
+Cache-Aware 平均 batch 为 7.81；主矩阵收益主要与兼容组批有关，不能全部归因于
+cache hit。固定 batch=1 后调度开销导致退化，E2E p99 增加 47.65–64.42%。
+主矩阵峰值 allocated 显存增加约 192–196 MiB。这些结果不代表原 5 秒 SLO 达标。
+
+![Scheduler comparison and batch=1 control](benchmarks/results/scheduler_ab/20260922_rtx5090_6351d53/scheduler_comparison.svg)
+
+两套矩阵 48/48 通过，全部请求完成。完整样本、重复波动、缓存/公平性指标及脱敏说明见
+[调度实验结果](benchmarks/results/scheduler_ab/20260922_rtx5090_6351d53/README.md)。
+完整 Engine 的四组[诊断时间线](benchmarks/results/engine_profile/20260922_rtx5090_6351d53/README.md)
+显示 admission 与调度仍有明显开销；其 profiler 耗时不计入正式性能数字。
+
 ## Repository layout
 
 ```text

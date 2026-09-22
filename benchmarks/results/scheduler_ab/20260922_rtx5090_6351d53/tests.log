@@ -1,0 +1,95 @@
+test_checked_in_graph_configuration_is_valid (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_checked_in_scheduler_configuration_is_valid (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_dirty_source_is_rejected (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_environment_requires_dependency_identity (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_failed_scheduler_result_can_preserve_timeout_evidence (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_graph_configuration_rejects_unimplemented_workload_modes (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_graph_configuration_rejects_unsupported_model_modes (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_measured_graph_rate_must_match_counters (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_passed_graph_result_rejects_fallback (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_scheduler_result_rejects_inconsistent_raw_samples (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_summary_must_match_raw_samples (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_valid_formal_result_is_accepted (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_valid_scheduler_result_is_accepted (test_benchmark_validation.BenchmarkValidationTest) ... ok
+test_all_cache_levels_match_original_decoder (test_cache_pipeline.CachePipelineTest) ... ok
+test_cascade_invalidation_removes_medium_dependent_state (test_cache_pipeline.CachePipelineTest) ... ok
+test_decoder_is_not_a_separate_cache_level (test_cache_pipeline.CachePipelineTest) ... ok
+test_exact_float_frequency_is_part_of_wavelet_key (test_cache_pipeline.CachePipelineTest) ... ok
+test_medium_geometry_and_wavelet_hits_are_recorded (test_cache_pipeline.CachePipelineTest) ... ok
+test_medium_identity_uses_canonical_velocity_values (test_cache_pipeline.CachePipelineTest) ... ok
+test_medium_invalidation_cascades_to_dependent_entries (test_context_cache.CacheBundleTest) ... ok
+test_concurrent_leases_pin_until_every_reader_releases (test_context_cache.TensorLRUCacheTest) ... ok
+test_invalidate_refuses_pinned_entry_without_force (test_context_cache.TensorLRUCacheTest) ... ok
+test_lease_prevents_eviction_until_release (test_context_cache.TensorLRUCacheTest) ... ok
+test_lru_evicts_least_recently_used_entry (test_context_cache.TensorLRUCacheTest) ... ok
+test_async_engine_can_replay_graph_on_its_execution_thread (test_cuda_graph_gpu.CUDAGraphGPUIntegrationTest) ... ok
+test_capture_and_replay_match_eager_output (test_cuda_graph_gpu.CUDAGraphGPUIntegrationTest) ... ok
+test_capture_failure_falls_back_and_is_not_retried (test_cuda_graph_gpu.CUDAGraphGPUIntegrationTest) ... ok
+test_replay_preserves_owned_outputs_and_allocations_stabilize (test_cuda_graph_gpu.CUDAGraphGPUIntegrationTest) ... ok
+test_bucket_selection_and_limits (test_cuda_graph_runtime.CUDAGraphRuntimeTest) ... ok
+test_rejects_invalid_configuration (test_cuda_graph_runtime.CUDAGraphRuntimeTest) ... ok
+test_cancel_and_timeout_close_request_ranges (test_diagnostics.EngineTraceTest) ... ok
+test_success_trace_covers_queue_worker_and_completion (test_diagnostics.EngineTraceTest) ... ok
+test_bounded_trace_and_exception_scope (test_diagnostics.TraceTest) ... ok
+test_batch_failure_isolates_bad_request (test_engine.AsyncFENOEngineTest) ... ok
+test_dynamic_batch_matches_direct_runner (test_engine.AsyncFENOEngineTest) ... ok
+test_queue_deadline_expires_before_dispatch (test_engine.AsyncFENOEngineTest) ... ok
+test_queued_request_can_be_cancelled (test_engine.AsyncFENOEngineTest) ... ok
+test_request_state_only_tracks_active_work_and_failure (test_engine.AsyncFENOEngineTest) ... ok
+test_single_request_over_budget_is_rejected (test_engine.AsyncFENOEngineTest) ... ok
+test_submit_snapshots_mutable_inputs (test_engine.AsyncFENOEngineTest) ... ok
+test_ambiguous_numeric_gpu_mapping_is_rejected (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_checked_manifest_is_loaded (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_disabled_graph_metrics_are_explicit_zeros (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_formal_output_must_be_outside_repository_and_new (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_gpu_mapping_prefers_runtime_uuid (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_gpu_uuid_environment_mapping_accepts_nvidia_prefix (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_graph_metrics_separate_setup_from_measured_replays (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_latency_summary_uses_linear_interpolation (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_nvidia_smi_gpu_metadata_is_parsed (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_runtime_lock_uses_exact_versions (test_graph_benchmark_runtime.GraphBenchmarkRuntimeTest) ... ok
+test_plan_contains_counterbalanced_fresh_process_matrix (test_graph_matrix.GraphMatrixTest) ... ok
+test_resume_requires_the_same_commit_config_and_model_artifacts (test_graph_matrix.GraphMatrixTest) ... ok
+test_summary_uses_run_level_metrics_and_paired_comparisons (test_graph_matrix.GraphMatrixTest) ... ok
+test_batch_templates_are_nested_and_have_exact_request_counts (test_graph_workload.GraphWorkloadTest) ... ok
+test_checked_in_manifests_match_configuration (test_graph_workload.GraphWorkloadTest) ... ok
+test_manifest_does_not_depend_on_graph_mode (test_graph_workload.GraphWorkloadTest) ... ok
+test_unknown_batch_size_is_rejected (test_graph_workload.GraphWorkloadTest) ... ok
+test_cached_runner_matches_legacy_execution (test_model_runner.ModelRunnerTest) ... ok
+test_context_cannot_be_shared_between_runners (test_model_runner.ModelRunnerTest) ... ok
+test_denormalization (test_model_runner.ModelRunnerTest) ... ok
+test_rejects_frequency_count_mismatch (test_model_runner.ModelRunnerTest) ... ok
+test_scalar_frequency_is_broadcast (test_model_runner.ModelRunnerTest) ... ok
+test_all_starved_compatible_requests_keep_fcfs_order (test_scheduler.SchedulerPolicyTest) ... ok
+test_all_three_admission_budgets_are_enforced (test_scheduler.SchedulerPolicyTest) ... ok
+test_cache_aware_groups_compatible_requests_across_queue (test_scheduler.SchedulerPolicyTest) ... ok
+test_each_resource_budget_can_independently_limit_a_batch (test_scheduler.SchedulerPolicyTest) ... ok
+test_fcfs_does_not_skip_incompatible_head_items (test_scheduler.SchedulerPolicyTest) ... ok
+test_near_deadline_request_preempts_locality (test_scheduler.SchedulerPolicyTest) ... ok
+test_starved_request_preempts_locality (test_scheduler.SchedulerPolicyTest) ... ok
+test_broadcastable_shape_mismatch_is_rejected_without_subtraction (test_scheduler_benchmark_runtime.SchedulerCorrectnessTest) ... ok
+test_missing_probe_is_not_reported_as_nan (test_scheduler_benchmark_runtime.SchedulerCorrectnessTest) ... ok
+test_nonfinite_and_mismatched_outputs_are_distinct (test_scheduler_benchmark_runtime.SchedulerCorrectnessTest) ... ok
+test_incomplete_matrix_withholds_performance_comparisons (test_scheduler_matrix.SchedulerMatrixTest) ... ok
+test_one_failed_run_suppresses_comparison_for_complete_matrix (test_scheduler_matrix.SchedulerMatrixTest) ... ok
+test_plan_contains_counterbalanced_fresh_process_matrix (test_scheduler_matrix.SchedulerMatrixTest) ... ok
+test_resume_requires_same_commit_config_and_model_artifacts (test_scheduler_matrix.SchedulerMatrixTest) ... ok
+test_summary_rejects_changed_slo_even_with_matching_config_hash (test_scheduler_matrix.SchedulerMatrixTest) ... ok
+test_summary_uses_paired_runs_and_generates_reuse_plot (test_scheduler_matrix.SchedulerMatrixTest) ... ok
+test_all_scenarios_have_the_same_request_identity_contract (test_scheduler_workload.SchedulerWorkloadTest) ... ok
+test_checked_in_manifests_match_configuration (test_scheduler_workload.SchedulerWorkloadTest) ... ok
+test_policy_is_not_encoded_in_trace (test_scheduler_workload.SchedulerWorkloadTest) ... ok
+test_reuse_scenarios_cover_expected_range (test_scheduler_workload.SchedulerWorkloadTest) ... ok
+
+----------------------------------------------------------------------
+Ran 82 tests in 11.296s
+
+OK
+valid benchmarks/workloads/graph_ab_batch1.json
+valid benchmarks/workloads/graph_ab_batch2.json
+valid benchmarks/workloads/graph_ab_batch4.json
+valid benchmarks/workloads/graph_ab_batch8.json
+valid benchmarks/workloads/scheduler_no_reuse.json
+valid benchmarks/workloads/scheduler_uniform_reuse.json
+valid benchmarks/workloads/scheduler_long_tail_reuse.json
+valid benchmarks/workloads/scheduler_hotspot_reuse.json

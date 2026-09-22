@@ -1,0 +1,9 @@
+command: python benchmarks/benchmark_scheduler_ab.py --config benchmarks/configs/scheduler_batch1_ab.json --policy cache_aware --scenario uniform_reuse --repeat-index 2 --output /tmp/feno-public-run/validation/scheduler_batch1/scheduler_cache_aware_uniform_reuse_run2.json
+return_code: 0
+
+[stdout]
+saved: /tmp/feno-public-run/validation/scheduler_batch1/scheduler_cache_aware_uniform_reuse_run2.json
+validated against scheduler_result.schema.json
+status: passed
+
+[stderr]
